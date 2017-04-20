@@ -11,10 +11,10 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
 # Templates
 
-- Layout
+- [Layout](#layout)
   - [Header](#header)
   - [Footer](#footer)
-- Pages
+- [Pages](#pages)
   - [Home](#home)
   - [Login/Register](#loginregister)
   - [Profile](#profile)
@@ -23,7 +23,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   - [Article](#article)
   
 
-# Layout
+## Layout
 
 
 ### Header
@@ -81,7 +81,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </html>
 ```
 
-# Pages
+## Pages
 
 ### Home
 ```html
