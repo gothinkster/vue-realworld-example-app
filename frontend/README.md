@@ -1,3 +1,5 @@
+> *Note: Feel free to delete this entire folder before publishing your app!*
+
 # Styles
 
 Instead of having the Bootstrap theme included locally, we recommend loading the precompiled theme from our CDN (our [header template](#header) does this by default):
