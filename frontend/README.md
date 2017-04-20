@@ -1,8 +1,30 @@
-# Using the Bootstrap Styles/Templates
+# Styles
+
+Instead of having the Bootstrap theme included locally, we recommend loading the precompiled theme from our CDN (our [header template](#header) does this by default):
+
+```html
+<link rel="stylesheet" href="//demo.productionready.io/main.css">
+```
+
+Alternatively, if you want to make modifications to the theme, check out the [theme's repo](https://github.com/gothinkster/conduit-bootstrap-template).
 
 
+# Templates
 
-## Layout
+- Layout
+  - [Header](#header)
+  - [Footer](#footer)
+- Pages
+  - [Home](#home)
+  - [Login/Register](#loginregister)
+  - [Profile](#profile)
+  - [Settings](#settings)
+  - [Create/Edit Article](#createedit-article)
+  - [Article](#article)
+  
+
+# Layout
+
 
 ### Header
 
@@ -59,7 +81,7 @@
 </html>
 ```
 
-## Pages
+# Pages
 
 ### Home
 ```html
@@ -100,7 +122,7 @@
           </div>
           <a href="" class="preview-link">
             <h1>How to build webapps that scale</h1>
-            <p>In my demo, the holy grail layout is nested inside a document, so there's no body or main tags like shown above. Regardless, we're interested in the class names and the appearance of sections in the markup as opposed to the actual elements themselves. In particular, take note of the modifier classes used on the two sidebars, and the trivial order in which they appear in the markup. Let's break this down to paint a clear picture of what's happening...</p>
+            <p>This is the description for the post.</p>
             <span>Read more...</span>
           </a>
         </div>
@@ -118,7 +140,7 @@
           </div>
           <a href="" class="preview-link">
             <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
-            <p>In my demo, the holy grail layout is nested inside a document, so there's no body or main tags like shown above. Regardless, we're interested in the class names and the appearance of sections in the markup as opposed to the actual elements themselves. In particular, take note of the modifier classes used on the two sidebars, and the trivial order in which they appear in the markup. Let's break this down to paint a clear picture of what's happening...</p>
+            <p>This is the description for the post.</p>
             <span>Read more...</span>
           </a>
         </div>
