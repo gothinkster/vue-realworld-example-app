@@ -1,4 +1,4 @@
-> *Note: Feel free to delete this entire folder before publishing your app!*
+> *Note: Feel free to delete this file before publishing your app!*
 
 # Styles
 
