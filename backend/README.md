@@ -1,4 +1,4 @@
-> *Note: Feel free to delete this file before publishing your app!*
+> *Note: Delete this file before publishing your app!*
 
 # [Backend API spec](https://github.com/gothinkster/realworld/tree/master/api)
 
