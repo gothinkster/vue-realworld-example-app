@@ -2,7 +2,7 @@
 
 ### Using the hosted API
 
-Simply point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
+Simply point your [API requests](https://github.com/gothinkster/realworld/tree/master/api) to `https://conduit.productionready.io/api` and you're good to go!
 
 ### Routing Guidelines
 
