@@ -178,13 +178,14 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           <p>Popular Tags</p>
 
           <div class="tag-list">
-            <a href="" class="label label-pill label-default">programming</a>
-            <a href="" class="label label-pill label-default">javascript</a>
-            <a href="" class="label label-pill label-default">angularjs</a>
-            <a href="" class="label label-pill label-default">react</a>
-            <a href="" class="label label-pill label-default">mean</a>
-            <a href="" class="label label-pill label-default">node</a>
-            <a href="" class="label label-pill label-default">rails</a>
+            <a href="" class="tag-pill tag-default">programming</a>
+            <a href="" class="tag-pill tag-default">javascript</a>
+            <a href="" class="tag-pill tag-default">emberjs</a>
+            <a href="" class="tag-pill tag-default">angularjs</a>
+            <a href="" class="tag-pill tag-default">react</a>
+            <a href="" class="tag-pill tag-default">mean</a>
+            <a href="" class="tag-pill tag-default">node</a>
+            <a href="" class="tag-pill tag-default">rails</a>
           </div>
         </div>
       </div>
