@@ -135,8 +135,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           </ul>
         </div>
 
-        <div class="post-preview">
-          <div class="post-meta">
+        <div class="article-preview">
+          <div class="article-meta">
             <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
             <div class="info">
               <a href="" class="author">Eric Simons</a>
@@ -153,8 +153,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           </a>
         </div>
 
-        <div class="post-preview">
-          <div class="post-meta">
+        <div class="article-preview">
+          <div class="article-meta">
             <a href="profile.html"><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
             <div class="info">
               <a href="" class="author">Albert Pai</a>
