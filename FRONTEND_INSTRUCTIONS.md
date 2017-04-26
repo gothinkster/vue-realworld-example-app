@@ -68,28 +68,32 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   </head>
   <body>
 
-    <nav class="navbar navbar-light">
+     <nav class="navbar navbar-light">
       <div class="container">
         <a class="navbar-brand" href="index.html">conduit</a>
         <ul class="nav navbar-nav pull-xs-right">
+          <!-- Add "active" class when you're on that page" -->
+          <li class="nav-item active">
+            <a class="nav-link" href="">Home</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="">
               <i class="ion-compose"></i>&nbsp;New Post
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Sign up</a>
+            <a class="nav-link" href="">
+              <i class="ion-gear-a"></i>&nbsp;Settings
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Settings</a>
-          </li>
-          <!-- Add "active" class when you're on that page" -->
-          <li class="nav-item active">
-            <a class="nav-link" href="">Home</a>
+            <a class="nav-link" href="">Sign up</a>
           </li>
         </ul>
       </div>
     </nav>
+
+
 ```
 
 ### Footer
@@ -203,7 +207,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   <div class="container page">
     <div class="row">
 
-      <div class="col-md-6 col-md-offset-3 col-xs-12">
+      <div class="col-md-6 offset-md-3 col-xs-12">
         <h1 class="text-xs-center">Sign up</h1>
         <p class="text-xs-center">
           <a href="">Have an account?</a>
@@ -243,7 +247,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
     <div class="container">
       <div class="row">
 
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-xs-12 col-md-10 offset-md-1">
           <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
           <h4>Eric Simons</h4>
           <p>
@@ -263,8 +267,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   <div class="container">
     <div class="row">
 
-      <div class="col-md-10 col-md-offset-1">
-        <div class="posts-toggle">
+      <div class="col-xs-12 col-md-10 offset-md-1">
+        <div class="articles-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
               <a class="nav-link active" href="">My Posts</a>
@@ -275,8 +279,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           </ul>
         </div>
 
-        <div class="post-preview">
-          <div class="post-meta">
+        <div class="article-preview">
+          <div class="article-meta">
             <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
             <div class="info">
               <a href="" class="author">Eric Simons</a>
@@ -293,8 +297,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           </a>
         </div>
 
-        <div class="post-preview">
-          <div class="post-meta">
+        <div class="article-preview">
+          <div class="article-meta">
             <a href=""><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
             <div class="info">
               <a href="" class="author">Albert Pai</a>
@@ -308,6 +312,10 @@ Alternatively, if you want to make modifications to the theme, check out the [th
             <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
             <p>This is the description for the post.</p>
             <span>Read more...</span>
+            <ul class="tag-list">
+              <li class="tag-default tag-pill tag-outline">Music</li>
+              <li class="tag-default tag-pill tag-outline">Song</li>
+            </ul>
           </a>
         </div>
 
@@ -327,28 +335,30 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   <div class="container page">
     <div class="row">
 
-      <div class="col-md-6 col-md-offset-3 col-xs-12">
+      <div class="col-md-6 offset-md-3 col-xs-12">
         <h1 class="text-xs-center">Your Settings</h1>
 
         <form>
-          <fieldset class="form-group">
-            <input class="form-control" type="text" placeholder="URL of profile picture">
+          <fieldset>
+              <fieldset class="form-group">
+                <input class="form-control" type="text" placeholder="URL of profile picture">
+              </fieldset>
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+              </fieldset>
+              <fieldset class="form-group">
+                <textarea class="form-control form-control-lg" rows="8" placeholder="Short bio about you"></textarea>
+              </fieldset>
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg" type="text" placeholder="Email">
+              </fieldset>
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg" type="password" placeholder="Password">
+              </fieldset>
+              <button class="btn btn-lg btn-primary pull-xs-right">
+                Update Settings
+              </button>
           </fieldset>
-          <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Your Name">
-          </fieldset>
-          <fieldset class="form-group">
-            <textarea class="form-control form-control-lg" rows="8" placeholder="Short bio about you"></textarea>
-          </fieldset>
-          <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Email">
-          </fieldset>
-          <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="password" placeholder="Password">
-          </fieldset>
-          <button class="btn btn-lg btn-primary pull-xs-right">
-            Update Settings
-          </button>
         </form>
       </div>
 
@@ -364,25 +374,25 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   <div class="container page">
     <div class="row">
 
-      <div class="col-md-10 col-md-offset-1 col-xs-12">
+      <div class="col-md-10 offset-md-1 col-xs-12">
         <form>
-          <fieldset class="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Post Title">
+          <fieldset>
+            <fieldset class="form-group">
+                <input type="text" class="form-control form-control-lg" placeholder="Article Title">
+            </fieldset>
+            <fieldset class="form-group">
+                <input type="text" class="form-control" placeholder="What's this article about?">
+            </fieldset>
+            <fieldset class="form-group">
+                <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+                <input type="text" class="form-control" placeholder="Enter tags"><div class="tag-list"></div>
+            </fieldset>
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+                Publish Article
+            </button>
           </fieldset>
-          <fieldset class="form-group">
-            <textarea class="form-control" rows="8" placeholder="Write your post (in markdown)"></textarea>
-          </fieldset>
-          <fieldset class="form-group">
-            <input class="form-control" type="text" placeholder="Enter tags">
-            <div class="tag-list">
-              <span class="label label-pill label-default"><i class="ion-close-round"></i> programming</span>
-              <span class="label label-pill label-default"><i class="ion-close-round"></i> javascript</span>
-              <span class="label label-pill label-default"><i class="ion-close-round"></i> webdev</span>
-            </div>
-          </fieldset>
-          <button class="btn btn-lg btn-primary pull-xs-right">
-            Create Post
-          </button>
         </form>
       </div>
 
@@ -397,14 +407,14 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ### Article
 
 ```html
-<div class="post-page">
+<div class="article-page">
 
   <div class="banner">
     <div class="container">
 
       <h1>How to build webapps that scale</h1>
 
-      <div class="post-meta">
+      <div class="article-meta">
         <a href=""><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
         <div class="info">
           <a href="" class="author">Eric Simons</a>
@@ -428,7 +438,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
   <div class="container page">
 
-    <div class="row post-content">
+    <div class="row article-content">
       <div class="col-md-12">
         <p>
         Web development technologies have evolved at an incredible clip over the past few years.
@@ -440,8 +450,8 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
     <hr />
 
-    <div class="post-actions">
-      <div class="post-meta">
+    <div class="article-actions">
+      <div class="article-meta">
         <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
         <div class="info">
           <a href="" class="author">Eric Simons</a>
@@ -464,8 +474,20 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
     <div class="row">
 
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-xs-12 col-md-8 offset-md-2">
 
+        <form class="card comment-form">
+          <div class="card-block">
+            <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+          </div>
+          <div class="card-footer">
+            <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
+            <button class="btn btn-sm btn-primary">
+             Post Comment
+            </button>
+          </div>
+        </form>
+        
         <div class="card">
           <div class="card-block">
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -497,19 +519,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
             </span>
           </div>
         </div>
-
-        <form class="card comment-form">
-          <div class="card-block">
-            <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
-          </div>
-          <div class="card-footer">
-            <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-            <button class="btn btn-sm btn-primary">
-             Post Comment
-            </button>
-          </div>
-        </form>
-
+        
       </div>
 
     </div>
