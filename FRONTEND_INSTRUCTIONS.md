@@ -72,9 +72,9 @@ Alternatively, if you want to make modifications to the theme, check out the [th
       <div class="container">
         <a class="navbar-brand" href="index.html">conduit</a>
         <ul class="nav navbar-nav pull-xs-right">
-          <!-- Add "active" class when you're on that page" -->
-          <li class="nav-item active">
-            <a class="nav-link" href="">Home</a>
+          <li class="nav-item">
+            <!-- Add "active" class when you're on that page" -->
+            <a class="nav-link active" href="">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">
