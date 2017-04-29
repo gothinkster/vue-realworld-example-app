@@ -256,7 +256,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
           <button class="btn btn-sm btn-outline-secondary action-btn">
             <i class="ion-plus-round"></i>
             &nbsp;
-            Follow Eric Simons <span class="counter">(10)</span>
+            Follow Eric Simons 
           </button>
         </div>
 
