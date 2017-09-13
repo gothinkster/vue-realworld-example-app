@@ -1,4 +1,4 @@
-# ![RealWorld Example App](logo.png)
+# ![RealWorld Example App](./static/logo.png)
 
 > ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
@@ -20,4 +20,3 @@ For more information on how to this works with other frontends/backends, head ov
 # Getting started
 
 > npm install, npm start, etc.
-
