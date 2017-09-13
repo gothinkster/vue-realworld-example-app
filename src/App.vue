@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <rwv-header></rwv-header>
     <router-view></router-view>
+    <rwv-footer></rwv-footer>
   </div>
 </template>
 
 <script>
+import RwvHeader from '@/components/Header'
+import RwvFooter from '@/components/Footer'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    RwvHeader,
+    RwvFooter
+  }
 }
 </script>
 
