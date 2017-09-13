@@ -4,6 +4,12 @@
 /node_modules
 /bower_components
 
+# Tooling Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+selenium-debug.log
+
 # IDEs and editors
 /.idea
 .project
@@ -11,6 +17,11 @@
 *.launch
 .settings/
 
-#System Files
+# System Files
 .DS_Store
 Thumbs.db
+
+# Generated Files
+dist/
+test/unit/coverage
+test/e2e/reports
