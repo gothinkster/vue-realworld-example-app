@@ -1,24 +1,35 @@
 <template>
   <nav class="navbar navbar-light">
-   <div class="container">
-     <a class="navbar-brand" href="index.html">conduit</a>
-     <ul class="nav navbar-nav pull-xs-right">
-       <li class="nav-item">
+    <div class="container">
+      <router-link class="navbar-brand"
+        :to="{ name: 'home', params: {} }" >
+        conduit
+      </router-link>
+      <ul class="nav navbar-nav pull-xs-right">
+        <li class="nav-item">
          <!-- Add "active" class when you're on that page" -->
-         <a class="nav-link active" href="">Home</a>
-       </li>
+          <router-link class="nav-link active"
+            :to="{ name: 'home', params: {} }">
+            Home
+          </router-link>
+        </li>
        <li class="nav-item">
-         <a class="nav-link" href="">
+         <router-link class="nav-link"
+           :to="{ name: 'article', params: {} }">
            <i class="ion-compose"></i>&nbsp;New Post
-         </a>
+         </router-link>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="">
+         <router-link class="nav-link"
+           :to="{ name: 'settings', params: {} }">
            <i class="ion-gear-a"></i>&nbsp;Settings
-         </a>
+         </router-link>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="">Sign up</a>
+         <router-link class="nav-link"
+           :to="{ name: 'login', params: {} }">
+           <i class="ion-compose"></i>Sign up
+         </router-link>
        </li>
      </ul>
     </div>
@@ -26,11 +37,6 @@
  </template>
 <script>
 export default {
-  name: 'rwvHeader',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+  name: 'rwvHeader'
 }
 </script>

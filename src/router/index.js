@@ -4,6 +4,7 @@ import Home from '@/vues/Home'
 import Login from '@/vues/Login'
 import Profile from '@/vues/Profile'
 import Settings from '@/vues/Settings'
+import ArticleEdit from '@/vues/ArticleEdit'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/article',
+      name: 'article',
+      component: ArticleEdit
     }
   ]
 })
