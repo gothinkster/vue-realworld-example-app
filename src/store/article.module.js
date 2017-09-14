@@ -10,7 +10,6 @@ export const actions = {
   [FETCH_ARTICLE] (context, articleSlug) {
     return ArticlesService.get(articleSlug)
       .then(({ data }) => {
-        console.log('action', data, articleSlug)
         context.commit(SET_ARTICLE, data.article)
       })
       .catch((error) => {
