@@ -4,36 +4,37 @@ import Home from '@/vues/Home'
 import Login from '@/vues/Login'
 import Profile from '@/vues/Profile'
 import Settings from '@/vues/Settings'
-import ArticleEdit from '@/vues/ArticleEdit'
+import Article from '@/vues/Article'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
       name: 'home',
+      path: '/',
       component: Home
     },
     {
-      path: '/profile/:id',
-      name: 'profile',
-      component: Profile
-    },
-    {
-      path: '/settings',
       name: 'settings',
+      path: '/settings',
       component: Settings
     },
     {
-      path: '/login',
       name: 'login',
+      path: '/login',
       component: Login
     },
     {
-      path: '/article/:id',
+      name: 'profile',
+      path: '/profile/:username',
+      component: Profile
+    },
+    {
       name: 'article',
-      component: ArticleEdit
+      path: '/article/:slug',
+      component: Article,
+      props: true
     }
   ]
 })
