@@ -16,7 +16,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/profile',
+      path: '/profile/:id',
       name: 'profile',
       component: Profile
     },
@@ -31,7 +31,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/article',
+      path: '/article/:id',
       name: 'article',
       component: ArticleEdit
     }

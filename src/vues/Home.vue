@@ -20,15 +20,20 @@
             </ul>
           </div>
         <article-preview
-          v-for="article in articles"
-          :article="article">
+          v-for="(article, index) in articles"
+          :article="article"
+          :key="article.title">
         </article-preview>
         </div>
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <tag v-for="(tag, index) in tags" :name="tag"></tag>
+              <tag
+                v-for="(tag, index) in tags"
+                :name="tag"
+                :key="tag.name">
+              </tag>
             </div>
           </div>
         </div>
