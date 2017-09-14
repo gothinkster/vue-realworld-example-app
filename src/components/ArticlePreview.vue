@@ -1,19 +1,9 @@
 <template>
   <div class="article-preview">
-    <div class="article-meta">
-      <a href="profile.html"><img v-bind:src="article.author.image" /></a>
-      <div class="info">
-        <router-link
-          :to="{name: 'profile', params: {'username': article.author.username}}"
-          class="author">
-          {{article.author.username}}
-        </router-link>
-        <span class="date">{{article.createdAt | date}}</span>
-      </div>
-      <button class="btn btn-outline-primary btn-sm pull-xs-right">
-        <i class="ion-heart"></i> {{article.favoritesCount}}
-      </button>
-    </div>
+    <article-meta
+      :article="article"
+      :actions="false">
+    </article-meta>
     <router-link
       :to="{name: 'article', params: {'slug': article.slug}}"
       class="preview-link">
@@ -25,9 +15,13 @@
 </template>
 
 <script>
+import ArticleMeta from '@/components/ArticleMeta'
 
 export default {
   name: 'ArticlePreview',
-  props: ['article']
+  props: ['article'],
+  components: {
+    ArticleMeta
+  }
 }
 </script>
