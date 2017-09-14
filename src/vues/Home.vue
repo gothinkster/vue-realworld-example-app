@@ -21,7 +21,9 @@
           </div>
           <div class="article-preview">
             <div class="article-meta">
-              <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+              <a href="profile.html">
+                <img src="http://i.imgur.com/Qr71crq.jpg" />
+              </a>
               <div class="info">
                 <a href="" class="author">Eric Simons</a>
                 <span class="date">January 20th</span>
@@ -38,7 +40,9 @@
           </div>
           <div class="article-preview">
             <div class="article-meta">
-              <a href="profile.html"><img src="http://i.imgur.com/N4VcUeJ.jpg" /></a>
+              <a href="profile.html">
+                <img src="http://i.imgur.com/N4VcUeJ.jpg" />
+              </a>
               <div class="info">
                 <a href="" class="author">Albert Pai</a>
                 <span class="date">January 20th</span>
@@ -58,24 +62,34 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <a href="" class="tag-pill tag-default">programming</a>
-              <a href="" class="tag-pill tag-default">javascript</a>
-              <a href="" class="tag-pill tag-default">emberjs</a>
-              <a href="" class="tag-pill tag-default">angularjs</a>
-              <a href="" class="tag-pill tag-default">react</a>
-              <a href="" class="tag-pill tag-default">mean</a>
-              <a href="" class="tag-pill tag-default">node</a>
-              <a href="" class="tag-pill tag-default">rails</a>
+              <tag v-for="(tag, index) in tags" :name="tag"></tag>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 <script>
+import Tag from '@/components/Tag'
+import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
+
 export default {
-  name: 'home'
+  name: 'home',
+  components: {
+    Tag
+  },
+  beforeMount () {
+    this.$store.dispatch(FETCH_ARTICLES)
+    this.$store.dispatch(FETCH_TAGS)
+  },
+  computed: {
+    articles () {
+      return this.$store.state.home.articles
+    },
+    tags () {
+      return this.$store.state.home.tags
+    }
+  }
 }
 </script>

@@ -16,8 +16,8 @@ export default class ApiService {
 }
 
 export const TagsService = {
-  get: ApiService.get('articles')
+  get () { return ApiService.get('tags') }
 }
 export const ArticlesService = {
-  get: ApiService.get('articles')
+  get () { return ApiService.get('articles') }
 }
