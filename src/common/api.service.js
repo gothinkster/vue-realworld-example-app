@@ -25,3 +25,11 @@ export const ArticlesService = {
     return ApiService.get('articles', slug)
   }
 }
+export const CommentsService = {
+  get (slug) {
+    if (typeof slug !== 'string') {
+      throw new Error('[RWV] CommentsService.get() article slug required to fetch comments')
+    }
+    return ApiService.get('articles', `${slug}/comments`)
+  }
+}

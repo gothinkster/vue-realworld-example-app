@@ -1,9 +1,10 @@
-import { ArticlesService } from '@/common/api.service'
-import { FETCH_ARTICLE } from './actions.type'
-import { SET_ARTICLE } from './mutations.type'
+import { ArticlesService, CommentsService } from '@/common/api.service'
+import { FETCH_ARTICLE, FETCH_COMMENTS } from './actions.type'
+import { SET_ARTICLE, SET_COMMENTS } from './mutations.type'
 
 export const state = {
-  article: {}
+  article: {},
+  comments: []
 }
 
 export const actions = {
@@ -15,6 +16,15 @@ export const actions = {
       .catch((error) => {
         throw new Error(error)
       })
+  },
+  [FETCH_COMMENTS] (context, articleSlug) {
+    return CommentsService.get(articleSlug)
+      .then(({ data }) => {
+        context.commit(SET_COMMENTS, data.comments)
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   }
 }
 
@@ -22,6 +32,9 @@ export const actions = {
 export const mutations = {
   [SET_ARTICLE] (state, article) {
     state.article = article
+  },
+  [SET_COMMENTS] (state, comments) {
+    state.comments = comments
   }
 }
 

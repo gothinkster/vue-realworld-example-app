@@ -26,7 +26,11 @@
         <div class="col-xs-12 col-md-8 offset-md-2">
           <form class="card comment-form">
             <div class="card-block">
-              <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+              <textarea
+                class="form-control"
+                placeholder="Write a comment..."
+                rows="3">
+              </textarea>
             </div>
             <div class="card-footer">
               <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
@@ -35,36 +39,11 @@
               </button>
             </div>
           </form>
-          <div class="card">
-            <div class="card-block">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <a href="" class="comment-author">
-                <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              </a>
-              &nbsp;
-              <a href="" class="comment-author">Jacob Schmidt</a>
-              <span class="date-posted">Dec 29th</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-block">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <a href="" class="comment-author">
-                <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              </a>
-              &nbsp;
-              <a href="" class="comment-author">Jacob Schmidt</a>
-              <span class="date-posted">Dec 29th</span>
-              <span class="mod-options">
-                <i class="ion-edit"></i>
-                <i class="ion-trash-a"></i>
-              </span>
-            </div>
-          </div>
+          <rwv-comment
+            v-for="(comment, index) in comments"
+            :comment="comment"
+            :key="index">
+          </rwv-comment>
         </div>
       </div>
     </div>
@@ -72,21 +51,33 @@
 </template>
 
 <script>
+import store from '@/store'
 import ArticleMeta from '@/components/ArticleMeta'
-import { FETCH_ARTICLE } from '@/store/actions.type'
+import RwvComment from '@/components/Comment'
+
+import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
 
 export default {
-  name: 'article',
+  name: 'RwvArticle',
   props: ['slug'],
   components: {
-    ArticleMeta
+    ArticleMeta,
+    RwvComment
   },
-  beforeMount () {
-    this.$store.dispatch(FETCH_ARTICLE, this.slug)
+  beforeRouteEnter (to, from, next) {
+    Promise.all([
+      store.dispatch(FETCH_ARTICLE, to.params.slug),
+      store.dispatch(FETCH_COMMENTS, to.params.slug)
+    ]).then((data) => {
+      next()
+    })
   },
   computed: {
     article () {
       return this.$store.state.article.article
+    },
+    comments () {
+      return this.$store.state.article.comments
     }
   }
 }
