@@ -8,9 +8,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 
+import DateFilter from '@/common/date.filter'
+
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
+
+Vue.filter('date', DateFilter)
 
 /* eslint-disable no-new */
 new Vue({
