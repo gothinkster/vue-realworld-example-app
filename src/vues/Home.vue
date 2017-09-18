@@ -44,7 +44,6 @@
 <script>
 import Tag from '@/components/Tag'
 import ArticlePreview from '@/components/ArticlePreview'
-
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {

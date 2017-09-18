@@ -1,8 +1,20 @@
 import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import JwtService from '@/common/jwt.service'
+import { API_URL } from '@/common/config'
 
-export default class ApiService {
+const ApiService = {
+  init () {
+    Vue.use(VueAxios, axios)
+    Vue.axios.defaults.baseURL = API_URL
+  },
 
-  static get (resource, params = '') {
+  setHeader () {
+    Vue.axios.defaults.headers.common['Authorization'] = `Token ${JwtService.getToken()}`
+  },
+
+  get (resource, params = '') {
     if (typeof resource !== 'string') {
       throw new Error('[RWV] ApiService.get() first parameter must be a string')
     }
@@ -11,23 +23,21 @@ export default class ApiService {
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
-  }
+  },
 
-  static post (resource, params) {
+  post (resource, params) {
     if (typeof resource !== 'string') {
       throw new Error('[RWV] ApiService.post() first parameter must be a string')
     }
     return Vue.axios
-      .post(`${resource}`, {
-        data: params
-
-      })
-      .then(console.log)
+      .post(`${resource}`, params)
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
   }
 }
+
+export default ApiService
 
 export const TagsService = {
   get () {

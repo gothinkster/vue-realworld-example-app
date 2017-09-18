@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/vues/Home'
 import Login from '@/vues/Login'
+import Register from '@/vues/Register'
 import Profile from '@/vues/Profile'
 import Settings from '@/vues/Settings'
 import RwvArticle from '@/vues/Article'
@@ -25,6 +26,11 @@ export default new Router({
       name: 'login',
       path: '/login',
       component: Login
+    },
+    {
+      name: 'register',
+      path: '/register',
+      component: Register
     },
     {
       name: 'profile',
