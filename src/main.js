@@ -5,14 +5,16 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 import App from './App'
+import { API_URL } from '@/common/config'
 import router from './router'
 import store from './store'
 
 import DateFilter from '@/common/date.filter'
 
-Vue.use(VueAxios, axios)
-
 Vue.config.productionTip = false
+
+const http = axios.create({baseURL: API_URL})
+Vue.use(VueAxios, http)
 
 Vue.filter('date', DateFilter)
 

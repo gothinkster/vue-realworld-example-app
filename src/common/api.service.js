@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import { API_URL } from '@/common/config'
 
 export default class ApiService {
 
@@ -8,7 +7,22 @@ export default class ApiService {
       throw new Error('[RWV] ApiService.get() first parameter must be a string')
     }
     return Vue.axios
-      .get(`${API_URL}/${resource}/${params}`)
+      .get(`${resource}/${params}`)
+      .catch((error) => {
+        throw new Error(`[RWV] ApiService ${error}`)
+      })
+  }
+
+  static post (resource, params) {
+    if (typeof resource !== 'string') {
+      throw new Error('[RWV] ApiService.post() first parameter must be a string')
+    }
+    return Vue.axios
+      .post(`${resource}`, {
+        data: params
+
+      })
+      .then(console.log)
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
