@@ -6,7 +6,8 @@ import Login from '@/vues/Login'
 import Register from '@/vues/Register'
 import Profile from '@/vues/Profile'
 import Settings from '@/vues/Settings'
-import RwvArticle from '@/vues/Article'
+import Article from '@/vues/Article'
+import ArticleEdit from '@/vues/ArticleEdit'
 
 Vue.use(Router)
 
@@ -40,8 +41,13 @@ export default new Router({
     {
       name: 'article',
       path: '/articles/:slug',
-      component: RwvArticle,
+      component: Article,
       props: true
+    },
+    {
+      name: 'article-edit',
+      path: '/editor/:slug',
+      component: ArticleEdit
     }
   ]
 })
