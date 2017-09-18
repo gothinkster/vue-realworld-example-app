@@ -19,11 +19,6 @@ export default new Router({
       component: Home
     },
     {
-      name: 'settings',
-      path: '/settings',
-      component: Settings
-    },
-    {
       name: 'login',
       path: '/login',
       component: Login
@@ -34,9 +29,15 @@ export default new Router({
       component: Register
     },
     {
+      name: 'settings',
+      path: '/settings',
+      component: Settings
+    },
+    {
       name: 'profile',
       path: '/profiles/:username',
-      component: Profile
+      component: Profile,
+      props: true
     },
     {
       name: 'article',
@@ -46,7 +47,7 @@ export default new Router({
     },
     {
       name: 'article-edit',
-      path: '/editor/:slug',
+      path: '/editor/:slug?',
       component: ArticleEdit
     }
   ]

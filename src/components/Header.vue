@@ -8,19 +8,19 @@
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
           <router-link class="nav-link active"
-            :to="{ name: 'home', params: {} }">
+            :to="{ name: 'home' }">
             Home
           </router-link>
         </li>
          <li class="nav-item">
            <router-link class="nav-link"
-             :to="{ name: 'login', params: {} }">
+             :to="{ name: 'login' }">
              <i class="ion-compose"></i>Sign in
            </router-link>
          </li>
          <li class="nav-item">
            <router-link class="nav-link"
-             :to="{ name: 'register', params: {} }">
+             :to="{ name: 'register' }">
              <i class="ion-compose"></i>Sign up
            </router-link>
          </li>
@@ -28,7 +28,7 @@
        <ul v-else class="nav navbar-nav pull-xs-right">
          <li class="nav-item">
            <router-link class="nav-link active"
-             :to="{ name: 'home', params: {} }">
+             :to="{ name: 'home' }">
              Home
            </router-link>
          </li>
@@ -40,7 +40,7 @@
          </li>
          <li class="nav-item">
            <router-link class="nav-link"
-             :to="{ name: 'settings', params: {} }">
+             :to="{ name: 'settings' }">
              <i class="ion-gear-a"></i>&nbsp;Settings
            </router-link>
          </li>
