@@ -7,19 +7,26 @@
       </router-link>
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
-          <router-link class="nav-link active"
+          <router-link class="nav-link"
+            active-class="active"
+            exact
             :to="{ name: 'home' }">
             Home
           </router-link>
         </li>
          <li class="nav-item">
            <router-link class="nav-link"
+             active-class="active"
+             exact
              :to="{ name: 'login' }">
              <i class="ion-compose"></i>Sign in
            </router-link>
          </li>
          <li class="nav-item">
-           <router-link class="nav-link"
+           <router-link
+             class="nav-link"
+             active-class="active"
+             exact
              :to="{ name: 'register' }">
              <i class="ion-compose"></i>Sign up
            </router-link>
@@ -27,28 +34,37 @@
        </ul>
        <ul v-else class="nav navbar-nav pull-xs-right">
          <li class="nav-item">
-           <router-link class="nav-link active"
+           <router-link
+              class="nav-link"
+              active-class="active"
+              exact
              :to="{ name: 'home' }">
              Home
            </router-link>
          </li>
          <li class="nav-item">
            <router-link class="nav-link"
+             active-class="active"
+             exact
              :to="{ name: 'article-edit' }">
              <i class="ion-compose"></i>&nbsp;New Article
            </router-link>
          </li>
          <li class="nav-item">
            <router-link class="nav-link"
+             active-class="active"
+             exact
              :to="{ name: 'settings' }">
              <i class="ion-gear-a"></i>&nbsp;Settings
            </router-link>
          </li>
          <li class="nav-item">
            <router-link class="nav-link"
-           :to="{ name: 'profile', params: {} }">
-           {{userName}}
-         </router-link>
+             active-class="active"
+             exact
+             :to="{ name: 'profile', params: { username: userName } }">
+             {{userName}}
+            </router-link>
         </li>
       </ul>
     </div>
