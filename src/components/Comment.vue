@@ -12,14 +12,21 @@
       <span class="date-posted">{{comment.createdAt | date}}</span>
       <span class="mod-options">
         <i class="ion-edit"></i>
-        <i class="ion-trash-a"></i>
+        <i class="ion-trash-a" v-on:click="destroy(slug, comment.id)"></i>
       </span>
     </div>
   </div>
 </template>
 <script>
+import { COMMENT_DESTROY } from '@/store/actions.type'
+
 export default {
   name: 'comment',
-  props: ['comment']
+  props: ['slug', 'comment'],
+  methods: {
+    destroy (slug, commentId) {
+      this.$store.dispatch(COMMENT_DESTROY, { slug, commentId })
+    }
+  }
 }
 </script>

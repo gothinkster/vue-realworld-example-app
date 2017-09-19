@@ -34,6 +34,14 @@ const ApiService = {
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
+  },
+
+  delete (resource) {
+    return Vue.axios
+      .delete(resource)
+      .catch((error) => {
+        throw new Error(`[RWV] ApiService ${error}`)
+      })
   }
 }
 
@@ -60,5 +68,10 @@ export const CommentsService = {
   post (slug, payload) {
     return ApiService.post(
       `articles/${slug}/comments`, { comment: { body: payload } })
+  },
+
+  destroy (slug, commentId) {
+    return ApiService
+      .delete(`articles/${slug}/comments/${commentId}`)
   }
 }

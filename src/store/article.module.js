@@ -1,5 +1,5 @@
 import { ArticlesService, CommentsService } from '@/common/api.service'
-import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE } from './actions.type'
+import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE, COMMENT_DESTROY } from './actions.type'
 import { SET_ARTICLE, SET_COMMENTS } from './mutations.type'
 
 export const state = {
@@ -24,6 +24,13 @@ export const actions = {
     return CommentsService
       .post(payload.slug, payload.comment)
       .then(() => { context.dispatch(FETCH_COMMENTS, payload.slug) })
+  },
+  [COMMENT_DESTROY] (context, payload) {
+    return CommentsService
+      .destroy(payload.slug, payload.commentId)
+      .then(() => {
+        context.dispatch(FETCH_COMMENTS, payload.slug)
+      })
   }
 }
 

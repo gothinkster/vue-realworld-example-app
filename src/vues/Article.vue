@@ -29,6 +29,7 @@
             :user-image="user.image"></comment-editor>
           <rwv-comment
             v-for="(comment, index) in comments"
+            :slug="slug"
             :comment="comment"
             :key="index">
           </rwv-comment>
