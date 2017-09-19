@@ -55,5 +55,10 @@ export const CommentsService = {
       throw new Error('[RWV] CommentsService.get() article slug required to fetch comments')
     }
     return ApiService.get('articles', `${slug}/comments`)
+  },
+
+  post (slug, payload) {
+    return ApiService.post(
+      `articles/${slug}/comments`, { comment: { body: payload } })
   }
 }

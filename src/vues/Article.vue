@@ -24,21 +24,9 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
-          <form class="card comment-form">
-            <div class="card-block">
-              <textarea
-                class="form-control"
-                placeholder="Write a comment..."
-                rows="3">
-              </textarea>
-            </div>
-            <div class="card-footer">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              <button class="btn btn-sm btn-primary">
-               Post Comment
-              </button>
-            </div>
-          </form>
+          <comment-editor
+            :slug="slug"
+            :user-image="user.image"></comment-editor>
           <rwv-comment
             v-for="(comment, index) in comments"
             :comment="comment"
@@ -54,6 +42,7 @@
 import store from '@/store'
 import ArticleMeta from '@/components/ArticleMeta'
 import RwvComment from '@/components/Comment'
+import CommentEditor from '@/components/CommentEditor'
 
 import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
 
@@ -62,7 +51,8 @@ export default {
   props: ['slug'],
   components: {
     ArticleMeta,
-    RwvComment
+    RwvComment,
+    CommentEditor
   },
   beforeRouteEnter (to, from, next) {
     Promise.all([
@@ -78,6 +68,9 @@ export default {
     },
     comments () {
       return this.$store.state.article.comments
+    },
+    user () {
+      return this.$store.state.auth.user
     }
   }
 }

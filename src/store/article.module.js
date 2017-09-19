@@ -1,5 +1,5 @@
 import { ArticlesService, CommentsService } from '@/common/api.service'
-import { FETCH_ARTICLE, FETCH_COMMENTS } from './actions.type'
+import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE } from './actions.type'
 import { SET_ARTICLE, SET_COMMENTS } from './mutations.type'
 
 export const state = {
@@ -13,18 +13,17 @@ export const actions = {
       .then(({ data }) => {
         context.commit(SET_ARTICLE, data.article)
       })
-      .catch((error) => {
-        throw new Error(error)
-      })
   },
   [FETCH_COMMENTS] (context, articleSlug) {
     return CommentsService.get(articleSlug)
       .then(({ data }) => {
         context.commit(SET_COMMENTS, data.comments)
       })
-      .catch((error) => {
-        throw new Error(error)
-      })
+  },
+  [COMMENT_CREATE] (context, payload) {
+    return CommentsService
+      .post(payload.slug, payload.comment)
+      .then(() => { context.dispatch(FETCH_COMMENTS, payload.slug) })
   }
 }
 
