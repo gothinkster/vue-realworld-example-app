@@ -25,7 +25,7 @@ export default {
   props: ['slug', 'comment'],
   computed: {
     userIsAuthor () {
-      return this.comment.author.username === this.$store.state.auth.user.username
+      return (this.comment.author.username === this.$store.state.auth.user.username)
     }
   },
   methods: {

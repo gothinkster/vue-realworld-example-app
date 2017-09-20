@@ -25,8 +25,14 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
           <comment-editor
+            v-if="isAuth"
             :slug="slug"
-            :user-image="user.image"></comment-editor>
+            :user-image="user.image">
+          </comment-editor>
+
+          <p v-else>
+            <router-link :to="{name: 'login'}">Sign in</router-link> or <router-link :to="{ name: 'register' }">sign up</router-link>  to add comments on this article.
+          </p>
           <rwv-comment
             v-for="(comment, index) in comments"
             :slug="slug"
@@ -72,6 +78,9 @@ export default {
     },
     user () {
       return this.$store.state.auth.user
+    },
+    isAuth () {
+      return this.$store.state.auth.isAuthenticated
     }
   }
 }
