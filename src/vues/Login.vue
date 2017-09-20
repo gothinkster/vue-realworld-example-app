@@ -9,8 +9,8 @@
               Need an account?
             </router-link>
           </p>
-          <ul class="error-messages">
-            <li>{{errors}}</li>
+          <ul v-if="errors" class="error-messages">
+            <li v-for="(v, k) in errors">{{k}} {{ v | error }}</li>
           </ul>
           <form v-on:submit="onSubmit(email, password)">
             <fieldset class="form-group">
@@ -43,7 +43,6 @@ export default {
   name: 'login',
   data () {
     return {
-      errors: '',
       email: null,
       password: null
     }
@@ -53,6 +52,11 @@ export default {
       this.$store
         .dispatch(LOGIN, { email, password })
         .then(() => this.$router.push({ name: 'home' }))
+    }
+  },
+  computed: {
+    errors () {
+      return this.$store.state.auth.errors
     }
   }
 }

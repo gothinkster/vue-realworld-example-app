@@ -9,8 +9,8 @@
               Have an account?
             </router-link>
           </p>
-          <ul class="error-messages">
-            <li>That email is already taken</li>
+          <ul v-if="errors" class="error-messages">
+            <li v-for="(v, k) in errors">{{k}} {{ v | error }}</li>
           </ul>
           <form v-on:submit="onSubmit">
             <fieldset class="form-group">
@@ -38,9 +38,14 @@ export default {
   name: 'register',
   data () {
     return {
+      username: '',
       email: '',
-      password: '',
-      username: ''
+      password: ''
+    }
+  },
+  computed: {
+    errors () {
+      return this.$store.state.auth.errors
     }
   },
   methods: {
@@ -49,9 +54,8 @@ export default {
         email: this.email,
         password: this.password,
         username: this.username
-      }).then(() => {
-        this.$router.push({ name: 'home' })
       })
+      .then(() => this.$router.push({ name: 'home' }))
     }
   }
 }

@@ -31,9 +31,6 @@ const ApiService = {
     }
     return Vue.axios
       .post(`${resource}`, params)
-      .catch((error) => {
-        throw new Error(`[RWV] ApiService ${error}`)
-      })
   },
 
   delete (resource) {
