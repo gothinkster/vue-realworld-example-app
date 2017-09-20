@@ -11,7 +11,7 @@
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
+              <li v-if="isAuth" class="nav-item">
                 <a class="nav-link disabled" href="">Your Feed</a>
               </li>
               <li class="nav-item">
@@ -57,6 +57,9 @@ export default {
     this.$store.dispatch(FETCH_TAGS)
   },
   computed: {
+    isAuth () {
+      return this.$store.state.auth.isAuthenticated
+    },
     articles () {
       return this.$store.state.home.articles
     },
