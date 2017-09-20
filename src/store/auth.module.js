@@ -1,6 +1,6 @@
 import ApiService from '@/common/api.service'
 import JwtService from '@/common/jwt.service'
-import { LOGIN, LOGOUT, CHECK_AUTH } from './actions.type'
+import { LOGIN, LOGOUT, REGISTER, CHECK_AUTH } from './actions.type'
 import { SET_AUTH, PURGE_AUTH } from './mutations.type'
 
 const onRejected = (error) => { throw new Error(error) }
@@ -13,7 +13,7 @@ export const state = {
 export const actions = {
   [LOGIN] (context, credentials) {
     ApiService
-      .post('users/login', {user: credentials})
+      .post('users/login', { user: credentials })
       .then(({ data }) => {
         context.commit(SET_AUTH, data.user)
       })
@@ -21,6 +21,15 @@ export const actions = {
   },
   [LOGOUT] (context) {
     context.commit(PURGE_AUTH)
+  },
+  [REGISTER] (context, credentials) {
+    ApiService
+      .post('users', { user: credentials })
+      .then(({ data }) => {
+        console.log('hello', data)
+        context.commit(SET_AUTH, data.user)
+      })
+      .catch(onRejected)
   },
   [CHECK_AUTH] (context) {
     if (JwtService.getToken()) {

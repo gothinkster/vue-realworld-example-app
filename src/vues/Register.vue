@@ -12,15 +12,15 @@
           <ul class="error-messages">
             <li>That email is already taken</li>
           </ul>
-          <form>
+          <form v-on:submit="onSubmit">
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+              <input class="form-control form-control-lg" type="text" v-model="username" placeholder="Username">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email">
+              <input class="form-control form-control-lg" type="text" v-model="email" placeholder="Email">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password">
+              <input class="form-control form-control-lg" type="password" v-model="password" placeholder="Password">
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
               Sign up
@@ -32,7 +32,27 @@
   </div>
 </template>
 <script>
+import { REGISTER } from '@/store/actions.type'
+
 export default {
-  name: 'register'
+  name: 'register',
+  data () {
+    return {
+      email: '',
+      password: '',
+      username: ''
+    }
+  },
+  methods: {
+    onSubmit () {
+      this.$store.dispatch(REGISTER, {
+        email: this.email,
+        password: this.password,
+        username: this.username
+      }).then(() => {
+        this.$router.push({ name: 'home' })
+      })
+    }
+  }
 }
 </script>
