@@ -1,9 +1,14 @@
 <template>
-  <a href="" class="tag-pill tag-default">{{name}}</a>
+  <a
+    href="#"
+    v-on:click="onClick('tag', {tag: name})"
+    class="tag-pill tag-default">
+    {{name}}
+  </a>
 </template>
 <script>
 export default {
   name: 'tag',
-  props: ['name']
+  props: ['name', 'onClick']
 }
 </script>

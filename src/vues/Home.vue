@@ -12,10 +12,22 @@
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
               <li v-if="isAuth" class="nav-item">
-                <a class="nav-link disabled" href="">Your Feed</a>
+                <a class="nav-link"
+                  :class="{ active: listConfig.type === 'feed' }" v-on:click="setListTo('feed')">
+                  Your Feed
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Global Feed</a>
+                <a class="nav-link"
+                  :class="{ active: listConfig.type === 'all' }"
+                  v-on:click="setListTo('all')">
+                  Global Feed
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" v-if="listConfig.filters.tag">
+                  <i class="ion-pound"></i> {{ listConfig.filters.tag }}
+                </a>
               </li>
             </ul>
           </div>
@@ -31,6 +43,7 @@
             <div class="tag-list">
               <tag
                 v-for="(tag, index) in tags"
+                :onClick="setListTo"
                 :name="tag"
                 :key="tag.name">
               </tag>
@@ -51,6 +64,20 @@ export default {
   components: {
     Tag,
     ArticlePreview
+  },
+  data () {
+    return {
+      listConfig: {
+        type: '',
+        filters: {}
+      }
+    }
+  },
+  methods: {
+    setListTo (type, filters = {}) {
+      this.listConfig.type = type
+      this.listConfig.filters = filters
+    }
   },
   beforeMount () {
     this.$store.dispatch(FETCH_ARTICLES)
