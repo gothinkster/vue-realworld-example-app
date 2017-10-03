@@ -1,17 +1,19 @@
 import { TagsService, ArticlesService } from '@/common/api.service'
 import { FETCH_ARTICLES, FETCH_TAGS } from './actions.type'
-import { SET_ARTICLES, SET_TAGS } from './mutations.type'
+import { FETCH_START, FETCH_END, SET_TAGS } from './mutations.type'
 
 export const state = {
   tags: [],
-  articles: []
+  articles: [],
+  isLoading: true
 }
 
 export const actions = {
   [FETCH_ARTICLES] ({ commit }, params) {
+    commit(FETCH_START)
     return ArticlesService.query(params.filters)
       .then(({ data }) => {
-        commit(SET_ARTICLES, data.articles)
+        commit(FETCH_END, data.articles)
       })
       .catch((error) => {
         throw new Error(error)
@@ -30,11 +32,15 @@ export const actions = {
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
 export const mutations = {
-  [SET_ARTICLES] (currentState, articles) {
-    currentState.articles = articles
+  [FETCH_START] (state) {
+    state.isLoading = true
   },
-  [SET_TAGS] (currentState, tags) {
-    currentState.tags = tags
+  [FETCH_END] (state, articles) {
+    state.articles = articles
+    state.isLoading = false
+  },
+  [SET_TAGS] (state, tags) {
+    state.tags = tags
   }
 }
 

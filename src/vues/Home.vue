@@ -31,10 +31,15 @@
               </li>
             </ul>
           </div>
+        <div
+          v-if="isLoading" class="article-preview">
+          Loading articles...
+        </div>
         <article-preview
+          v-else
           v-for="(article, index) in articles"
           :article="article"
-          :key="article.title">
+          :key="article.title + index">
         </article-preview>
         </div>
         <div class="col-md-3">
@@ -45,7 +50,7 @@
                 v-for="(tag, index) in tags"
                 :onClick="setListTo"
                 :name="tag"
-                :key="tag.name">
+                :key="tag.name + index">
               </tag>
             </div>
           </div>
@@ -54,6 +59,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import Tag from '@/components/Tag'
 import ArticlePreview from '@/components/ArticlePreview'
@@ -85,6 +91,9 @@ export default {
     this.$store.dispatch(FETCH_TAGS)
   },
   computed: {
+    isLoading () {
+      return this.$store.state.home.isLoading
+    },
     isAuth () {
       return this.$store.state.auth.isAuthenticated
     },

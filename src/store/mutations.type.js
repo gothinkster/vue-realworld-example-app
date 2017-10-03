@@ -1,4 +1,5 @@
-export const SET_ARTICLES = 'setArticles'
+export const FETCH_START = 'setLoading'
+export const FETCH_END = 'setArticles'
 export const SET_ARTICLE = 'setArticle'
 export const SET_COMMENTS = 'setComments'
 export const SET_TAGS = 'setTags'
