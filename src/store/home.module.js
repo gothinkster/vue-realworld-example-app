@@ -11,7 +11,7 @@ export const state = {
 export const actions = {
   [FETCH_ARTICLES] ({ commit }, params) {
     commit(FETCH_START)
-    return ArticlesService.query(params.filters)
+    return ArticlesService.query(params.type, params.filters)
       .then(({ data }) => {
         commit(FETCH_END, data.articles)
       })

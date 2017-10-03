@@ -53,8 +53,12 @@ export const TagsService = {
 }
 
 export const ArticlesService = {
-  query (queryFilters) {
-    return ApiService.query('articles', { params: queryFilters })
+  query (type, params) {
+    return ApiService
+      .query(
+        'articles' + (type === 'feed' ? '/feed' : ''),
+        { params: params.filters }
+      )
   },
   get (slug) {
     return ApiService.get('articles', slug)
