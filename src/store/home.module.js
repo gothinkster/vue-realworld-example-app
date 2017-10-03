@@ -9,7 +9,7 @@ export const state = {
 
 export const actions = {
   [FETCH_ARTICLES] ({ commit }) {
-    return ArticlesService.get()
+    return ArticlesService.query()
       .then(({ data }) => {
         commit(SET_ARTICLES, data.articles)
       })

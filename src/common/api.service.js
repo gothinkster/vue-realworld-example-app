@@ -14,21 +14,23 @@ const ApiService = {
     Vue.axios.defaults.headers.common['Authorization'] = `Token ${JwtService.getToken()}`
   },
 
-  get (resource, params = '') {
-    if (typeof resource !== 'string') {
-      throw new Error('[RWV] ApiService.get() first parameter must be a string')
-    }
+  query (resource, params) {
     return Vue.axios
-      .get(`${resource}/${params}`)
+      .get(resource, params)
+      .catch((error) => {
+        throw new Error(`[RWV] ApiService ${error}`)
+      })
+  },
+
+  get (resource, slug = '') {
+    return Vue.axios
+      .get(`${resource}/${slug}`)
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
   },
 
   post (resource, params) {
-    if (typeof resource !== 'string') {
-      throw new Error('[RWV] ApiService.post() first parameter must be a string')
-    }
     return Vue.axios
       .post(`${resource}`, params)
   },
@@ -49,11 +51,16 @@ export const TagsService = {
     return ApiService.get('tags')
   }
 }
+
 export const ArticlesService = {
+  query (queryFilters) {
+    return ApiService.query('articles', { params: queryFilters })
+  },
   get (slug) {
     return ApiService.get('articles', slug)
   }
 }
+
 export const CommentsService = {
   get (slug) {
     if (typeof slug !== 'string') {
