@@ -8,8 +8,8 @@ export const state = {
 }
 
 export const actions = {
-  [FETCH_ARTICLES] ({ commit }) {
-    return ArticlesService.query()
+  [FETCH_ARTICLES] ({ commit }, params) {
+    return ArticlesService.query(params.filters)
       .then(({ data }) => {
         commit(SET_ARTICLES, data.articles)
       })

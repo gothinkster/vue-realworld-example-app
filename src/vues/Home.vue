@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       listConfig: {
-        type: '',
+        type: 'all', // default query type
         filters: {}
       }
     }
@@ -77,10 +77,11 @@ export default {
     setListTo (type, filters = {}) {
       this.listConfig.type = type
       this.listConfig.filters = filters
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
     }
   },
   beforeMount () {
-    this.$store.dispatch(FETCH_ARTICLES)
+    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
     this.$store.dispatch(FETCH_TAGS)
   },
   computed: {
