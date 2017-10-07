@@ -31,16 +31,20 @@
               </li>
             </ul>
           </div>
-        <div
-          v-if="isLoading" class="article-preview">
-          Loading articles...
-        </div>
-        <rwv-article-preview
-          v-else
-          v-for="(article, index) in articles"
-          :article="article"
-          :key="article.title + index">
-        </rwv-article-preview>
+          <div
+            v-if="isLoading" class="article-preview">
+            Loading articles...
+          </div>
+          <rwv-article-preview
+            v-else
+            v-for="(article, index) in articles"
+            :article="article"
+            :key="article.title + index">
+          </rwv-article-preview>
+          <VPagination
+            :pages="pages"
+            :currentPage.sync="currentPage"
+          />
         </div>
         <div class="col-md-3">
           <div class="sidebar">
@@ -63,34 +67,37 @@
 <script>
 import RwvTag from '@/components/VTag'
 import RwvArticlePreview from '@/components/VArticlePreview'
+import VPagination from '@/components/VPagination'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
   name: 'Home',
   components: {
     RwvTag,
-    RwvArticlePreview
+    RwvArticlePreview,
+    VPagination
   },
   data () {
     return {
       listConfig: {
         type: 'all', // default query type
-        filters: {}
-      }
+        filters: {
+          offset: 0
+        }
+      },
+      currentPage: 1
     }
-  },
-  methods: {
-    setListTo (type, filters = {}) {
-      this.listConfig.type = type
-      this.listConfig.filters = filters
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    }
-  },
-  beforeMount () {
-    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    this.$store.dispatch(FETCH_TAGS)
   },
   computed: {
+    pages () {
+      if (this.isLoading) {
+        return []
+      }
+      return [ ...Array(Math.ceil(this.articlesCount / 10)).keys() ].map(e => e + 1)
+    },
+    articlesCount () {
+      return this.$store.state.home.articlesCount
+    },
     isLoading () {
       return this.$store.state.home.isLoading
     },
@@ -102,6 +109,28 @@ export default {
     },
     tags () {
       return this.$store.state.home.tags
+    }
+  },
+  watch: {
+    currentPage (newValue) {
+      this.listConfig.filters.offset = (newValue - 1) * 10
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    }
+  },
+  beforeMount () {
+    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    this.$store.dispatch(FETCH_TAGS)
+  },
+  methods: {
+    setListTo (type, filters = {}) {
+      this.listConfig.type = type
+      this.listConfig.filters = filters
+      this.resetPagination()
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    },
+    resetPagination () {
+      this.listConfig.offset = 0
+      this.currentPage = 1
     }
   }
 }
