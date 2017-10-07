@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import RwvTag from '@/components/Tag'
-import RwvArticlePreview from '@/components/ArticlePreview'
+import RwvTag from '@/components/VTag'
+import RwvArticlePreview from '@/components/VArticlePreview'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
