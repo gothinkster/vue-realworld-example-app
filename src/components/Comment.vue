@@ -21,7 +21,7 @@
 import { COMMENT_DESTROY } from '@/store/actions.type'
 
 export default {
-  name: 'comment',
+  name: 'rwvComment',
   props: ['slug', 'comment'],
   computed: {
     userIsAuthor () {

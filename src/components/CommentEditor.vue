@@ -19,7 +19,7 @@
 import { COMMENT_CREATE } from '@/store/actions.type'
 
 export default {
-  name: 'CommentEditor',
+  name: 'rwvCommentEditor',
   props: ['slug', 'content', 'userImage'],
   data () {
     return {

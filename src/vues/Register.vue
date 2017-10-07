@@ -35,7 +35,7 @@
 import { REGISTER } from '@/store/actions.type'
 
 export default {
-  name: 'register',
+  name: 'RwvRegister',
   data () {
     return {
       username: '',

@@ -1,9 +1,9 @@
 <template>
   <div class="article-preview">
-    <article-meta
+    <rwv-article-meta
       :article="article"
       :actions="false">
-    </article-meta>
+    </rwv-article-meta>
     <router-link
       :to="{name: 'article', params: {'slug': article.slug}}"
       class="preview-link">
@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import ArticleMeta from '@/components/ArticleMeta'
+import RwvArticleMeta from '@/components/ArticleMeta'
 
 export default {
-  name: 'ArticlePreview',
+  name: 'RwvArticlePreview',
   props: ['article'],
   components: {
-    ArticleMeta
+    RwvArticleMeta
   }
 }
 </script>

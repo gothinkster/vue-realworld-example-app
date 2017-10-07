@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: 'tag',
+  name: 'RwvTagList',
   props: ['name', 'onClick']
 }
 </script>

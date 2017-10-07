@@ -40,7 +40,7 @@
 import { LOGIN } from '@/store/actions.type'
 
 export default {
-  name: 'login',
+  name: 'RwvLogin',
   data () {
     return {
       email: null,

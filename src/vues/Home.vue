@@ -35,23 +35,23 @@
           v-if="isLoading" class="article-preview">
           Loading articles...
         </div>
-        <article-preview
+        <rwv-article-preview
           v-else
           v-for="(article, index) in articles"
           :article="article"
           :key="article.title + index">
-        </article-preview>
+        </rwv-article-preview>
         </div>
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <tag
+              <rwv-tag-list
                 v-for="(tag, index) in tags"
                 :onClick="setListTo"
                 :name="tag"
                 :key="tag.name + index">
-              </tag>
+              </rwv-tag-list>
             </div>
           </div>
         </div>
@@ -61,15 +61,15 @@
 </template>
 
 <script>
-import Tag from '@/components/Tag'
-import ArticlePreview from '@/components/ArticlePreview'
+import RwvTagList from '@/components/TagList'
+import RwvArticlePreview from '@/components/ArticlePreview'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
   name: 'home',
   components: {
-    Tag,
-    ArticlePreview
+    RwvTagList,
+    RwvArticlePreview
   },
   data () {
     return {
