@@ -122,10 +122,15 @@ export default {
     this.$store.dispatch(FETCH_TAGS)
   },
   methods: {
-    setListTo (type, filters = { offset: 0 }) {
+    setListTo (type, filters = {}) {
       this.listConfig.type = type
       this.listConfig.filters = filters
+      this.resetPagination()
       this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    },
+    resetPagination () {
+      this.listConfig.offset = 0
+      this.currentPage = 1
     }
   }
 }
