@@ -31,16 +31,16 @@
               </li>
             </ul>
           </div>
-        <div
-          v-if="isLoading" class="article-preview">
-          Loading articles...
-        </div>
-        <article-preview
-          v-else
-          v-for="(article, index) in articles"
-          :article="article"
-          :key="article.title + index">
-        </article-preview>
+          <div
+            v-if="isLoading" class="article-preview">
+            Loading articles...
+          </div>
+          <article-preview
+            v-else
+            v-for="(article, index) in articles"
+            :article="article"
+            :key="article.title + index">
+          </article-preview>
         </div>
         <div class="col-md-3">
           <div class="sidebar">
