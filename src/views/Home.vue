@@ -35,13 +35,13 @@
             v-if="isLoading" class="article-preview">
             Loading articles...
           </div>
-          <article-preview
+          <rwv-article-preview
             v-else
             v-for="(article, index) in articles"
             :article="article"
             :key="article.title + index">
-          </article-preview>
-          <Pagination
+          </rwv-article-preview>
+          <VPagination
             :pages="pages"
             :currentPage.sync="currentPage"
           />
@@ -50,12 +50,12 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <tag
+              <rwv-tag
                 v-for="(tag, index) in tags"
                 :onClick="setListTo"
                 :name="tag"
                 :key="tag.name + index">
-              </tag>
+              </rwv-tag>
             </div>
           </div>
         </div>
@@ -65,17 +65,17 @@
 </template>
 
 <script>
-import Tag from '@/components/Tag'
-import Pagination from '@/components/Pagination'
-import ArticlePreview from '@/components/ArticlePreview'
+import RwvTag from '@/components/VTag'
+import RwvArticlePreview from '@/components/VArticlePreview'
+import VPagination from '@/components/VPagination'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    Tag,
-    ArticlePreview,
-    Pagination
+    RwvTag,
+    RwvArticlePreview,
+    VPagination
   },
   data () {
     return {

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import RwvHeader from '@/components/Header'
-import RwvFooter from '@/components/Footer'
+import RwvHeader from '@/components/TheHeader'
+import RwvFooter from '@/components/TheFooter'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     RwvHeader,
     RwvFooter

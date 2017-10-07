@@ -19,8 +19,12 @@
 import { COMMENT_CREATE } from '@/store/actions.type'
 
 export default {
-  name: 'CommentEditor',
-  props: ['slug', 'content', 'userImage'],
+  name: 'RwvCommentEditor',
+  props: {
+    slug: { type: String, required: true },
+    content: { type: String, required: false },
+    userImage: { type: String, required: true }
+  },
   data () {
     return {
       comment: this.content || ''

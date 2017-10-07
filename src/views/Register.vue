@@ -10,7 +10,7 @@
             </router-link>
           </p>
           <ul v-if="errors" class="error-messages">
-            <li v-for="(v, k) in errors">{{k}} {{ v | error }}</li>
+            <li v-for="(v, k) in errors" :key="k">{{k}} {{ v | error }}</li>
           </ul>
           <form v-on:submit="onSubmit">
             <fieldset class="form-group">
@@ -35,7 +35,7 @@
 import { REGISTER } from '@/store/actions.type'
 
 export default {
-  name: 'register',
+  name: 'RwvRegister',
   data () {
     return {
       username: '',

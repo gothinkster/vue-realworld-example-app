@@ -72,7 +72,7 @@
  </template>
 <script>
 export default {
-  name: 'rwvHeader',
+  name: 'RwvHeader',
   computed: {
     isAuthenticated () {
       return this.$store.state.auth.isAuthenticated

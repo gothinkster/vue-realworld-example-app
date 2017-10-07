@@ -1,9 +1,9 @@
 <template>
   <div class="article-preview">
-    <article-meta
+    <rwv-article-meta
       :article="article"
       :actions="false">
-    </article-meta>
+    </rwv-article-meta>
     <router-link
       :to="{name: 'article', params: {'slug': article.slug}}"
       class="preview-link">
@@ -12,7 +12,8 @@
       <span>Read more...</span>
       <ul class="tag-list">
         <li class="tag-default tag-pill tag-outline"
-         v-for="tag of article.tagList">
+         v-for="(tag, index) of article.tagList"
+         :key="tag + index">
          {{ tag }}
         </li>
       </ul>
@@ -21,13 +22,15 @@
 </template>
 
 <script>
-import ArticleMeta from '@/components/ArticleMeta'
+import RwvArticleMeta from '@/components/ArticleMeta'
 
 export default {
-  name: 'ArticlePreview',
-  props: ['article'],
+  name: 'RwvArticlePreview',
+  props: {
+    article: { type: Object, required: true }
+  },
   components: {
-    ArticleMeta
+    RwvArticleMeta
   }
 }
 </script>

@@ -87,6 +87,6 @@
 </template>
 <script>
 export default {
-  name: 'profile'
+  name: 'RwvProfile'
 }
 </script>

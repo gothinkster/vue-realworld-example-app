@@ -50,7 +50,7 @@
 import { LOGOUT } from '@/store/actions.type'
 
 export default {
-  name: 'settings',
+  name: 'RwvSettings',
   data () {
     let user = this.$store.state.auth.user
     return {

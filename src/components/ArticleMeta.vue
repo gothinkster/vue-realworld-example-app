@@ -29,7 +29,10 @@
 <script>
 
 export default {
-  name: 'articleMeta',
-  props: ['article', 'actions']
+  name: 'RwvArticleMeta',
+  props: {
+    article: { type: Object, required: true },
+    actions: { type: Boolean, required: false }
+  }
 }
 </script>

@@ -21,8 +21,11 @@
 import { COMMENT_DESTROY } from '@/store/actions.type'
 
 export default {
-  name: 'comment',
-  props: ['slug', 'comment'],
+  name: 'RwvComment',
+  props: {
+    slug: { type: String, required: true },
+    comment: { type: Object, required: true }
+  },
   computed: {
     userIsAuthor () {
       return (this.comment.author.username === this.$store.state.auth.user.username)
