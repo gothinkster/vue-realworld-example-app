@@ -25,7 +25,9 @@ import RwvArticleMeta from '@/components/ArticleMeta'
 
 export default {
   name: 'RwvArticlePreview',
-  props: ['article'],
+  props: {
+    article: { type: Object, required: true }
+  },
   components: {
     RwvArticleMeta
   }

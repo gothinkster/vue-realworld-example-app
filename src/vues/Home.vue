@@ -46,12 +46,12 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <rwv-tag-list
+              <rwv-tag
                 v-for="(tag, index) in tags"
                 :onClick="setListTo"
                 :name="tag"
                 :key="tag.name + index">
-              </rwv-tag-list>
+              </rwv-tag>
             </div>
           </div>
         </div>
@@ -61,14 +61,14 @@
 </template>
 
 <script>
-import RwvTagList from '@/components/TagList'
+import RwvTag from '@/components/Tag'
 import RwvArticlePreview from '@/components/ArticlePreview'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
   name: 'home',
   components: {
-    RwvTagList,
+    RwvTag,
     RwvArticlePreview
   },
   data () {

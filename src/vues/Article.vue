@@ -17,8 +17,10 @@
           </vue-markdown>
         </div>
         <ul class="tag-list">
-          <li v-for="tag of article.tagList"
-            class="tag-default tag-pill tag-outline">
+          <li
+            class="tag-default tag-pill tag-outline"
+            v-for="(tag, index) of article.tagList"
+            :key="tag + index">
             {{ tag }}
           </li>
         </ul>
@@ -35,7 +37,7 @@
           <rwv-comment-editor
             v-if="isAuth"
             :slug="slug"
-            :user-image="user.image">
+            :userImage="user.image">
           </rwv-comment-editor>
 
           <p v-else>
@@ -65,7 +67,9 @@ import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
 
 export default {
   name: 'RwvArticle',
-  props: ['slug'],
+  props: {
+    slug: { type: String, required: true }
+  },
   components: {
     VueMarkdown,
     RwvArticleMeta,
