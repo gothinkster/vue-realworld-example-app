@@ -41,6 +41,10 @@
             :article="article"
             :key="article.title + index">
           </article-preview>
+          <Pagination
+            :pages="pages"
+            :currentPage.sync="currentPage"
+          />
         </div>
         <div class="col-md-3">
           <div class="sidebar">
@@ -62,6 +66,7 @@
 
 <script>
 import Tag from '@/components/Tag'
+import Pagination from '@/components/Pagination'
 import ArticlePreview from '@/components/ArticlePreview'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
@@ -69,28 +74,30 @@ export default {
   name: 'home',
   components: {
     Tag,
-    ArticlePreview
+    ArticlePreview,
+    Pagination
   },
   data () {
     return {
       listConfig: {
         type: 'all', // default query type
-        filters: {}
-      }
+        filters: {
+          offset: 0
+        }
+      },
+      currentPage: 1
     }
-  },
-  methods: {
-    setListTo (type, filters = {}) {
-      this.listConfig.type = type
-      this.listConfig.filters = filters
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    }
-  },
-  beforeMount () {
-    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    this.$store.dispatch(FETCH_TAGS)
   },
   computed: {
+    pages () {
+      if (this.isLoading) {
+        return []
+      }
+      return [ ...Array(Math.ceil(this.articlesCount / 10)).keys() ].map(e => e + 1)
+    },
+    articlesCount () {
+      return this.$store.state.home.articlesCount
+    },
     isLoading () {
       return this.$store.state.home.isLoading
     },
@@ -102,6 +109,23 @@ export default {
     },
     tags () {
       return this.$store.state.home.tags
+    }
+  },
+  watch: {
+    currentPage (newValue) {
+      this.listConfig.filters.offset = (newValue - 1) * 10
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    }
+  },
+  beforeMount () {
+    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    this.$store.dispatch(FETCH_TAGS)
+  },
+  methods: {
+    setListTo (type, filters = { offset: 0 }) {
+      this.listConfig.type = type
+      this.listConfig.filters = filters
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
     }
   }
 }
