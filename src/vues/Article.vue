@@ -12,7 +12,9 @@
     <div class="container page">
       <div class="row article-content">
         <div class="col-md-12">
-          {{article.body}}
+          <vue-markdown
+            :source="article.body">
+          </vue-markdown>
         </div>
         <ul class="tag-list">
           <li v-for="tag of article.tagList"
@@ -52,6 +54,8 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 import store from '@/store'
 import ArticleMeta from '@/components/ArticleMeta'
 import RwvComment from '@/components/Comment'
@@ -63,6 +67,7 @@ export default {
   name: 'RwvArticle',
   props: ['slug'],
   components: {
+    VueMarkdown,
     ArticleMeta,
     RwvComment,
     CommentEditor
