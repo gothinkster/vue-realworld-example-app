@@ -57,7 +57,7 @@ export const ArticlesService = {
     return ApiService
       .query(
         'articles' + (type === 'feed' ? '/feed' : ''),
-        { params: params.filters }
+        { params: params }
       )
   },
   get (slug) {
