@@ -12,7 +12,8 @@
       <span>Read more...</span>
       <ul class="tag-list">
         <li class="tag-default tag-pill tag-outline"
-         v-for="tag of article.tagList">
+         v-for="(tag, index) of article.tagList"
+         :key="tag + index">
          {{ tag }}
         </li>
       </ul>
