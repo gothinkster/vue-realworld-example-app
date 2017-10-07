@@ -66,7 +66,7 @@ import RwvArticlePreview from '@/components/VArticlePreview'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     RwvTag,
     RwvArticlePreview

@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import RwvHome from '@/vues/Home'
-import RwvLogin from '@/vues/Login'
-import RwvRegister from '@/vues/Register'
-import RwvProfile from '@/vues/Profile'
-import RwvSettings from '@/vues/Settings'
-import RwvArticle from '@/vues/Article'
-import RwvArticleEdit from '@/vues/ArticleEdit'
+import RwvHome from '@/views/Home'
+import RwvLogin from '@/views/Login'
+import RwvRegister from '@/views/Register'
+import RwvProfile from '@/views/Profile'
+import RwvSettings from '@/views/Settings'
+import RwvArticle from '@/views/Article'
+import RwvArticleEdit from '@/views/ArticleEdit'
 
 Vue.use(Router)
 

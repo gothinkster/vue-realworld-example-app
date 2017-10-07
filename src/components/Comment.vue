@@ -21,7 +21,7 @@
 import { COMMENT_DESTROY } from '@/store/actions.type'
 
 export default {
-  name: 'rwvComment',
+  name: 'RwvComment',
   props: {
     slug: { type: String, required: true },
     comment: { type: Object, required: true }

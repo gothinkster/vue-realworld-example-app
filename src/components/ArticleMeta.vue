@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  name: 'rwvArticleMeta',
+  name: 'RwvArticleMeta',
   props: {
     article: { type: Object, required: true },
     actions: { type: Boolean, required: false }
