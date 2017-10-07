@@ -3,10 +3,10 @@
     <div class="banner">
       <div class="container">
         <h1>{{article.title}}</h1>
-        <article-meta
+        <rwv-article-meta
           :article="article"
           :actions="true"
-        ></article-meta>
+        ></rwv-article-meta>
       </div>
     </div>
     <div class="container page">
@@ -17,26 +17,28 @@
           </vue-markdown>
         </div>
         <ul class="tag-list">
-          <li v-for="tag of article.tagList"
-            class="tag-default tag-pill tag-outline">
+          <li
+            class="tag-default tag-pill tag-outline"
+            v-for="(tag, index) of article.tagList"
+            :key="tag + index">
             {{ tag }}
           </li>
         </ul>
       </div>
       <hr />
       <div class="article-actions">
-        <article-meta
+        <rwv-article-meta
           :article="article"
           :actions="true">
-        </article-meta>
+        </rwv-article-meta>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
-          <comment-editor
+          <rwv-comment-editor
             v-if="isAuth"
             :slug="slug"
-            :user-image="user.image">
-          </comment-editor>
+            :userImage="user.image">
+          </rwv-comment-editor>
 
           <p v-else>
             <router-link :to="{name: 'login'}">Sign in</router-link> or <router-link :to="{ name: 'register' }">sign up</router-link>  to add comments on this article.
@@ -57,20 +59,22 @@
 import VueMarkdown from 'vue-markdown'
 
 import store from '@/store'
-import ArticleMeta from '@/components/ArticleMeta'
+import RwvArticleMeta from '@/components/ArticleMeta'
 import RwvComment from '@/components/Comment'
-import CommentEditor from '@/components/CommentEditor'
+import RwvCommentEditor from '@/components/CommentEditor'
 
 import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
 
 export default {
   name: 'RwvArticle',
-  props: ['slug'],
+  props: {
+    slug: { type: String, required: true }
+  },
   components: {
     VueMarkdown,
-    ArticleMeta,
+    RwvArticleMeta,
     RwvComment,
-    CommentEditor
+    RwvCommentEditor
   },
   beforeRouteEnter (to, from, next) {
     Promise.all([
