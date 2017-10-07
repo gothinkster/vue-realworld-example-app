@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import RwvHeader from '@/components/VHeader'
-import RwvFooter from '@/components/VFooter'
+import RwvHeader from '@/components/TheHeader'
+import RwvFooter from '@/components/TheFooter'
 
 export default {
   name: 'app',
