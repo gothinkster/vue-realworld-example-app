@@ -15,24 +15,32 @@
       Follow {{article.author.username}} <span class="counter">(10)</span>
     </button>
     &nbsp;&nbsp;
-    <button v-show="actions" class="btn btn-sm btn-outline-primary">
+    <button v-show="actions" v-on:click="toggleFavorite" class="btn btn-sm btn-outline-primary">
       <i class="ion-heart"></i>
       &nbsp;
       Favorite Post <span class="counter">({{article.favoritesCount}})</span>
     </button>
-    <button v-show="!actions" class="btn btn-outline-primary btn-sm pull-xs-right">
+    <button v-show="!actions" v-on:click="toggleFavorite" class="btn btn-outline-primary btn-sm pull-xs-right">
       <i class="ion-heart"></i> {{article.favoritesCount}}
     </button>
   </div>
 </template>
 
 <script>
+import { FAVORITE_ADD, FAVORITE_REMOVE } from '@/store/actions.type'
 
 export default {
   name: 'RwvArticleMeta',
   props: {
     article: { type: Object, required: true },
     actions: { type: Boolean, required: false }
+  },
+  methods: {
+    toggleFavorite () {
+      console.log(this.article)
+      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD
+      this.$store.dispatch(action, this.article.slug)
+    }
   }
 }
 </script>

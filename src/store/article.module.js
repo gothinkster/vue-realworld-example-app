@@ -1,6 +1,7 @@
 import { ArticlesService, CommentsService } from '@/common/api.service'
-import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE, COMMENT_DESTROY } from './actions.type'
+import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE, COMMENT_DESTROY, FAVORITE_ADD, FAVORITE_REMOVE } from './actions.type'
 import { SET_ARTICLE, SET_COMMENTS } from './mutations.type'
+import { FavoriteService } from '../common/api.service'
 
 export const state = {
   article: {},
@@ -30,6 +31,22 @@ export const actions = {
       .destroy(payload.slug, payload.commentId)
       .then(() => {
         context.dispatch(FETCH_COMMENTS, payload.slug)
+      })
+  },
+  [FAVORITE_ADD] (context, payload) {
+    return FavoriteService
+      .add(payload)
+      .then(({ data }) => {
+        console.log(data)
+        context.commit(SET_ARTICLE, data.article)
+      })
+  },
+  [FAVORITE_REMOVE] (context, payload) {
+    return FavoriteService
+      .remove(payload)
+      .then(({ data }) => {
+        console.log(data)
+        context.commit(SET_ARTICLE, data.article)
       })
   }
 }
