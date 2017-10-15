@@ -23,7 +23,7 @@ export default {
   props: {
     slug: { type: String, required: true },
     content: { type: String, required: false },
-    userImage: { type: String, required: true }
+    userImage: { type: String, required: false }
   },
   data () {
     return {
