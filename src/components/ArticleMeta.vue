@@ -15,10 +15,11 @@
       Follow {{article.author.username}} <span class="counter">(10)</span>
     </button>
     &nbsp;&nbsp;
-    <button v-show="actions" v-on:click="toggleFavorite" class="btn btn-sm btn-outline-primary">
+    <button v-show="actions" v-on:click="toggleFavorite" class="btn btn-sm"
+            :class="{'btn-primary': article.favorited, 'btn-outline-primary': !article.favorited}">
       <i class="ion-heart"></i>
       &nbsp;
-      Favorite Post <span class="counter">({{article.favoritesCount}})</span>
+      {{article.favorited ? 'Unfavorite Article' : 'Favorite Article'}} <span class="counter">({{article.favoritesCount}})</span>
     </button>
     <button v-show="!actions" v-on:click="toggleFavorite" class="btn btn-outline-primary btn-sm pull-xs-right">
       <i class="ion-heart"></i> {{article.favoritesCount}}
