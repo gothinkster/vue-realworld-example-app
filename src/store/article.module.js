@@ -37,7 +37,6 @@ export const actions = {
     return FavoriteService
       .add(payload)
       .then(({ data }) => {
-        console.log(data)
         context.commit(SET_ARTICLE, data.article)
       })
   },
@@ -45,7 +44,6 @@ export const actions = {
     return FavoriteService
       .remove(payload)
       .then(({ data }) => {
-        console.log(data)
         context.commit(SET_ARTICLE, data.article)
       })
   }
