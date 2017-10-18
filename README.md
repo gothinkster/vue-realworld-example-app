@@ -17,6 +17,7 @@ For more information on how to this works with other frontends/backends, head ov
 
 Before contributing please read the official [guidelines](https://github.com/gothinkster/realworld/tree/master/spec) for implementing a new framework, as well as the [Frontend instructions](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md).
 We abide by the Vue.js [styleguide](https://vuejs.org/v2/style-guide/index.html). Priority A and B categories must be respected.
+[API endpoint](https://github.com/gothinkster/realworld/tree/master/api)
 
 The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/webpack) so to get started all you have to do is:
 ``` bash
