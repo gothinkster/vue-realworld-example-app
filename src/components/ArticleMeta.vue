@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     toggleFavorite () {
-      console.log(this.article)
       const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD
       this.$store.dispatch(action, this.article.slug)
     }
