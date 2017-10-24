@@ -15,14 +15,36 @@
       Follow {{article.author.username}} <span class="counter">(10)</span>
     </button>
     &nbsp;&nbsp;
-    <button v-show="actions" v-on:click="toggleFavorite" class="btn btn-sm"
-            :class="{'btn-primary': article.favorited, 'btn-outline-primary': !article.favorited}">
-      <i class="ion-heart"></i>
-      &nbsp;
-      {{article.favorited ? 'Unfavorite Article' : 'Favorite Article'}} <span class="counter">({{article.favoritesCount}})</span>
+    <button
+      class="btn btn-sm"
+      v-show="actions"
+      v-on:click="toggleFavorite"
+      :class="{
+        'btn-primary': article.favorited,
+        'btn-outline-primary': !article.favorited
+      }">
+      <i class="ion-heart"></i>&nbsp;
+      {{
+        article.favorited
+        ? 'Unfavorite Article'
+        : 'Favorite Article'
+      }}
+      <span class="counter">
+        ({{article.favoritesCount}})
+      </span>
     </button>
-    <button v-show="!actions" v-on:click="toggleFavorite" class="btn btn-outline-primary btn-sm pull-xs-right">
-      <i class="ion-heart"></i> {{article.favoritesCount}}
+    <button
+      class="btn btn-sm pull-xs-right"
+      v-show="!actions"
+      v-on:click="toggleFavorite"
+      :class="{
+        'btn-primary': article.favorited,
+        'btn-outline-primary': !article.favorited
+      }">
+      <i class="ion-heart"></i>
+      <span class="counter">
+        {{article.favoritesCount}}
+      </span>
     </button>
   </div>
 </template>
@@ -38,7 +60,9 @@ export default {
   },
   methods: {
     toggleFavorite () {
-      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD
+      const action = this.article.favorited
+        ? FAVORITE_REMOVE
+        : FAVORITE_ADD
       this.$store.dispatch(action, this.article.slug)
     }
   }

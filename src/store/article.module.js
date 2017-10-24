@@ -1,7 +1,15 @@
-import { ArticlesService, CommentsService } from '@/common/api.service'
-import { FETCH_ARTICLE, FETCH_COMMENTS, COMMENT_CREATE, COMMENT_DESTROY, FAVORITE_ADD, FAVORITE_REMOVE } from './actions.type'
-import { SET_ARTICLE, SET_COMMENTS } from './mutations.type'
-import { FavoriteService } from '../common/api.service'
+import { ArticlesService, CommentsService, FavoriteService } from '@/common/api.service'
+import {
+  FETCH_ARTICLE,
+  FETCH_COMMENTS,
+  COMMENT_CREATE,
+  COMMENT_DESTROY,
+  FAVORITE_ADD,
+  FAVORITE_REMOVE } from './actions.type'
+import {
+  SET_ARTICLE,
+  SET_COMMENTS,
+  UPDATE_ARTICLE_IN_LIST } from './mutations.type'
 
 export const state = {
   article: {},
@@ -37,6 +45,12 @@ export const actions = {
     return FavoriteService
       .add(payload)
       .then(({ data }) => {
+        // Update list as well. This allows us to favorite an article in the Home view.
+        context.commit(
+          UPDATE_ARTICLE_IN_LIST,
+          data.article,
+          { root: true }
+        )
         context.commit(SET_ARTICLE, data.article)
       })
   },
@@ -44,6 +58,12 @@ export const actions = {
     return FavoriteService
       .remove(payload)
       .then(({ data }) => {
+        // Update list as well. This allows us to favorite an article in the Home view.
+        context.commit(
+          UPDATE_ARTICLE_IN_LIST,
+          data.article,
+          { root: true }
+        )
         context.commit(SET_ARTICLE, data.article)
       })
   }
