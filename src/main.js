@@ -12,19 +12,25 @@ import DateFilter from '@/common/date.filter'
 import ErrorFilter from '@/common/error.filter'
 
 Vue.config.productionTip = false
-
 Vue.filter('date', DateFilter)
 Vue.filter('error', ErrorFilter)
 
 ApiService.init()
+
+// Ensure we checked auth before each page load.
+router.beforeEach(
+  (to, from, next) => {
+    return Promise
+      .all([store.dispatch(CHECK_AUTH)])
+      .then(next)
+  },
+)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: { App },
-  beforeMount () {
-    this.$store.dispatch(CHECK_AUTH)
-  }
+  components: { App }
 })
