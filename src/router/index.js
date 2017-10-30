@@ -5,6 +5,8 @@ import RwvHome from '@/views/Home'
 import RwvLogin from '@/views/Login'
 import RwvRegister from '@/views/Register'
 import RwvProfile from '@/views/Profile'
+import RwvProfileArticles from '@/views/ProfileArticles'
+import RwvProfileFavorited from '@/views/ProfileFavorited'
 import RwvSettings from '@/views/Settings'
 import RwvArticle from '@/views/Article'
 import RwvArticleEdit from '@/views/ArticleEdit'
@@ -35,9 +37,23 @@ export default new Router({
     },
     {
       name: 'profile',
-      path: '/profiles/:username',
+      path: '/@:username',
       component: RwvProfile,
-      props: true
+      redirect: {
+        name: 'profile-articles'
+      },
+      children: [
+        {
+          name: 'profile-articles',
+          path: 'articles',
+          component: RwvProfileArticles
+        },
+        {
+          name: 'profile-favorited',
+          path: 'favorited',
+          component: RwvProfileFavorited
+        }
+      ]
     },
     {
       name: 'article',
