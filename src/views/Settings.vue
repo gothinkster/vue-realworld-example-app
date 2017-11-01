@@ -8,28 +8,28 @@
             <fieldset>
               <fieldset class="form-group">
                 <input class="form-control" type="text"
-                       v-model="user.image"
-                       placeholder="URL of profile picture">
+                  v-model="user.image"
+                  placeholder="URL of profile picture">
               </fieldset>
               <fieldset class="form-group">
                 <input class="form-control form-control-lg" type="text"
-                       v-model="user.username"
-                       placeholder="Your username">
+                  v-model="user.username"
+                  placeholder="Your username">
               </fieldset>
               <fieldset class="form-group">
                 <textarea class="form-control form-control-lg" rows="8"
-                          v-model="user.bio"
-                          placeholder="Short bio about you"></textarea>
+                  v-model="user.bio"
+                  placeholder="Short bio about you"></textarea>
               </fieldset>
               <fieldset class="form-group">
                 <input class="form-control form-control-lg" type="text"
-                       v-model="user.email"
-                       placeholder="Email">
+                  v-model="user.email"
+                  placeholder="Email">
               </fieldset>
               <fieldset class="form-group">
                 <input class="form-control form-control-lg" type="password"
-                       v-model="user.password"
-                       placeholder="Password">
+                  v-model="user.password"
+                  placeholder="Password">
               </fieldset>
               <button class="btn btn-lg btn-primary pull-xs-right">
                 Update Settings
