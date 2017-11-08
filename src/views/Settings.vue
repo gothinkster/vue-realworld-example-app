@@ -61,14 +61,14 @@
         this.$store.dispatch(UPDATE_USER, this.user)
           .then(() => {
             // #todo, nice toast and no redirect
-            this.$router.push({name: 'home'})
+            this.$router.push({ name: 'home' })
           })
       },
       logout () {
         this.$store
           .dispatch(LOGOUT)
           .then(() => {
-            this.$router.push({name: 'home'})
+            this.$router.push({ name: 'home' })
           })
       }
     }
