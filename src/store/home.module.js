@@ -1,23 +1,47 @@
 import {
   TagsService,
-  ArticlesService } from '@/common/api.service'
+  ArticlesService
+} from '@/common/api.service'
+import {
+  GET_ARTICLE_COUNT,
+  GET_ARTICLES,
+  GET_ARTICLES_IS_LOADING,
+  GET_TAGS
+} from './getters.type'
 import {
   FETCH_ARTICLES,
-  FETCH_TAGS } from './actions.type'
+  FETCH_TAGS
+} from './actions.type'
 import {
   FETCH_START,
   FETCH_END,
   SET_TAGS,
-  UPDATE_ARTICLE_IN_LIST } from './mutations.type'
+  UPDATE_ARTICLE_IN_LIST
+} from './mutations.type'
 
-export const state = {
+const state = {
   tags: [],
   articles: [],
   isLoading: true,
   articlesCount: 0
 }
 
-export const actions = {
+const getters = {
+  [GET_ARTICLE_COUNT] (state) {
+    return state.articlesCount
+  },
+  [GET_ARTICLES] (state) {
+    return state.articles
+  },
+  [GET_ARTICLES_IS_LOADING] (state) {
+    return state.isLoading
+  },
+  [GET_TAGS] (state) {
+    return state.tags
+  }
+}
+
+const actions = {
   [FETCH_ARTICLES] ({ commit }, params) {
     commit(FETCH_START)
     params.filters.limit = 10
@@ -41,7 +65,7 @@ export const actions = {
 }
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
-export const mutations = {
+const mutations = {
   [FETCH_START] (state) {
     state.isLoading = true
   },
@@ -68,6 +92,7 @@ export const mutations = {
 
 export default {
   state,
+  getters,
   actions,
   mutations
 }
