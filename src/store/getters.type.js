@@ -1,5 +1,7 @@
 export const GET_ARTICLE_COUNT = 'getArticleCount'
 export const GET_ARTICLES = 'getArticles'
 export const GET_ARTICLES_IS_LOADING = 'getArticlesIsLoading'
+export const GET_CURRENT_USER = 'getCurrentUser'
 export const GET_PROFILE = 'getProfile'
 export const GET_TAGS = 'getTags'
+export const IS_AUTHENTICATED = 'isAuthenticated'

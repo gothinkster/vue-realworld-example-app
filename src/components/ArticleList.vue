@@ -9,10 +9,10 @@
       :article="article"
       :key="article.title + index">
     </rwv-article-preview>
-    <VPagination
+    <v-pagination
       :pages="pages"
       :currentPage.sync="currentPage"
-    />
+    ></v-pagination>
   </div>
 </template>
 
@@ -20,8 +20,8 @@
   import RwvTag from '@/components/VTag'
   import RwvArticlePreview from '@/components/VArticlePreview'
   import VPagination from '@/components/VPagination'
-  import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
-  import { GET_ARTICLE_COUNT, GET_ARTICLES, GET_ARTICLES_IS_LOADING } from '@/store/getters.type'
+  import { FETCH_ARTICLES } from '@/store/actions.type'
+  import { GET_ARTICLE_COUNT, GET_ARTICLES, GET_ARTICLES_IS_LOADING, IS_AUTHENTICATED } from '@/store/getters.type'
 
   export default {
     name: 'RwvArticleList',
@@ -87,7 +87,7 @@
         return this.$store.getters[GET_ARTICLES_IS_LOADING]
       },
       isAuth () {
-        return this.$store.state.auth.isAuthenticated
+        return this.$store.getters[IS_AUTHENTICATED]
       },
       articles () {
         return this.$store.getters[GET_ARTICLES]
@@ -96,18 +96,30 @@
     watch: {
       currentPage (newValue) {
         this.listConfig.filters.offset = (newValue - 1) * 10
-        this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+        this.fetchArticles()
+      },
+      type () {
+        this.resetPagination()
+        this.fetchArticles()
+      },
+      author () {
+        this.resetPagination()
+        this.fetchArticles()
+      },
+      tag () {
+        this.resetPagination()
+        this.fetchArticles()
+      },
+      favorited () {
+        this.resetPagination()
+        this.fetchArticles()
       }
     },
     mounted () {
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-      this.$store.dispatch(FETCH_TAGS)
+      this.fetchArticles()
     },
     methods: {
-      setListTo (type, filters = {}) {
-        this.listConfig.type = type
-        this.listConfig.filters = filters
-        this.resetPagination()
+      fetchArticles () {
         this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
       },
       resetPagination () {

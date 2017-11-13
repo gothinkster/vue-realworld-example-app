@@ -69,6 +69,7 @@ import RwvTag from '@/components/VTag'
 import RwvArticlePreview from '@/components/VArticlePreview'
 import VPagination from '@/components/VPagination'
 import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
+import { IS_AUTHENTICATED } from '@/store/getters.type'
 
 export default {
   name: 'Home',
@@ -102,7 +103,7 @@ export default {
       return this.$store.state.home.isLoading
     },
     isAuth () {
-      return this.$store.state.auth.isAuthenticated
+      return this.$store.getters[IS_AUTHENTICATED]
     },
     articles () {
       return this.$store.state.home.articles
