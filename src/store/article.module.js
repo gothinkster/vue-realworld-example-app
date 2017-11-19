@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import { ArticlesService, CommentsService, FavoriteService } from '@/common/api.service'
 import {
   FETCH_ARTICLE,
@@ -5,22 +6,50 @@ import {
   COMMENT_CREATE,
   COMMENT_DESTROY,
   FAVORITE_ADD,
-  FAVORITE_REMOVE } from './actions.type'
+  FAVORITE_REMOVE,
+  ARTICLE_PUBLISH,
+  ARTICLE_EDIT,
+  ARTICLE_EDIT_ADD_TAG,
+  ARTICLE_EDIT_REMOVE_TAG,
+  ARTICLE_DELETE,
+  ARTICLE_RESET_STATE
+} from './actions.type'
 import {
+  RESET_STATE,
   SET_ARTICLE,
   SET_COMMENTS,
-  UPDATE_ARTICLE_IN_LIST } from './mutations.type'
+  TAG_ADD,
+  TAG_REMOVE,
+  UPDATE_ARTICLE_IN_LIST
+} from './mutations.type'
+import {
+  GET_ARTICLE,
+  GET_COMMENTS
+} from './getters.type'
 
-export const state = {
-  article: {},
+const initialState = {
+  article: {
+    author: {},
+    title: '',
+    description: '',
+    body: '',
+    tagList: []
+  },
   comments: []
 }
 
+export const state = Object.assign({}, initialState)
+
 export const actions = {
-  [FETCH_ARTICLE] (context, articleSlug) {
+  [FETCH_ARTICLE] (context, articleSlug, prevArticle) {
+    // avoid extronuous network call if article exists
+    if (prevArticle !== undefined) {
+      return context.commit(SET_ARTICLE, prevArticle)
+    }
     return ArticlesService.get(articleSlug)
       .then(({ data }) => {
         context.commit(SET_ARTICLE, data.article)
+        return data
       })
   },
   [FETCH_COMMENTS] (context, articleSlug) {
@@ -66,6 +95,24 @@ export const actions = {
         )
         context.commit(SET_ARTICLE, data.article)
       })
+  },
+  [ARTICLE_PUBLISH] ({ state }) {
+    return ArticlesService.create(state.article)
+  },
+  [ARTICLE_DELETE] (context, slug) {
+    return ArticlesService.destroy(slug)
+  },
+  [ARTICLE_EDIT] ({ state }) {
+    return ArticlesService.update(state.article.slug, state.article)
+  },
+  [ARTICLE_EDIT_ADD_TAG] (context, tag) {
+    context.commit(TAG_ADD, tag)
+  },
+  [ARTICLE_EDIT_REMOVE_TAG] (context, tag) {
+    context.commit(TAG_REMOVE, tag)
+  },
+  [ARTICLE_RESET_STATE] ({ commit }) {
+    commit(RESET_STATE)
   }
 }
 
@@ -76,11 +123,32 @@ export const mutations = {
   },
   [SET_COMMENTS] (state, comments) {
     state.comments = comments
+  },
+  [TAG_ADD] (state, tag) {
+    state.article.tagList = state.article.tagList.concat([tag])
+  },
+  [TAG_REMOVE] (state, tag) {
+    state.article.tagList = state.article.tagList.filter(t => t !== tag)
+  },
+  [RESET_STATE] () {
+    for (let f in state) {
+      Vue.set(state, f, initialState[f])
+    }
+  }
+}
+
+const getters = {
+  [GET_ARTICLE] (state) {
+    return state.article
+  },
+  [GET_COMMENTS] (state) {
+    return state.comments
   }
 }
 
 export default {
   state,
   actions,
-  mutations
+  mutations,
+  getters
 }

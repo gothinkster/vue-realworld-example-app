@@ -64,6 +64,7 @@ export default new Router({
     {
       name: 'article-edit',
       path: '/editor/:slug?',
+      props: true,
       component: RwvArticleEdit
     }
   ]

@@ -11,26 +11,26 @@
     </div>
     <div class="container page">
       <div class="row article-content">
-        <div class="col-md-12">
+        <div class="col-xs-12">
           <vue-markdown
             :source="article.body">
           </vue-markdown>
-        </div>
-        <ul class="tag-list">
-          <li
+          <ul class="tag-list">
+            <li
             class="tag-default tag-pill tag-outline"
             v-for="(tag, index) of article.tagList"
             :key="tag + index">
             {{ tag }}
           </li>
         </ul>
+        </div>
       </div>
       <hr/>
       <div class="article-actions">
         <rwv-article-meta
           :article="article"
-          :actions="true">
-        </rwv-article-meta>
+          :actions="true"
+        ></rwv-article-meta>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
@@ -64,7 +64,12 @@
   import RwvComment from '@/components/Comment'
   import RwvCommentEditor from '@/components/CommentEditor'
   import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
-  import { GET_CURRENT_USER, IS_AUTHENTICATED } from '@/store/getters.type'
+  import {
+    GET_ARTICLE,
+    GET_COMMENTS,
+    GET_CURRENT_USER,
+    IS_AUTHENTICATED
+  } from '@/store/getters.type'
 
   export default {
     name: 'RwvArticle',
@@ -90,10 +95,10 @@
     },
     computed: {
       article () {
-        return this.$store.state.article.article
+        return this.$store.getters[GET_ARTICLE]
       },
       comments () {
-        return this.$store.state.article.comments
+        return this.$store.getters[GET_COMMENTS]
       },
       user () {
         return this.$store.getters[GET_CURRENT_USER]

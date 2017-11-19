@@ -45,7 +45,6 @@
         <li class="nav-item">
           <router-link class="nav-link"
             active-class="active"
-            exact
             :to="{ name: 'article-edit' }">
             <i class="ion-compose"></i>&nbsp;New Article
           </router-link>

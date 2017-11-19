@@ -9,59 +9,40 @@
       </router-link>
       <span class="date">{{ article.createdAt | date }}</span>
     </div>
-
-    <template v-if="isCurrentUser() && actions">
-      <router-link class="btn btn-sm btn-outline-secondary" :to="{ name: 'article-edit', params: { slug: this.article.slug } }">
-        <i class="ion-edit"></i>
-        Edit Article
-      </router-link>
-      <a href="#" class="btn btn-outline-danger btn-sm">
-        <i class="ion-trash-a"></i>
-        Delete Article
-      </a>
+    <template v-if="actions">
+      <rwv-article-actions
+      :article="article"
+      :canModify="isCurrentUser()"
+      ></rwv-article-actions>
     </template>
     <template v-else>
-      <button v-if="actions" class="btn btn-sm btn-outline-secondary">
-        <i class="ion-plus-round"></i>
-        Follow {{article.author.username}} <span class="counter">(10)</span>
-      </button>
       <button
-        class="btn btn-sm"
-        v-show="actions"
-        v-on:click="toggleFavorite"
-        :class="{
-          'btn-primary': article.favorited,
-          'btn-outline-primary': !article.favorited
-        }">
-        <i class="ion-heart"></i>
-        {{ article.favorited ? 'Unfavorite Article' : 'Favorite Article' }}
-        <span class="counter">
-        ({{article.favoritesCount}})
-      </span>
-      </button>
-      <button
-        class="btn btn-sm pull-xs-right"
-        v-if="!actions"
-        v-on:click="toggleFavorite"
-        :class="{
-          'btn-primary': article.favorited,
-          'btn-outline-primary': !article.favorited
+      class="btn btn-sm pull-xs-right"
+      v-if="!actions"
+      v-on:click="toggleFavorite"
+      :class="{
+        'btn-primary': article.favorited,
+        'btn-outline-primary': !article.favorited
         }">
         <i class="ion-heart"></i>
         <span class="counter">
-        {{ article.favoritesCount }}
-      </span>
+          {{ article.favoritesCount }}
+        </span>
       </button>
     </template>
   </div>
 </template>
 
 <script>
+  import RwvArticleActions from '@/components/ArticleActions'
   import { FAVORITE_ADD, FAVORITE_REMOVE } from '@/store/actions.type'
   import { GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvArticleMeta',
+    components: {
+      RwvArticleActions
+    },
     props: {
       article: {
         type: Object,

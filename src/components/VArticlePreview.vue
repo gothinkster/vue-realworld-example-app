@@ -2,7 +2,7 @@
   <div class="article-preview">
     <rwv-article-meta
       :article="article"
-      :actions="false">
+      :isPreview="true">
     </rwv-article-meta>
     <router-link
       :to="{name: 'article', params: {'slug': article.slug}}"
