@@ -75,7 +75,7 @@
         }
       },
       pages () {
-        if (this.isLoading) {
+        if (this.isLoading || this.articlesCount <= 10) {
           return []
         }
         return [...Array(Math.ceil(this.articlesCount / 10)).keys()].map(e => e + 1)
