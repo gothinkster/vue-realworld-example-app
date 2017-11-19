@@ -2,6 +2,7 @@ import ApiService from '@/common/api.service'
 import JwtService from '@/common/jwt.service'
 import { LOGIN, LOGOUT, REGISTER, CHECK_AUTH, UPDATE_USER } from './actions.type'
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from './mutations.type'
+import { GET_CURRENT_USER, IS_AUTHENTICATED } from './getters.type'
 
 const state = {
   errors: null,
@@ -10,10 +11,10 @@ const state = {
 }
 
 const getters = {
-  getUser (state) {
+  [GET_CURRENT_USER] (state) {
     return state.user
   },
-  isAuthenticated (state) {
+  [IS_AUTHENTICATED] (state) {
     return state.isAuthenticated
   }
 }

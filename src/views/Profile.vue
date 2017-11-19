@@ -9,16 +9,22 @@
             <p>
               {{ profile.bio }}
             </p>
-            <button class="btn btn-sm btn-secondary action-btn" v-if="profile.following" @click.prevent="unfollow()">
-              <i class="ion-checkmark-round"></i>
-              Following {{ profile.username }}
-            </button>
-            <button class="btn btn-sm btn-outline-secondary action-btn" v-if="!profile.following" @click.prevent="follow()">
-              <i class="ion-plus-round"></i>
-              Follow {{ profile.username }}
-            </button>
+            <div v-if="isCurrentUser()">
+              <router-link class="btn btn-sm btn-outline-secondary action-btn" :to="{ name: 'settings' }">
+                <i class="ion-gear-a"></i> Edit Profile Settings
+              </router-link>
+            </div>
+            <div v-else>
+              <button class="btn btn-sm btn-secondary action-btn" v-if="profile.following" @click.prevent="unfollow()">
+                <i class="ion-checkmark-round"></i>
+                Following {{ profile.username }}
+              </button>
+              <button class="btn btn-sm btn-outline-secondary action-btn" v-if="!profile.following" @click.prevent="follow()">
+                <i class="ion-plus-round"></i>
+                Follow {{ profile.username }}
+              </button>
+            </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -48,7 +54,7 @@
 </template>
 <script>
   import { FETCH_PROFILE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from '@/store/actions.type'
-  import { GET_PROFILE } from '@/store/getters.type'
+  import { GET_PROFILE, GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvProfile',
@@ -56,11 +62,20 @@
       this.$store.dispatch(FETCH_PROFILE, this.$route.params)
     },
     computed: {
+      user () {
+        return this.$store.getters[GET_CURRENT_USER]
+      },
       profile () {
         return this.$store.getters[GET_PROFILE]
       }
     },
     methods: {
+      isCurrentUser () {
+        if (this.user.username && this.profile.username) {
+          return this.user.username === this.profile.username
+        }
+        return false
+      },
       follow () {
         this.$store.dispatch(FETCH_PROFILE_FOLLOW, this.$route.params)
       },

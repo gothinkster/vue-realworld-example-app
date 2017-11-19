@@ -48,12 +48,13 @@
 </template>
 <script>
   import { LOGOUT, UPDATE_USER } from '@/store/actions.type'
+  import { GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvSettings',
     computed: {
       user () {
-        return this.$store.getters.getUser
+        return this.$store.getters[GET_CURRENT_USER]
       }
     },
     methods: {
