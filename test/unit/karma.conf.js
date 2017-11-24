@@ -14,7 +14,13 @@ module.exports = function (config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', 'sinon-chai', 'phantomjs-shim'],
     reporters: ['spec', 'coverage'],
-    files: ['./index.js'],
+    // Babel only transpiles, for unit tests to work with PhantomJS
+    // we also need to include a polyfill.
+    // GH: https://github.com/vuejs-templates/webpack/issues/260
+    files: [
+      '../../node_modules/babel-polyfill/dist/polyfill.js',
+      './index.js'
+    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
