@@ -1,3 +1,6 @@
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+
 # ![RealWorld Example App](./static/logo.png)
 
 ### Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
@@ -12,12 +15,14 @@ We've gone to great lengths to adhere to the **Vue.js** community styleguides & 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 
-
 # Getting started
 
-Before contributing please read the official [guidelines](https://github.com/gothinkster/realworld/tree/master/spec) for implementing a new framework, as well as the [Frontend instructions](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md).
-We abide by the Vue.js [styleguide](https://vuejs.org/v2/style-guide/index.html). Priority A and B categories must be respected.
-[API endpoint](https://github.com/gothinkster/realworld/tree/master/api)
+Before contributing please read the following:
+1. [RealWorld guidelines](https://github.com/gothinkster/realworld/tree/master/spec) for implementing a new framework,
+2. [RealWorld frontend instructions](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md)
+3. [Realworld API endpoints](https://github.com/gothinkster/realworld/tree/master/api)
+4. [Vue.js styleguide](https://vuejs.org/v2/style-guide/index.html). Priority A and B categories must be respected.
+
 
 The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/webpack) so to get started all you have to do is:
 ``` bash
