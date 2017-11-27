@@ -83,7 +83,8 @@ export default {
       listConfig: {
         type: 'all', // default query type
         filters: {
-          offset: 0
+          offset: 0,
+          limit: 10
         }
       },
       currentPage: 1

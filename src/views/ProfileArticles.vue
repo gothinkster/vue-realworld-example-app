@@ -1,6 +1,6 @@
 <template>
   <div class="profile-page">
-    <RwvArticleList :author="author"></RwvArticleList>
+    <RwvArticleList :author="author" :items-per-page="5"></RwvArticleList>
   </div>
 </template>
 <script>
