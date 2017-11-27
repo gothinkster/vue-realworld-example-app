@@ -44,7 +44,6 @@ const getters = {
 const actions = {
   [FETCH_ARTICLES] ({ commit }, params) {
     commit(FETCH_START)
-    params.filters.limit = 10
     return ArticlesService.query(params.type, params.filters)
       .then(({ data }) => {
         commit(FETCH_END, data)

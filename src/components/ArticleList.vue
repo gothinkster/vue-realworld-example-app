@@ -47,6 +47,11 @@
       favorited: {
         type: String,
         required: false
+      },
+      itemsPerPage: {
+        type: Number,
+        required: false,
+        default: 10
       }
     },
     data () {
@@ -58,7 +63,8 @@
       listConfig () {
         const { type } = this
         const filters = {
-          offset: (this.currentPage - 1) * 10
+          offset: (this.currentPage - 1) * this.itemsPerPage,
+          limit: this.itemsPerPage
         }
         if (this.author) {
           filters.author = this.author
@@ -75,10 +81,10 @@
         }
       },
       pages () {
-        if (this.isLoading || this.articlesCount <= 10) {
+        if (this.isLoading || this.articlesCount <= this.itemsPerPage) {
           return []
         }
-        return [...Array(Math.ceil(this.articlesCount / 10)).keys()].map(e => e + 1)
+        return [...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()].map(e => e + 1)
       },
       articlesCount () {
         return this.$store.getters[GET_ARTICLE_COUNT]
@@ -95,7 +101,7 @@
     },
     watch: {
       currentPage (newValue) {
-        this.listConfig.filters.offset = (newValue - 1) * 10
+        this.listConfig.filters.offset = (newValue - 1) * this.itemsPerPage
         this.fetchArticles()
       },
       type () {
