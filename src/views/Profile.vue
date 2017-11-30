@@ -6,22 +6,27 @@
           <div class="col-xs-12 col-md-10 offset-md-1">
             <img :src="profile.image" class="user-img"/>
             <h4>{{ profile.username }}</h4>
-            <p>
-              {{ profile.bio }}
-            </p>
+            <p>{{ profile.bio }}</p>
             <div v-if="isCurrentUser()">
-              <router-link class="btn btn-sm btn-outline-secondary action-btn" :to="{ name: 'settings' }">
-                <i class="ion-gear-a"></i> Edit Profile Settings
+              <router-link
+                class="btn btn-sm btn-outline-secondary action-btn"
+                :to="{ name: 'settings' }">
+                  <i class="ion-gear-a"></i> Edit Profile Settings
               </router-link>
             </div>
             <div v-else>
-              <button class="btn btn-sm btn-secondary action-btn" v-if="profile.following" @click.prevent="unfollow()">
-                <i class="ion-checkmark-round"></i>
-                Following {{ profile.username }}
+              <button
+                class="btn btn-sm btn-secondary action-btn" v-if="profile.following"
+                @click.prevent="unfollow()">
+                  <i class="ion-plus-round"></i>
+                  &nbsp;Unfollow {{ profile.username }}
               </button>
-              <button class="btn btn-sm btn-outline-secondary action-btn" v-if="!profile.following" @click.prevent="follow()">
-                <i class="ion-plus-round"></i>
-                Follow {{ profile.username }}
+              <button
+                class="btn btn-sm btn-outline-secondary action-btn"
+                v-if="!profile.following"
+                @click.prevent="follow()">
+                  <i class="ion-plus-round"></i>
+                  &nbsp;Follow {{ profile.username }}
               </button>
             </div>
           </div>
