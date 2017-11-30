@@ -1,6 +1,6 @@
 <template>
   <div class="home-global">
-    <rwv-article-list type="all"></rwv-article-list>
+    <RwvArticleList type="all" />
   </div>
 </template>
 <script>

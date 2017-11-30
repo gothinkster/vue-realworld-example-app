@@ -67,7 +67,7 @@ export default new Router({
           component: RwvProfileArticles
         },
         {
-          name: 'profile.favorites',
+          name: 'profile-favorites',
           path: 'favorites',
           component: RwvProfileFavorited
         }
