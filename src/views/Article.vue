@@ -3,10 +3,10 @@
     <div class="banner">
       <div class="container">
         <h1>{{article.title}}</h1>
-        <rwv-article-meta
+        <RwvArticleMeta
           :article="article"
           :actions="true"
-        ></rwv-article-meta>
+        ></RwvArticleMeta>
       </div>
     </div>
     <div class="container page">
@@ -19,37 +19,37 @@
             <li
               v-for="(tag, index) of article.tagList"
               :key="tag + index">
-              <rwv-tag :name="tag" className="tag-default tag-pill tag-outline"></rwv-tag>
+              <RwvTag :name="tag" className="tag-default tag-pill tag-outline"></RwvTag>
             </li>
           </ul>
         </div>
       </div>
       <hr/>
       <div class="article-actions">
-        <rwv-article-meta
+        <RwvArticleMeta
           :article="article"
           :actions="true"
-        ></rwv-article-meta>
+        ></RwvArticleMeta>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
-          <rwv-comment-editor
+          <RwvCommentEditor
             v-if="isAuth"
             :slug="slug"
             :userImage="user.image">
-          </rwv-comment-editor>
+          </RwvCommentEditor>
           <p v-else>
             <router-link :to="{name: 'login'}">Sign in</router-link>
             or
             <router-link :to="{ name: 'register' }">sign up</router-link>
             to add comments on this article.
           </p>
-          <rwv-comment
+          <RwvComment
             v-for="(comment, index) in comments"
             :slug="slug"
             :comment="comment"
             :key="index">
-          </rwv-comment>
+          </RwvComment>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@
                   class="nav-link"
                   active-class="active"
                   exact
-                  :to="{ name: 'profile.favorites' }">
+                  :to="{ name: 'profile-favorites' }">
                   Favorited Articles
                 </router-link>
               </li>

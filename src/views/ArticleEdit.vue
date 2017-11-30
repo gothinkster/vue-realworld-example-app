@@ -3,9 +3,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
-          <rwv-list-errors
-            :errors="errors">
-          </rwv-list-errors>
+          <RwvListErrors :errors="errors"/>
           <form v-on:submit="onPublish(article.slug, article)">
             <fieldset :disabled="inProgress">
               <fieldset class="form-group">
@@ -39,16 +37,16 @@
                   v-on:keypress.enter.prevent="addTag(tagInput)">
                 <div class="tag-list">
                   <span
-                  class="tag-default tag-pill"
-                  v-for="(tag, index) of article.tagList"
-                  :key="tag + index">
+                    class="tag-default tag-pill"
+                    v-for="(tag, index) of article.tagList"
+                    :key="tag + index">
                   <i
-                  class="ion-close-round"
-                  v-on:click="removeTag(tag)">
+                    class="ion-close-round"
+                    v-on:click="removeTag(tag)">
                 </i>
                 {{ tag }}
               </span>
-            </div>
+                </div>
               </fieldset>
             </fieldset>
             <button
@@ -64,86 +62,86 @@
   </div>
 </template>
 <script>
-import store from '@/store'
-import RwvListErrors from '@/components/ListErrors'
-import {
-  ARTICLE_PUBLISH,
-  ARTICLE_EDIT,
-  FETCH_ARTICLE,
-  ARTICLE_EDIT_ADD_TAG,
-  ARTICLE_EDIT_REMOVE_TAG,
-  ARTICLE_RESET_STATE
-} from '@/store/actions.type'
-import {
-  GET_ARTICLE
-} from '@/store/getters.type'
+  import store from '@/store'
+  import RwvListErrors from '@/components/ListErrors'
+  import {
+    ARTICLE_PUBLISH,
+    ARTICLE_EDIT,
+    FETCH_ARTICLE,
+    ARTICLE_EDIT_ADD_TAG,
+    ARTICLE_EDIT_REMOVE_TAG,
+    ARTICLE_RESET_STATE
+  } from '@/store/actions.type'
+  import {
+    GET_ARTICLE
+  } from '@/store/getters.type'
 
-export default {
-  name: 'RwvArticleEdit',
-  components: { RwvListErrors },
-  props: {
-    previousArticle: {
-      type: Object,
-      required: false
-    }
-  },
-  async beforeRouteUpdate (to, from, next) {
-    // Reset state if user goes from /editor/:id to /editor
-    // The component is not recreated so we use to hook to reset the state.
-    await store.dispatch(ARTICLE_RESET_STATE)
-    return next()
-  },
-  async beforeRouteEnter (to, from, next) {
-    // SO: https://github.com/vuejs/vue-router/issues/1034
-    // If we arrive directly to this url, we need to fetch the article
-    await store.dispatch(ARTICLE_RESET_STATE)
-    if (to.params.slug !== undefined) {
-      await store.dispatch(FETCH_ARTICLE,
-        to.params.slug,
-        to.params.previousArticle
-      )
-    }
-    return next()
-  },
-  async beforeRouteLeave (to, from, next) {
-    await store.dispatch(ARTICLE_RESET_STATE)
-    next()
-  },
-  data () {
-    return {
-      tagInput: null,
-      inProgress: false,
-      errors: {}
-    }
-  },
-  computed: {
-    article () { return this.$store.getters[GET_ARTICLE] }
-  },
-  methods: {
-    onPublish (slug, article) {
-      let action = slug ? ARTICLE_EDIT : ARTICLE_PUBLISH
-      this.inProgress = true
-      this.$store
-        .dispatch(action)
-        .then(({ data }) => {
-          this.inProgress = false
-          this.$router.push({
-            name: 'article',
-            params: { slug: data.article.slug }
+  export default {
+    name: 'RwvArticleEdit',
+    components: { RwvListErrors },
+    props: {
+      previousArticle: {
+        type: Object,
+        required: false
+      }
+    },
+    async beforeRouteUpdate (to, from, next) {
+      // Reset state if user goes from /editor/:id to /editor
+      // The component is not recreated so we use to hook to reset the state.
+      await store.dispatch(ARTICLE_RESET_STATE)
+      return next()
+    },
+    async beforeRouteEnter (to, from, next) {
+      // SO: https://github.com/vuejs/vue-router/issues/1034
+      // If we arrive directly to this url, we need to fetch the article
+      await store.dispatch(ARTICLE_RESET_STATE)
+      if (to.params.slug !== undefined) {
+        await store.dispatch(FETCH_ARTICLE,
+          to.params.slug,
+          to.params.previousArticle
+        )
+      }
+      return next()
+    },
+    async beforeRouteLeave (to, from, next) {
+      await store.dispatch(ARTICLE_RESET_STATE)
+      next()
+    },
+    data () {
+      return {
+        tagInput: null,
+        inProgress: false,
+        errors: {}
+      }
+    },
+    computed: {
+      article () { return this.$store.getters[GET_ARTICLE] }
+    },
+    methods: {
+      onPublish (slug, article) {
+        let action = slug ? ARTICLE_EDIT : ARTICLE_PUBLISH
+        this.inProgress = true
+        this.$store
+          .dispatch(action)
+          .then(({ data }) => {
+            this.inProgress = false
+            this.$router.push({
+              name: 'article',
+              params: { slug: data.article.slug }
+            })
           })
-        })
-        .catch(({ response }) => {
-          this.inProgress = false
-          this.errors = response.data.errors
-        })
-    },
-    removeTag (tag) {
-      this.$store.dispatch(ARTICLE_EDIT_REMOVE_TAG, tag)
-    },
-    addTag (tag) {
-      this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, tag)
-      this.tagInput = null
+          .catch(({ response }) => {
+            this.inProgress = false
+            this.errors = response.data.errors
+          })
+      },
+      removeTag (tag) {
+        this.$store.dispatch(ARTICLE_EDIT_REMOVE_TAG, tag)
+      },
+      addTag (tag) {
+        this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, tag)
+        this.tagInput = null
+      }
     }
   }
-}
 </script>

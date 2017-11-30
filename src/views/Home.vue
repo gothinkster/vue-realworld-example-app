@@ -45,11 +45,11 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <rwv-tag
+              <RwvTag
                 v-for="(tag, index) in tags"
                 :name="tag"
                 :key="tag.name + index">
-              </rwv-tag>
+              </RwvTag>
             </div>
           </div>
         </div>

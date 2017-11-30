@@ -1,6 +1,6 @@
 <template>
   <div class="home-my-feed">
-    <rwv-article-list type="feed"></rwv-article-list>
+    <RwvArticleList type="feed" />
   </div>
 </template>
 <script>
