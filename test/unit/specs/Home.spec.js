@@ -1,12 +1,24 @@
-import Vue from 'vue'
-import Hello from '@/views/Home'
+import { mount } from 'vue-test-utils'
+import Errors from '@/components/ListErrors.vue'
 
-describe('Home.vue', () => {
-  it('should render correct contents', () => {
-    const Constructor = Vue.extend(Hello)
-    const vm = new Constructor().$mount()
+describe('ListErrors.vue', () => {
+  const example = {
+    errors: {
+      "title":["can't be blank"],
+      "body":["can't be blank"]
+    }
+  }
+  const wrap = (props) => {
+    return mount(Errors, { propsData: props })
+  }
 
-    let value = vm.$el.querySelector('.logo-font').textContent
-    expect(value).to.equal('conduit')
+  it('compiles', () => {
+    const wrapper = wrap(example)
+    wrapper.isVueInstance().should.be.true
+  })
+
+  it('renders the correct message', () => {
+    const wrapper = wrap(example)
+    wrapper.html().should.contain('title')
   })
 })
