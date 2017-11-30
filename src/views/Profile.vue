@@ -40,12 +40,20 @@
           <div class="articles-toggle">
             <ul class="nav nav-pills outline-active">
               <li class="nav-item">
-                <router-link class="nav-link" active-class="active" :to="{ name: 'profile-articles' }">
+                <router-link
+                  class="nav-link"
+                  active-class="active"
+                  exact
+                  :to="{ name: 'profile' }">
                   My Articles
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" active-class="active" :to="{ name: 'profile-favorited' }">
+                <router-link
+                  class="nav-link"
+                  active-class="active"
+                  exact
+                  :to="{ name: 'profile.favorites' }">
                   Favorited Articles
                 </router-link>
               </li>

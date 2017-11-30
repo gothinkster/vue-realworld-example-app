@@ -35,22 +35,21 @@ export default new Router({
       path: '/settings',
       component: RwvSettings
     },
+    // Handle child routes with a default, by giving the name to the
+    // child.
+    // SO: https://github.com/vuejs/vue-router/issues/777
     {
-      name: 'profile',
       path: '/@:username',
       component: RwvProfile,
-      redirect: {
-        name: 'profile-articles'
-      },
       children: [
         {
-          name: 'profile-articles',
-          path: 'articles',
+          path: '',
+          name: 'profile',
           component: RwvProfileArticles
         },
         {
-          name: 'profile-favorited',
-          path: 'favorited',
+          name: 'profile.favorites',
+          path: 'favorites',
           component: RwvProfileFavorited
         }
       ]
