@@ -17,12 +17,11 @@
           </vue-markdown>
           <ul class="tag-list">
             <li
-            class="tag-default tag-pill tag-outline"
-            v-for="(tag, index) of article.tagList"
-            :key="tag + index">
-            {{ tag }}
-          </li>
-        </ul>
+              v-for="(tag, index) of article.tagList"
+              :key="tag + index">
+              <rwv-tag :name="tag" className="tag-default tag-pill tag-outline"></rwv-tag>
+            </li>
+          </ul>
         </div>
       </div>
       <hr/>
@@ -63,6 +62,7 @@
   import RwvArticleMeta from '@/components/ArticleMeta'
   import RwvComment from '@/components/Comment'
   import RwvCommentEditor from '@/components/CommentEditor'
+  import RwvTag from '@/components/VTag'
   import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
   import {
     GET_ARTICLE,
@@ -72,7 +72,7 @@
   } from '@/store/getters.type'
 
   export default {
-    name: 'RwvArticle',
+    name: 'rwv-article',
     props: {
       slug: {
         type: String,
@@ -80,10 +80,11 @@
       }
     },
     components: {
-      VueMarkdown,
       RwvArticleMeta,
       RwvComment,
-      RwvCommentEditor
+      RwvCommentEditor,
+      RwvTag,
+      VueMarkdown
     },
     beforeRouteEnter (to, from, next) {
       Promise.all([

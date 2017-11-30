@@ -28,7 +28,7 @@
   import { GET_ARTICLE_COUNT, GET_ARTICLES, GET_ARTICLES_IS_LOADING, IS_AUTHENTICATED } from '@/store/getters.type'
 
   export default {
-    name: 'RwvArticleList',
+    name: 'rwv-article-list',
     components: {
       RwvTag,
       RwvArticlePreview,

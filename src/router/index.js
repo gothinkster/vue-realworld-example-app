@@ -10,15 +10,34 @@ import RwvProfileFavorited from '@/views/ProfileFavorited'
 import RwvSettings from '@/views/Settings'
 import RwvArticle from '@/views/Article'
 import RwvArticleEdit from '@/views/ArticleEdit'
+import RwvHomeGlobal from '@/views/HomeGlobal'
+import RwvHomeTag from '@/views/HomeTag'
+import RwvHomeMyFeed from '@/views/HomeMyFeed'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      name: 'home',
       path: '/',
-      component: RwvHome
+      component: RwvHome,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: RwvHomeGlobal
+        },
+        {
+          path: 'my-feed',
+          name: 'home-my-feed',
+          component: RwvHomeMyFeed
+        },
+        {
+          path: 'tag/:tag',
+          name: 'home-tag',
+          component: RwvHomeTag
+        }
+      ]
     },
     {
       name: 'login',
