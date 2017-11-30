@@ -3,16 +3,20 @@
     <div v-if="isLoading" class="article-preview">
       Loading articles...
     </div>
-    <rwv-article-preview
-      v-else
-      v-for="(article, index) in articles"
-      :article="article"
-      :key="article.title + index">
-    </rwv-article-preview>
-    <v-pagination
-      :pages="pages"
-      :currentPage.sync="currentPage"
-    ></v-pagination>
+    <div v-else>
+      <div v-if="articles.length === 0" class="article-preview">
+        No articles are here... yet.
+      </div>
+      <rwv-article-preview
+        v-for="(article, index) in articles"
+        :article="article"
+        :key="article.title + index">
+      </rwv-article-preview>
+      <v-pagination
+        :pages="pages"
+        :currentPage.sync="currentPage"
+      ></v-pagination>
+    </div>
   </div>
 </template>
 
