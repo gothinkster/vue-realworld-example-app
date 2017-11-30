@@ -1,19 +1,19 @@
 <template>
-  <div class="profile-page">
-    <RwvArticleList :author="author" :items-per-page="5"></RwvArticleList>
+  <div class="home-tag">
+    <rwv-article-list :tag="tag"></rwv-article-list>
   </div>
 </template>
 <script>
   import RwvArticleList from '@/components/ArticleList'
 
   export default {
-    name: 'RwvProfileArticles',
+    name: 'rwv-home-tag',
     components: {
       RwvArticleList
     },
     computed: {
-      author () {
-        return this.$route.params.username
+      tag () {
+        return this.$route.params.tag
       }
     }
   }

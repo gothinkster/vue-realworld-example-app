@@ -12,39 +12,34 @@
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
               <li v-if="isAuth" class="nav-item">
-                <a class="nav-link"
-                  :class="{ active: listConfig.type === 'feed' }" v-on:click="setListTo('feed')">
+                <router-link
+                  :to="{name: 'home-my-feed'}"
+                  class="nav-link"
+                  active-class="active">
                   Your Feed
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link"
-                  :class="{ active: listConfig.type === 'all' }"
-                  v-on:click="setListTo('all')">
+                <router-link
+                  :to="{name: 'home'}"
+                  exact
+                  class="nav-link"
+                  active-class="active">
                   Global Feed
-                </a>
+                </router-link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" v-if="listConfig.filters.tag">
-                  <i class="ion-pound"></i> {{ listConfig.filters.tag }}
-                </a>
+              <li class="nav-item" v-if="tag">
+                <router-link
+                  :to="{name: 'home-tag', params: {tag}}"
+                  class="nav-link"
+                  active-class="active">
+                  <i class="ion-pound"></i>
+                  {{ tag }}
+                </router-link>
               </li>
             </ul>
           </div>
-          <div
-            v-if="isLoading" class="article-preview">
-            Loading articles...
-          </div>
-          <rwv-article-preview
-            v-else
-            v-for="(article, index) in articles"
-            :article="article"
-            :key="article.title + index">
-          </rwv-article-preview>
-          <VPagination
-            :pages="pages"
-            :currentPage.sync="currentPage"
-          />
+          <router-view></router-view>
         </div>
         <div class="col-md-3">
           <div class="sidebar">
@@ -52,7 +47,6 @@
             <div class="tag-list">
               <rwv-tag
                 v-for="(tag, index) in tags"
-                :onClick="setListTo"
                 :name="tag"
                 :key="tag.name + index">
               </rwv-tag>
@@ -65,75 +59,28 @@
 </template>
 
 <script>
-import RwvTag from '@/components/VTag'
-import RwvArticlePreview from '@/components/VArticlePreview'
-import VPagination from '@/components/VPagination'
-import { FETCH_ARTICLES, FETCH_TAGS } from '@/store/actions.type'
-import { IS_AUTHENTICATED } from '@/store/getters.type'
+  import RwvTag from '@/components/VTag'
+  import { IS_AUTHENTICATED } from '@/store/getters.type'
+  import { FETCH_TAGS } from '@/store/actions.type'
 
-export default {
-  name: 'Home',
-  components: {
-    RwvTag,
-    RwvArticlePreview,
-    VPagination
-  },
-  data () {
-    return {
-      listConfig: {
-        type: 'all', // default query type
-        filters: {
-          offset: 0,
-          limit: 10
-        }
+  export default {
+    name: 'home',
+    components: {
+      RwvTag
+    },
+    mounted () {
+      this.$store.dispatch(FETCH_TAGS)
+    },
+    computed: {
+      isAuth () {
+        return this.$store.getters[IS_AUTHENTICATED]
       },
-      currentPage: 1
-    }
-  },
-  computed: {
-    pages () {
-      if (this.isLoading) {
-        return []
+      tags () {
+        return this.$store.state.home.tags
+      },
+      tag () {
+        return this.$route.params.tag
       }
-      return [ ...Array(Math.ceil(this.articlesCount / 10)).keys() ].map(e => e + 1)
-    },
-    articlesCount () {
-      return this.$store.state.home.articlesCount
-    },
-    isLoading () {
-      return this.$store.state.home.isLoading
-    },
-    isAuth () {
-      return this.$store.getters[IS_AUTHENTICATED]
-    },
-    articles () {
-      return this.$store.state.home.articles
-    },
-    tags () {
-      return this.$store.state.home.tags
-    }
-  },
-  watch: {
-    currentPage (newValue) {
-      this.listConfig.filters.offset = (newValue - 1) * 10
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    }
-  },
-  beforeMount () {
-    this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    this.$store.dispatch(FETCH_TAGS)
-  },
-  methods: {
-    setListTo (type, filters = {}) {
-      this.listConfig.type = type
-      this.listConfig.filters = filters
-      this.resetPagination()
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
-    },
-    resetPagination () {
-      this.listConfig.offset = 0
-      this.currentPage = 1
     }
   }
-}
 </script>
