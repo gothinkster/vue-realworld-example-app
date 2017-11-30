@@ -4,8 +4,8 @@ import Errors from '@/components/ListErrors.vue'
 describe('ListErrors.vue', () => {
   const example = {
     errors: {
-      "title":["can't be blank"],
-      "body":["can't be blank"]
+      'title': ['can\'t be blank'],
+      'body': ['can\'t be blank']
     }
   }
   const wrap = (props) => {
