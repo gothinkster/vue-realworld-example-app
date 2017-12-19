@@ -48,7 +48,7 @@
               <RwvTag
                 v-for="(tag, index) in tags"
                 :name="tag"
-                :key="tag.name + index">
+                :key="index">
               </RwvTag>
             </div>
           </div>
