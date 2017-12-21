@@ -59,6 +59,7 @@
 </template>
 
 <script>
+  import { mapGetters, mapState } from 'vuex'
   import RwvTag from '@/components/VTag'
   import { IS_AUTHENTICATED } from '@/store/getters.type'
   import { FETCH_TAGS } from '@/store/actions.type'
@@ -72,12 +73,12 @@
       this.$store.dispatch(FETCH_TAGS)
     },
     computed: {
-      isAuth () {
-        return this.$store.getters[IS_AUTHENTICATED]
-      },
-      tags () {
-        return this.$store.state.home.tags
-      },
+      ...mapGetters({
+        isAuth: [IS_AUTHENTICATED]
+      }),
+      ...mapState({
+        tags: (state) => (state.home.tags)
+      }),
       tag () {
         return this.$route.params.tag
       }

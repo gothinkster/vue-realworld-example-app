@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import RwvTag from '@/components/VTag'
   import RwvArticlePreview from '@/components/VArticlePreview'
   import VPagination from '@/components/VPagination'
@@ -90,18 +91,12 @@
         }
         return [...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()].map(e => e + 1)
       },
-      articlesCount () {
-        return this.$store.getters[GET_ARTICLE_COUNT]
-      },
-      isLoading () {
-        return this.$store.getters[GET_ARTICLES_IS_LOADING]
-      },
-      isAuth () {
-        return this.$store.getters[IS_AUTHENTICATED]
-      },
-      articles () {
-        return this.$store.getters[GET_ARTICLES]
-      }
+      ...mapGetters({
+        articlesCount: [GET_ARTICLE_COUNT],
+        isLoading: [GET_ARTICLES_IS_LOADING],
+        isAuth: [IS_AUTHENTICATED],
+        articles: [GET_ARTICLES]
+      })
     },
     watch: {
       currentPage (newValue) {

@@ -62,6 +62,7 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import store from '@/store'
   import RwvListErrors from '@/components/ListErrors'
   import {
@@ -115,7 +116,9 @@
       }
     },
     computed: {
-      article () { return this.$store.getters[GET_ARTICLE] }
+      ...mapGetters({
+        article: [GET_ARTICLE]
+      })
     },
     methods: {
       onPublish (slug, article) {

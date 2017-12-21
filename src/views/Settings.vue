@@ -47,14 +47,21 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import { LOGOUT, UPDATE_USER } from '@/store/actions.type'
-  import { GET_CURRENT_USER } from '@/store/getters.type'
+  import { GET_CURRENT_USER, IS_AUTHENTICATED } from '@/store/getters.type'
 
   export default {
     name: 'RwvSettings',
     computed: {
-      user () {
-        return this.$store.getters[GET_CURRENT_USER]
+      ...mapGetters({
+        user: [GET_CURRENT_USER],
+        isAuth: [IS_AUTHENTICATED]
+      })
+    },
+    beforeMount () {
+      if (!this.isAuth) {
+        return this.$router.push({ name: 'home' })
       }
     },
     methods: {
