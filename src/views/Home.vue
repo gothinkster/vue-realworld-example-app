@@ -77,7 +77,7 @@
         isAuth: [IS_AUTHENTICATED]
       }),
       ...mapState({
-        tags: (state) => (state.home.tags)
+        tags: state => state.home.tags
       }),
       tag () {
         return this.$route.params.tag
