@@ -3,12 +3,6 @@ import {
   ArticlesService
 } from '@/common/api.service'
 import {
-  GET_ARTICLE_COUNT,
-  GET_ARTICLES,
-  GET_ARTICLES_IS_LOADING,
-  GET_TAGS
-} from './getters.type'
-import {
   FETCH_ARTICLES,
   FETCH_TAGS
 } from './actions.type'
@@ -27,16 +21,16 @@ const state = {
 }
 
 const getters = {
-  [GET_ARTICLE_COUNT] (state) {
+  articlesCount (state) {
     return state.articlesCount
   },
-  [GET_ARTICLES] (state) {
+  articles (state) {
     return state.articles
   },
-  [GET_ARTICLES_IS_LOADING] (state) {
+  isLoading (state) {
     return state.isLoading
   },
-  [GET_TAGS] (state) {
+  tags (state) {
     return state.tags
   }
 }

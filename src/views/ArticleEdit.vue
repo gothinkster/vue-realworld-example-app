@@ -73,9 +73,6 @@
     ARTICLE_EDIT_REMOVE_TAG,
     ARTICLE_RESET_STATE
   } from '@/store/actions.type'
-  import {
-    GET_ARTICLE
-  } from '@/store/getters.type'
 
   export default {
     name: 'RwvArticleEdit',
@@ -116,9 +113,9 @@
       }
     },
     computed: {
-      ...mapGetters({
-        article: [GET_ARTICLE]
-      })
+      ...mapGetters([
+        `article`
+      ])
     },
     methods: {
       onPublish (slug, article) {

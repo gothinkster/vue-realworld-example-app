@@ -57,12 +57,12 @@
             <i class="ion-gear-a"></i>&nbsp;Settings
           </router-link>
         </li>
-        <li class="nav-item" v-if="user.username">
+        <li class="nav-item" v-if="currentUser.username">
           <router-link class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'profile', params: { username: user.username } }">
-            {{ user.username }}
+            :to="{ name: 'profile', params: { username: currentUser.username } }">
+            {{ currentUser.username }}
           </router-link>
         </li>
       </ul>
@@ -71,15 +71,14 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-  import { IS_AUTHENTICATED, GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvHeader',
     computed: {
-      ...mapGetters({
-        isAuthenticated: [IS_AUTHENTICATED],
-        user: [GET_CURRENT_USER]
-      })
+      ...mapGetters([
+        `currentUser`,
+        `isAuthenticated`
+      ])
     }
   }
 </script>

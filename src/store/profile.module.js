@@ -1,5 +1,4 @@
 import ApiService from '@/common/api.service'
-import { GET_PROFILE } from './getters.type'
 import { FETCH_PROFILE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from './actions.type'
 import { SET_PROFILE } from './mutations.type'
 
@@ -9,7 +8,7 @@ const state = {
 }
 
 const getters = {
-  [GET_PROFILE] (state) {
+  profile (state) {
     return state.profile
   }
 }

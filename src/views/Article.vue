@@ -2,7 +2,7 @@
   <div class="article-page">
     <div class="banner">
       <div class="container">
-        <h1>{{article.title}}</h1>
+        <h1>{{ article.title }}</h1>
         <RwvArticleMeta
           :article="article"
           :actions="true"
@@ -34,9 +34,9 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 offset-md-2">
           <RwvCommentEditor
-            v-if="isAuth"
+            v-if="isAuthenticated"
             :slug="slug"
-            :userImage="user.image">
+            :userImage="currentUser.image">
           </RwvCommentEditor>
           <p v-else>
             <router-link :to="{name: 'login'}">Sign in</router-link>
@@ -57,20 +57,14 @@
 </template>
 
 <script>
-  import VueMarkdown from 'vue-markdown'
   import { mapGetters } from 'vuex'
+  import VueMarkdown from 'vue-markdown'
   import store from '@/store'
   import RwvArticleMeta from '@/components/ArticleMeta'
   import RwvComment from '@/components/Comment'
   import RwvCommentEditor from '@/components/CommentEditor'
   import RwvTag from '@/components/VTag'
   import { FETCH_ARTICLE, FETCH_COMMENTS } from '@/store/actions.type'
-  import {
-    GET_ARTICLE,
-    GET_COMMENTS,
-    GET_CURRENT_USER,
-    IS_AUTHENTICATED
-  } from '@/store/getters.type'
 
   export default {
     name: 'rwv-article',
@@ -96,12 +90,12 @@
       })
     },
     computed: {
-      ...mapGetters({
-        article: [GET_ARTICLE],
-        comments: [GET_COMMENTS],
-        user: [GET_CURRENT_USER],
-        isAuth: [IS_AUTHENTICATED]
-      })
+      ...mapGetters([
+        `article`,
+        `currentUser`,
+        `comments`,
+        `isAuthenticated`
+      ])
     }
   }
 </script>
