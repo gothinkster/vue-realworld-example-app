@@ -70,17 +70,16 @@
   </nav>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import { IS_AUTHENTICATED, GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvHeader',
     computed: {
-      isAuthenticated () {
-        return this.$store.getters[IS_AUTHENTICATED]
-      },
-      user () {
-        return this.$store.getters[GET_CURRENT_USER]
-      }
+      ...mapGetters({
+        isAuthenticated: [IS_AUTHENTICATED],
+        user: [GET_CURRENT_USER]
+      })
     }
   }
 </script>

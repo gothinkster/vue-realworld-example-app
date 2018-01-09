@@ -66,8 +66,16 @@
   </div>
 </template>
 <script>
-  import { FETCH_PROFILE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from '@/store/actions.type'
-  import { GET_PROFILE, GET_CURRENT_USER } from '@/store/getters.type'
+  import { mapGetters } from 'vuex'
+  import {
+    FETCH_PROFILE,
+    FETCH_PROFILE_FOLLOW,
+    FETCH_PROFILE_UNFOLLOW
+  } from '@/store/actions.type'
+  import {
+    GET_PROFILE,
+    GET_CURRENT_USER
+  } from '@/store/getters.type'
 
   export default {
     name: 'RwvProfile',
@@ -75,12 +83,10 @@
       this.$store.dispatch(FETCH_PROFILE, this.$route.params)
     },
     computed: {
-      user () {
-        return this.$store.getters[GET_CURRENT_USER]
-      },
-      profile () {
-        return this.$store.getters[GET_PROFILE]
-      }
+      ...mapGetters({
+        user: [GET_CURRENT_USER],
+        profile: [GET_PROFILE]
+      })
     },
     methods: {
       isCurrentUser () {

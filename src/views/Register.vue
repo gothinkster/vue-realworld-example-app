@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { REGISTER } from '@/store/actions.type'
 
 export default {
@@ -44,9 +45,9 @@ export default {
     }
   },
   computed: {
-    errors () {
-      return this.$store.state.auth.errors
-    }
+    ...mapState({
+      errors: state => state.auth.errors
+    })
   },
   methods: {
     onSubmit () {

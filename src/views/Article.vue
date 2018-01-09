@@ -58,6 +58,7 @@
 
 <script>
   import VueMarkdown from 'vue-markdown'
+  import { mapGetters } from 'vuex'
   import store from '@/store'
   import RwvArticleMeta from '@/components/ArticleMeta'
   import RwvComment from '@/components/Comment'
@@ -95,18 +96,12 @@
       })
     },
     computed: {
-      article () {
-        return this.$store.getters[GET_ARTICLE]
-      },
-      comments () {
-        return this.$store.getters[GET_COMMENTS]
-      },
-      user () {
-        return this.$store.getters[GET_CURRENT_USER]
-      },
-      isAuth () {
-        return this.$store.getters[IS_AUTHENTICATED]
-      }
+      ...mapGetters({
+        article: [GET_ARTICLE],
+        comments: [GET_COMMENTS],
+        user: [GET_CURRENT_USER],
+        isAuth: [IS_AUTHENTICATED]
+      })
     }
   }
 </script>

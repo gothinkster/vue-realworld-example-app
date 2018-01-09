@@ -34,6 +34,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import RwvArticleActions from '@/components/ArticleActions'
   import { FAVORITE_ADD, FAVORITE_REMOVE } from '@/store/actions.type'
   import { GET_CURRENT_USER } from '@/store/getters.type'
@@ -55,9 +56,9 @@
       }
     },
     computed: {
-      user () {
-        return this.$store.getters[GET_CURRENT_USER]
-      }
+      ...mapGetters({
+        user: [GET_CURRENT_USER]
+      })
     },
     methods: {
       isCurrentUser () {
