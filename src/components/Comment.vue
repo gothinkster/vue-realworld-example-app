@@ -20,8 +20,8 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   import { COMMENT_DESTROY } from '@/store/actions.type'
-  import { GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvComment',
@@ -31,12 +31,14 @@
     },
     computed: {
       isCurrentUser () {
-        const user = this.$store.getters[GET_CURRENT_USER]
-        if (user.username && this.comment.author.username) {
-          return this.comment.author.username === user.username
+        if (this.currentUser.username && this.comment.author.username) {
+          return this.comment.author.username === this.currentUser.username
         }
         return false
-      }
+      },
+      ...mapGetters([
+        'currentUser'
+      ])
     },
     methods: {
       destroy (slug, commentId) {

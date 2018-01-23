@@ -11,7 +11,7 @@
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
-              <li v-if="isAuth" class="nav-item">
+              <li v-if="isAuthenticated" class="nav-item">
                 <router-link
                   :to="{name: 'home-my-feed'}"
                   class="nav-link"
@@ -59,9 +59,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapState } from 'vuex'
+  import { mapGetters } from 'vuex'
   import RwvTag from '@/components/VTag'
-  import { IS_AUTHENTICATED } from '@/store/getters.type'
   import { FETCH_TAGS } from '@/store/actions.type'
 
   export default {
@@ -73,12 +72,10 @@
       this.$store.dispatch(FETCH_TAGS)
     },
     computed: {
-      ...mapGetters({
-        isAuth: [IS_AUTHENTICATED]
-      }),
-      ...mapState({
-        tags: state => state.home.tags
-      }),
+      ...mapGetters([
+        'isAuthenticated',
+        'tags'
+      ]),
       tag () {
         return this.$route.params.tag
       }

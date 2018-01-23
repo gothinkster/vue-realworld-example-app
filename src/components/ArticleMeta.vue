@@ -37,7 +37,6 @@
   import { mapGetters } from 'vuex'
   import RwvArticleActions from '@/components/ArticleActions'
   import { FAVORITE_ADD, FAVORITE_REMOVE } from '@/store/actions.type'
-  import { GET_CURRENT_USER } from '@/store/getters.type'
 
   export default {
     name: 'RwvArticleMeta',
@@ -56,14 +55,14 @@
       }
     },
     computed: {
-      ...mapGetters({
-        user: [GET_CURRENT_USER]
-      })
+      ...mapGetters([
+        'currentUser'
+      ])
     },
     methods: {
       isCurrentUser () {
-        if (this.user.username && this.article.author.username) {
-          return this.user.username === this.article.author.username
+        if (this.currentUser.username && this.article.author.username) {
+          return this.currentUser.username === this.article.author.username
         }
         return false
       },

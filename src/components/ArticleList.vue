@@ -26,7 +26,6 @@
   import RwvArticlePreview from '@/components/VArticlePreview'
   import VPagination from '@/components/VPagination'
   import { FETCH_ARTICLES } from '@/store/actions.type'
-  import { GET_ARTICLE_COUNT, GET_ARTICLES, GET_ARTICLES_IS_LOADING, IS_AUTHENTICATED } from '@/store/getters.type'
 
   export default {
     name: 'rwv-article-list',
@@ -91,12 +90,11 @@
         }
         return [...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()].map(e => e + 1)
       },
-      ...mapGetters({
-        articlesCount: [GET_ARTICLE_COUNT],
-        isLoading: [GET_ARTICLES_IS_LOADING],
-        isAuth: [IS_AUTHENTICATED],
-        articles: [GET_ARTICLES]
-      })
+      ...mapGetters([
+        'articlesCount',
+        'isLoading',
+        'articles'
+      ])
     },
     watch: {
       currentPage (newValue) {

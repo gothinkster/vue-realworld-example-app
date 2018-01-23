@@ -22,10 +22,6 @@ import {
   TAG_REMOVE,
   UPDATE_ARTICLE_IN_LIST
 } from './mutations.type'
-import {
-  GET_ARTICLE,
-  GET_COMMENTS
-} from './getters.type'
 
 const initialState = {
   article: {
@@ -138,10 +134,10 @@ export const mutations = {
 }
 
 const getters = {
-  [GET_ARTICLE] (state) {
+  article (state) {
     return state.article
   },
-  [GET_COMMENTS] (state) {
+  comments (state) {
     return state.comments
   }
 }
