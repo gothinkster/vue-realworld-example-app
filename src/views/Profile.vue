@@ -76,8 +76,8 @@
     },
     computed: {
       ...mapGetters([
-        `currentUser`,
-        `profile`
+        'currentUser',
+        'profile'
       ])
     },
     methods: {

@@ -73,8 +73,8 @@
     },
     computed: {
       ...mapGetters([
-        `isAuthenticated`,
-        `tags`
+        'isAuthenticated',
+        'tags'
       ]),
       tag () {
         return this.$route.params.tag

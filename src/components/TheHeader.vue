@@ -76,8 +76,8 @@
     name: 'RwvHeader',
     computed: {
       ...mapGetters([
-        `currentUser`,
-        `isAuthenticated`
+        'currentUser',
+        'isAuthenticated'
       ])
     }
   }

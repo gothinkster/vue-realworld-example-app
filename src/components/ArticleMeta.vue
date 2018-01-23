@@ -56,7 +56,7 @@
     },
     computed: {
       ...mapGetters([
-        `currentUser`
+        'currentUser'
       ])
     },
     methods: {

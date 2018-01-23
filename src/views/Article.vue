@@ -91,10 +91,10 @@
     },
     computed: {
       ...mapGetters([
-        `article`,
-        `currentUser`,
-        `comments`,
-        `isAuthenticated`
+        'article',
+        'currentUser',
+        'comments',
+        'isAuthenticated'
       ])
     }
   }

@@ -114,7 +114,7 @@
     },
     computed: {
       ...mapGetters([
-        `article`
+        'article'
       ])
     },
     methods: {

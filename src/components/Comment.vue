@@ -37,7 +37,7 @@
         return false
       },
       ...mapGetters([
-        `currentUser`
+        'currentUser'
       ])
     },
     methods: {

@@ -91,9 +91,9 @@
         return [...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()].map(e => e + 1)
       },
       ...mapGetters([
-        `articlesCount`,
-        `isLoading`,
-        `articles`
+        'articlesCount',
+        'isLoading',
+        'articles'
       ])
     },
     watch: {
