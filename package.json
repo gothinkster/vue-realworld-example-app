@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "moment": "^2.19.2",
+    "date-fns": "^1.29.0",
     "vue": "^2.5.8",
     "vue-axios": "^2.0.2",
     "vue-markdown": "^2.2.4",
