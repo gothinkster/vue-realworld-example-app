@@ -16,7 +16,7 @@
               {{k}} {{ v | error }}
             </li>
           </ul>
-          <form v-on:submit="onSubmit(email, password)">
+          <form v-on:submit.prevent="onSubmit(email, password)">
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
@@ -54,6 +54,7 @@ export default {
   },
   methods: {
     onSubmit (email, password) {
+      console.log('submit form')
       this.$store
         .dispatch(LOGIN, { email, password })
         .then(() => this.$router.push({ name: 'home' }))

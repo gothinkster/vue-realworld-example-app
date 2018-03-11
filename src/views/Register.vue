@@ -12,7 +12,7 @@
           <ul v-if="errors" class="error-messages">
             <li v-for="(v, k) in errors" :key="k">{{k}} {{ v | error }}</li>
           </ul>
-          <form v-on:submit="onSubmit">
+          <form v-on:submit.prevent="onSubmit">
             <fieldset class="form-group">
               <input class="form-control form-control-lg" type="text" v-model="username" placeholder="Username">
             </fieldset>
