@@ -18,9 +18,9 @@
   "dependencies": {
     "axios": "^0.16.2",
     "date-fns": "^1.29.0",
+    "marked": "^0.3.17",
     "vue": "^2.5.8",
     "vue-axios": "^2.0.2",
-    "vue-markdown": "^2.2.4",
     "vue-router": "^2.8.1",
     "vuex": "^2.5.0"
   },

@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
           <RwvListErrors :errors="errors"/>
-          <form v-on:submit="onPublish(article.slug, article)">
+          <form v-on:submit.prevent="onPublish(article.slug, article)">
             <fieldset :disabled="inProgress">
               <fieldset class="form-group">
                 <input
