@@ -12,9 +12,7 @@
     <div class="container page">
       <div class="row article-content">
         <div class="col-xs-12">
-          <vue-markdown
-            :source="article.body">
-          </vue-markdown>
+          <div v-html="parseMarkdown(article.body)"></div>
           <ul class="tag-list">
             <li
               v-for="(tag, index) of article.tagList"
@@ -58,7 +56,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import VueMarkdown from 'vue-markdown'
+  import marked from 'marked'
   import store from '@/store'
   import RwvArticleMeta from '@/components/ArticleMeta'
   import RwvComment from '@/components/Comment'
@@ -78,8 +76,7 @@
       RwvArticleMeta,
       RwvComment,
       RwvCommentEditor,
-      RwvTag,
-      VueMarkdown
+      RwvTag
     },
     beforeRouteEnter (to, from, next) {
       Promise.all([
@@ -96,6 +93,11 @@
         'comments',
         'isAuthenticated'
       ])
+    },
+    methods: {
+      parseMarkdown (content) {
+        return marked(content)
+      }
     }
   }
 </script>
