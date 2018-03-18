@@ -39,7 +39,7 @@
     "chalk": "^2.3.0",
     "chromedriver": "^2.33.2",
     "connect-history-api-fallback": "^1.5.0",
-    "copy-webpack-plugin": "^4.2.3",
+    "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
