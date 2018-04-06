@@ -1,89 +1,76 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import RwvHome from '@/views/Home'
-import RwvLogin from '@/views/Login'
-import RwvRegister from '@/views/Register'
-import RwvProfile from '@/views/Profile'
-import RwvProfileArticles from '@/views/ProfileArticles'
-import RwvProfileFavorited from '@/views/ProfileFavorited'
-import RwvSettings from '@/views/Settings'
-import RwvArticle from '@/views/Article'
-import RwvArticleEdit from '@/views/ArticleEdit'
-import RwvHomeGlobal from '@/views/HomeGlobal'
-import RwvHomeTag from '@/views/HomeTag'
-import RwvHomeMyFeed from '@/views/HomeMyFeed'
-
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      component: RwvHome,
+      component: () => import('@/views/Home'),
       children: [
         {
           path: '',
           name: 'home',
-          component: RwvHomeGlobal
+          component: () => import('@/views/HomeGlobal')
         },
         {
           path: 'my-feed',
           name: 'home-my-feed',
-          component: RwvHomeMyFeed
+          component: () => import('@/views/HomeMyFeed')
         },
         {
           path: 'tag/:tag',
           name: 'home-tag',
-          component: RwvHomeTag
+          component: () => import('@/views/HomeTag')
         }
       ]
     },
     {
       name: 'login',
       path: '/login',
-      component: RwvLogin
+      component: () => import('@/views/Login')
     },
     {
       name: 'register',
       path: '/register',
-      component: RwvRegister
+      component: () => import('@/views/Register')
     },
     {
       name: 'settings',
       path: '/settings',
-      component: RwvSettings
+      component: () => import('@/views/Settings')
     },
     // Handle child routes with a default, by giving the name to the
     // child.
     // SO: https://github.com/vuejs/vue-router/issues/777
     {
       path: '/@:username',
-      component: RwvProfile,
+      component: () => import('@/views/Profile'),
       children: [
         {
           path: '',
           name: 'profile',
-          component: RwvProfileArticles
+          component: () => import('@/views/ProfileArticles')
         },
         {
           name: 'profile-favorites',
           path: 'favorites',
-          component: RwvProfileFavorited
+          component: () => import('@/views/ProfileFavorited')
         }
       ]
     },
     {
       name: 'article',
       path: '/articles/:slug',
-      component: RwvArticle,
+      component: () => import('@/views/Article'),
       props: true
     },
     {
       name: 'article-edit',
       path: '/editor/:slug?',
       props: true,
-      component: RwvArticleEdit
+      component: () => import('@/views/ArticleEdit')
     }
   ]
 })
