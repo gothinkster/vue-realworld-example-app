@@ -25,6 +25,7 @@
     "vuex": "^2.5.0"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.13",
     "autoprefixer": "^7.1.6",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
@@ -86,7 +87,6 @@
     "vue-loader": "^13.5.0",
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.8",
-    "vue-test-utils": "^1.0.0-beta.6",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.9.1",
     "webpack-dev-middleware": "^1.12.1",
