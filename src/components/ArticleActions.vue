@@ -16,10 +16,11 @@
   <!-- Used in ArticleView when not author -->
   <span v-else>
     <button
-      class="btn btn-sm btn-outline-secondary">
+      class="btn btn-sm btn-outline-secondary"
+      v-on:click="toggleFollow(profile.following)">
       <i class="ion-plus-round"></i>
       &nbsp;
-      Follow {{article.author.username}} <span class="counter">(10)</span>
+      {{ profile.following ? 'Unfollow' : 'Follow' }} {{article.author.username}}
     </button>
     &nbsp;&nbsp;
     <button
@@ -43,7 +44,8 @@
 </template>
 
 <script>
-import { FAVORITE_ADD, FAVORITE_REMOVE, ARTICLE_DELETE } from '@/store/actions.type'
+import { mapGetters } from 'vuex'
+import { FAVORITE_ADD, FAVORITE_REMOVE, ARTICLE_DELETE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from '@/store/actions.type'
 
 export default {
   name: 'RwvArticleActions',
@@ -51,12 +53,26 @@ export default {
     article: { type: Object, required: true },
     canModify: { type: Boolean, required: true }
   },
+  computed: {
+    ...mapGetters([
+      'profile',
+      'isAuthenticated'
+    ])
+  },
   methods: {
     toggleFavorite (slug) {
+      if (!this.isAuthenticated) return
       const action = this.article.favorited
         ? FAVORITE_REMOVE
         : FAVORITE_ADD
       this.$store.dispatch(action, slug)
+    },
+    toggleFollow (following) {
+      if (!this.isAuthenticated) return
+      const action = following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW
+      this.$store.dispatch(action, {
+        username: this.profile.username
+      })
     },
     editArticle (slug, article) {
       this.$router.push({
