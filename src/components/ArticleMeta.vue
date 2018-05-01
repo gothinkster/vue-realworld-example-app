@@ -59,7 +59,8 @@
     },
     computed: {
       ...mapGetters([
-        'currentUser'
+        'currentUser',
+        'isAuthenticated'
       ])
     },
     methods: {
@@ -70,6 +71,7 @@
         return false
       },
       toggleFavorite () {
+        if (!this.isAuthenticated) return
         const action = this.article.favorited
           ? FAVORITE_REMOVE
           : FAVORITE_ADD

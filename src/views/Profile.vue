@@ -77,7 +77,8 @@
     computed: {
       ...mapGetters([
         'currentUser',
-        'profile'
+        'profile',
+        'isAuthenticated'
       ])
     },
     methods: {
@@ -88,6 +89,7 @@
         return false
       },
       follow () {
+        if (!this.isAuthenticated) return
         this.$store.dispatch(FETCH_PROFILE_FOLLOW, this.$route.params)
       },
       unfollow () {
