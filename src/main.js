@@ -23,7 +23,7 @@ router.beforeEach(
     return Promise
       .all([store.dispatch(CHECK_AUTH)])
       .then(next)
-  },
+  }
 )
 
 /* eslint-disable no-new */

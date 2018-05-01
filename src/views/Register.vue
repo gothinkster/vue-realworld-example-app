@@ -56,7 +56,7 @@ export default {
         password: this.password,
         username: this.username
       })
-      .then(() => this.$router.push({ name: 'home' }))
+        .then(() => this.$router.push({ name: 'home' }))
     }
   }
 }
