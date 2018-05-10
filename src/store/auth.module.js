@@ -49,19 +49,25 @@ const actions = {
     })
   },
   [CHECK_AUTH] (context) {
-    if (JwtService.getToken()) {
-      ApiService.setHeader()
-      ApiService
-        .get('user')
-        .then(({data}) => {
-          context.commit(SET_AUTH, data.user)
-        })
-        .catch(({response}) => {
-          context.commit(SET_ERROR, response.data.errors)
-        })
-    } else {
-      context.commit(PURGE_AUTH)
-    }
+    return new Promise((resolve, reject) => {
+      if (JwtService.getToken()) {
+        ApiService.setHeader()
+        ApiService
+          .get('user')
+          .then(({data}) => {
+            context.commit(SET_AUTH, data.user)
+          })
+          .catch(({response}) => {
+            context.commit(SET_ERROR, response.data.errors)
+          })
+          .finally(() => {
+            resolve()
+          })
+      } else {
+        context.commit(PURGE_AUTH)
+        resolve()
+      }
+    })
   },
   [UPDATE_USER] (context, payload) {
     const {email, username, password, image, bio} = payload
