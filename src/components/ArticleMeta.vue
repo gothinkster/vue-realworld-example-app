@@ -71,7 +71,10 @@
         return false
       },
       toggleFavorite () {
-        if (!this.isAuthenticated) return
+        if (!this.isAuthenticated) {
+          this.$router.push({name: 'login'})
+          return
+        }
         const action = this.article.favorited
           ? FAVORITE_REMOVE
           : FAVORITE_ADD

@@ -61,14 +61,20 @@ export default {
   },
   methods: {
     toggleFavorite (slug) {
-      if (!this.isAuthenticated) return
+      if (!this.isAuthenticated) {
+        this.$router.push({name: 'login'})
+        return
+      }
       const action = this.article.favorited
         ? FAVORITE_REMOVE
         : FAVORITE_ADD
       this.$store.dispatch(action, slug)
     },
     toggleFollow (following) {
-      if (!this.isAuthenticated) return
+      if (!this.isAuthenticated) {
+        this.$router.push({name: 'login'})
+        return
+      }
       const action = following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW
       this.$store.dispatch(action, {
         username: this.profile.username
