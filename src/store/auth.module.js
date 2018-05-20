@@ -99,12 +99,14 @@ const mutations = {
     state.user = user
     state.errors = {}
     JwtService.saveToken(state.user.token)
+    ApiService.setHeader()
   },
   [PURGE_AUTH] (state) {
     state.isAuthenticated = false
     state.user = {}
     state.errors = {}
     JwtService.destroyToken()
+    ApiService.setHeader()
   }
 }
 

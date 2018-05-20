@@ -11,7 +11,12 @@ const ApiService = {
   },
 
   setHeader () {
-    Vue.axios.defaults.headers.common['Authorization'] = `Token ${JwtService.getToken()}`
+    const token = JwtService.getToken()
+    if (token) {
+      Vue.axios.defaults.headers.common['Authorization'] = `Token ${token}`
+    } else {
+      delete Vue.axios.defaults.headers.common['Authorization']
+    }
   },
 
   query (resource, params) {
