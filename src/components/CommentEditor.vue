@@ -3,7 +3,7 @@
     <rwv-list-errors
       :errors="errors">
     </rwv-list-errors>
-    <form class="card comment-form" v-on:submit.prevent="onSubmit(slug, comment)">
+    <form class="card comment-form" v-on:submit.prevent="onSubmit">
       <div class="card-block">
         <textarea
           class="form-control"
@@ -13,7 +13,7 @@
         </textarea>
       </div>
       <div class="card-footer">
-        <img :src="userImage" class="comment-author-img" />
+        <img :src="userImage || defaultUserImage" class="comment-author-img" />
         <button class="btn btn-sm btn-primary"> Post Comment </button>
       </div>
     </form>
@@ -38,8 +38,14 @@ export default {
       errors: {}
     }
   },
+  computed: {
+    defaultUserImage () {
+      return 'https://static.productionready.io/images/smiley-cyrus.jpg'
+    }
+  },
   methods: {
-    onSubmit (slug, comment) {
+    onSubmit () {
+      const {slug, comment} = this
       this.$store
         .dispatch(COMMENT_CREATE, { slug, comment })
         .then(() => {
