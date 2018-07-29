@@ -39,7 +39,10 @@ export default new Router({
     {
       name: 'settings',
       path: '/settings',
-      component: () => import('@/views/Settings')
+      component: () => import('@/views/Settings'),
+      meta: {
+        auth: 'User'
+      }
     },
     // Handle child routes with a default, by giving the name to the
     // child.
@@ -70,7 +73,10 @@ export default new Router({
       name: 'article-edit',
       path: '/editor/:slug?',
       props: true,
-      component: () => import('@/views/ArticleEdit')
+      component: () => import('@/views/ArticleEdit'),
+      meta: {
+        auth: 'User'
+      }
     }
   ]
 })

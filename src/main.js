@@ -11,20 +11,50 @@ import ApiService from '@/common/api.service'
 import DateFilter from '@/common/date.filter'
 import ErrorFilter from '@/common/error.filter'
 
+import { abilitiesPlugin } from '@casl/vue'
+import defineAbilitiesFor from '@/config/ability'
+
 Vue.config.productionTip = false
 Vue.filter('date', DateFilter)
 Vue.filter('error', ErrorFilter)
 
+Vue.use(abilitiesPlugin, defineAbilitiesFor)
+
 ApiService.init()
 
-// Ensure we checked auth before each page load.
-router.beforeEach(
-  (to, from, next) => {
-    return Promise
-      .all([store.dispatch(CHECK_AUTH)])
-      .then(next)
+router.beforeEach((to, from, next) => {
+  // skip for index
+  if (to === '/' || to === '') {
+    next()
   }
-)
+
+  // if requires auth
+  /**
+   * same as
+   *
+   * if (to.matched.some(function(route){
+   *  return route.meta.auth
+   * }) {
+   *  ...
+   * }
+   */
+  to.matched.some(route => {
+    if (route.meta.auth) {
+      store.dispatch(CHECK_AUTH)
+        .then((ctx) => {
+          const abilities = defineAbilitiesFor(ctx)
+          const canNavigate = abilities.can(route.meta.action || 'read', route.meta.auth)
+          if (!canNavigate) {
+            return next('/')
+          } else {
+            next()
+          }
+        })
+    } else {
+      next()
+    }
+  })
+})
 
 /* eslint-disable no-new */
 new Vue({
