@@ -15,8 +15,12 @@ const ApiService = {
   },
 
   query (resource, params) {
-    return Vue.axios
-      .get(resource, params)
+    return slug ? Vue.axios
+      .get(`${resource}/${slug}`)
+      .catch((error) => {
+        throw new Error(`[RWV] ApiService ${error}`)
+      }) : Vue.axios
+      .get(`${resource}`)
       .catch((error) => {
         throw new Error(`[RWV] ApiService ${error}`)
       })
