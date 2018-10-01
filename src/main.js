@@ -17,20 +17,14 @@ Vue.filter('error', ErrorFilter)
 
 ApiService.init()
 
-// Ensure we checked auth before each page load.
-router.beforeEach(
-  (to, from, next) => {
-    return Promise
-      .all([store.dispatch(CHECK_AUTH)])
-      .then(next)
-  }
-)
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
-})
+store.dispatch(CHECK_AUTH)
+  .then(() => {
+    /* eslint-disable no-new */
+    new Vue({
+      el: '#app',
+      router,
+      store,
+      template: '<App/>',
+      components: { App }
+    })
+  })
