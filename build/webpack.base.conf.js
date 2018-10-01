@@ -1,7 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
+var isProduction = process.env.NODE_ENV === 'production'
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -39,7 +39,20 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: {
+          loaders: utils.cssLoaders({
+            sourceMap: isProduction
+            ? config.build.productionSourceMap
+            : config.dev.cssSourceMap,
+            extract: isProduction
+          }),
+          transformToRequire: {
+            video: 'src',
+            source: 'src',
+            img: 'src',
+            image: 'xlink:href'
+          }
+        }
       },
       {
         test: /\.js$/,
