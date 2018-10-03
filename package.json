@@ -16,6 +16,8 @@
     "postinstall": "node node_modules/phantomjs-prebuilt/install.js"
   },
   "dependencies": {
+    "@casl/ability": "^2.4.2",
+    "@casl/vue": "^0.4.3",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "marked": "^0.3.19",
