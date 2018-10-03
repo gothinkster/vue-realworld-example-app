@@ -45,10 +45,12 @@ router.beforeEach((to, from, next) => {
           const abilities = defineAbilitiesFor(ctx)
           const canNavigate = abilities.can(route.meta.action || 'read', route.meta.auth)
           if (!canNavigate) {
-            return next('/')
-          } else {
-            next()
+            return next('/login')
           }
+          next()
+        })
+        .catch(() => {
+          next('/login')
         })
     } else {
       next()
