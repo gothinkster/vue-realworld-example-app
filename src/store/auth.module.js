@@ -49,19 +49,25 @@ const actions = {
     })
   },
   [CHECK_AUTH] (context) {
-    if (JwtService.getToken()) {
+    return new Promise((resolve, reject) => {
+      const token = JwtService.getToken()
+      if (!token) {
+        context.commit(PURGE_AUTH)
+        return resolve()
+      }
+
       ApiService.setHeader()
       ApiService
         .get('user')
         .then(({data}) => {
           context.commit(SET_AUTH, data.user)
+          resolve(data)
         })
         .catch(({response}) => {
           context.commit(SET_ERROR, response.data.errors)
+          resolve()
         })
-    } else {
-      context.commit(PURGE_AUTH)
-    }
+    })
   },
   [UPDATE_USER] (context, payload) {
     const {email, username, password, image, bio} = payload
