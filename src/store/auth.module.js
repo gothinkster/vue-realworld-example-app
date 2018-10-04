@@ -50,21 +50,23 @@ const actions = {
   },
   [CHECK_AUTH] (context) {
     return new Promise((resolve, reject) => {
-      if (JwtService.getToken()) {
-        ApiService.setHeader()
-        ApiService
-          .get('user')
-          .then(({data}) => {
-            context.commit(SET_AUTH, data.user)
-            resolve(data)
-          })
-          .catch(({response}) => {
-            context.commit(SET_ERROR, response.data.errors)
-          })
-      } else {
+      const token = JwtService.getToken()
+      if (!token) {
         context.commit(PURGE_AUTH)
-        resolve()
+        return resolve()
       }
+
+      ApiService.setHeader()
+      ApiService
+        .get('user')
+        .then(({data}) => {
+          context.commit(SET_AUTH, data.user)
+          resolve(data)
+        })
+        .catch(({response}) => {
+          context.commit(SET_ERROR, response.data.errors)
+          resolve()
+        })
     })
   },
   [UPDATE_USER] (context, payload) {
