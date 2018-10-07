@@ -1,9 +1,8 @@
 {
-  "name": "vue-realworld-example-app",
+  "name": "realworld-vue",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "igeligel <kevinigeligeligel@gmail.com>",
-  "private": true,
+  "description": "TodoMVC for the RealWorld™",
+  "author": "Emmanuel Vilsbol <emmanuel@vilsbol.com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
