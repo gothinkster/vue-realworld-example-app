@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import RwvTag from '@/components/VTag'
-import RwvArticlePreview from '@/components/VArticlePreview'
-import VPagination from '@/components/VPagination'
-import { FETCH_ARTICLES } from '@/store/actions.type'
+import { mapGetters } from "vuex";
+import RwvTag from "@/components/VTag";
+import RwvArticlePreview from "@/components/VArticlePreview";
+import VPagination from "@/components/VPagination";
+import { FETCH_ARTICLES } from "@/store/actions.type";
 
 export default {
-  name: 'rwv-article-list',
+  name: "rwv-article-list",
   components: {
     RwvTag,
     RwvArticlePreview,
@@ -38,7 +38,7 @@ export default {
     type: {
       type: String,
       required: false,
-      default: 'all'
+      default: "all"
     },
     author: {
       type: String,
@@ -58,77 +58,75 @@ export default {
       default: 10
     }
   },
-  data () {
+  data() {
     return {
       currentPage: 1
-    }
+    };
   },
   computed: {
-    listConfig () {
-      const { type } = this
+    listConfig() {
+      const { type } = this;
       const filters = {
         offset: (this.currentPage - 1) * this.itemsPerPage,
         limit: this.itemsPerPage
-      }
+      };
       if (this.author) {
-        filters.author = this.author
+        filters.author = this.author;
       }
       if (this.tag) {
-        filters.tag = this.tag
+        filters.tag = this.tag;
       }
       if (this.favorited) {
-        filters.favorited = this.favorited
+        filters.favorited = this.favorited;
       }
       return {
         type,
         filters
-      }
+      };
     },
-    pages () {
+    pages() {
       if (this.isLoading || this.articlesCount <= this.itemsPerPage) {
-        return []
+        return [];
       }
-      return [...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()].map(e => e + 1)
+      return [
+        ...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()
+      ].map(e => e + 1);
     },
-    ...mapGetters([
-      'articlesCount',
-      'isLoading',
-      'articles'
-    ])
+    ...mapGetters(["articlesCount", "isLoading", "articles"])
   },
   watch: {
-    currentPage (newValue) {
-      this.listConfig.filters.offset = (newValue - 1) * this.itemsPerPage
-      this.fetchArticles()
+    currentPage(newValue) {
+      this.listConfig.filters.offset = (newValue - 1) * this.itemsPerPage;
+      this.fetchArticles();
     },
-    type () {
-      this.resetPagination()
-      this.fetchArticles()
+    type() {
+      this.resetPagination();
+      this.fetchArticles();
     },
-    author () {
-      this.resetPagination()
-      this.fetchArticles()
+    author() {
+      this.resetPagination();
+      this.fetchArticles();
     },
-    tag () {
-      this.resetPagination()
-      this.fetchArticles()
+    tag() {
+      this.resetPagination();
+      this.fetchArticles();
     },
-    favorited () {
-      this.resetPagination()
-      this.fetchArticles()
+    favorited() {
+      this.resetPagination();
+      this.fetchArticles();
     }
   },
-  mounted () {
-    this.fetchArticles()
+  mounted() {
+    this.fetchArticles();
   },
   methods: {
-    fetchArticles () {
-      this.$store.dispatch(FETCH_ARTICLES, this.listConfig)
+    fetchArticles() {
+      this.$store.dispatch(FETCH_ARTICLES, this.listConfig);
     },
-    resetPagination () {
-      this.listConfig.offset = 0
-      this.currentPage = 1
+    resetPagination() {
+      this.listConfig.offset = 0;
+      this.currentPage = 1;
     }
   }
-}
+};
 </script>

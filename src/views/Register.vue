@@ -33,17 +33,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { REGISTER } from '@/store/actions.type'
+import { mapState } from "vuex";
+import { REGISTER } from "@/store/actions.type";
 
 export default {
-  name: 'RwvRegister',
-  data () {
+  name: "RwvRegister",
+  data() {
     return {
-      username: '',
-      email: '',
-      password: ''
-    }
+      username: "",
+      email: "",
+      password: ""
+    };
   },
   computed: {
     ...mapState({
@@ -51,14 +51,15 @@ export default {
     })
   },
   methods: {
-    onSubmit () {
-      this.$store.dispatch(REGISTER, {
-        email: this.email,
-        password: this.password,
-        username: this.username
-      })
-        .then(() => this.$router.push({ name: 'home' }))
+    onSubmit() {
+      this.$store
+        .dispatch(REGISTER, {
+          email: this.email,
+          password: this.password,
+          username: this.username
+        })
+        .then(() => this.$router.push({ name: "home" }));
     }
   }
-}
+};
 </script>

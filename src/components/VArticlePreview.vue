@@ -22,15 +22,15 @@
 </template>
 
 <script>
-import RwvArticleMeta from '@/components/ArticleMeta'
+import RwvArticleMeta from "@/components/ArticleMeta";
 
 export default {
-  name: 'RwvArticlePreview',
+  name: "RwvArticlePreview",
   props: {
     article: { type: Object, required: true }
   },
   components: {
     RwvArticleMeta
   }
-}
+};
 </script>

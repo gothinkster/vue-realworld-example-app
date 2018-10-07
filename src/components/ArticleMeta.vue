@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import RwvArticleActions from '@/components/ArticleActions'
-import { FAVORITE_ADD, FAVORITE_REMOVE } from '@/store/actions.type'
+import { mapGetters } from "vuex";
+import RwvArticleActions from "@/components/ArticleActions";
+import { FAVORITE_ADD, FAVORITE_REMOVE } from "@/store/actions.type";
 
 export default {
-  name: 'RwvArticleMeta',
+  name: "RwvArticleMeta",
   components: {
     RwvArticleActions
   },
@@ -58,28 +58,23 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'currentUser',
-      'isAuthenticated'
-    ])
+    ...mapGetters(["currentUser", "isAuthenticated"])
   },
   methods: {
-    isCurrentUser () {
+    isCurrentUser() {
       if (this.currentUser.username && this.article.author.username) {
-        return this.currentUser.username === this.article.author.username
+        return this.currentUser.username === this.article.author.username;
       }
-      return false
+      return false;
     },
-    toggleFavorite () {
+    toggleFavorite() {
       if (!this.isAuthenticated) {
-        this.$router.push({name: 'login'})
-        return
+        this.$router.push({ name: "login" });
+        return;
       }
-      const action = this.article.favorited
-        ? FAVORITE_REMOVE
-        : FAVORITE_ADD
-      this.$store.dispatch(action, this.article.slug)
+      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
+      this.$store.dispatch(action, this.article.slug);
     }
   }
-}
+};
 </script>

@@ -8,17 +8,17 @@
 </template>
 
 <script>
-import RwvArticleList from '@/components/ArticleList'
+import RwvArticleList from "@/components/ArticleList";
 
 export default {
-  name: 'RwvProfileFavorited',
+  name: "RwvProfileFavorited",
   components: {
     RwvArticleList
   },
   computed: {
-    favorited () {
-      return this.$route.params.username
+    favorited() {
+      return this.$route.params.username;
     }
   }
-}
+};
 </script>

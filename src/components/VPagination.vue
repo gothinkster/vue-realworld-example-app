@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Pagination',
+  name: "Pagination",
   props: {
     pages: {
       type: Array,
@@ -27,16 +27,16 @@ export default {
     }
   },
   methods: {
-    changePage (goToPage) {
-      if (goToPage === this.currentPage) return
-      this.$emit('update:currentPage', goToPage)
+    changePage(goToPage) {
+      if (goToPage === this.currentPage) return;
+      this.$emit("update:currentPage", goToPage);
     },
-    paginationClass (page) {
+    paginationClass(page) {
       return {
-        'page-item': true,
+        "page-item": true,
         active: this.currentPage === page
-      }
+      };
     }
   }
-}
+};
 </script>

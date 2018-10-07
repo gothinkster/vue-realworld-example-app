@@ -48,31 +48,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { LOGOUT, UPDATE_USER } from '@/store/actions.type'
+import { mapGetters } from "vuex";
+import { LOGOUT, UPDATE_USER } from "@/store/actions.type";
 
 export default {
-  name: 'RwvSettings',
+  name: "RwvSettings",
   computed: {
-    ...mapGetters([
-      'currentUser'
-    ])
+    ...mapGetters(["currentUser"])
   },
   methods: {
-    updateSettings () {
-      this.$store.dispatch(UPDATE_USER, this.currentUser)
-        .then(() => {
-          // #todo, nice toast and no redirect
-          this.$router.push({ name: 'home' })
-        })
+    updateSettings() {
+      this.$store.dispatch(UPDATE_USER, this.currentUser).then(() => {
+        // #todo, nice toast and no redirect
+        this.$router.push({ name: "home" });
+      });
     },
-    logout () {
-      this.$store
-        .dispatch(LOGOUT)
-        .then(() => {
-          this.$router.push({ name: 'home' })
-        })
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
     }
   }
-}
+};
 </script>

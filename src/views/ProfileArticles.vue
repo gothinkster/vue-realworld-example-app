@@ -5,17 +5,17 @@
 </template>
 
 <script>
-import RwvArticleList from '@/components/ArticleList'
+import RwvArticleList from "@/components/ArticleList";
 
 export default {
-  name: 'RwvProfileArticles',
+  name: "RwvProfileArticles",
   components: {
     RwvArticleList
   },
   computed: {
-    author () {
-      return this.$route.params.username
+    author() {
+      return this.$route.params.username;
     }
   }
-}
+};
 </script>

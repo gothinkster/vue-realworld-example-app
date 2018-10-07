@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import RwvArticleList from '@/components/ArticleList'
+import RwvArticleList from "@/components/ArticleList";
 
 export default {
-  name: 'rwv-home-my-feed',
+  name: "rwv-home-my-feed",
   components: {
     RwvArticleList
   }
-}
+};
 </script>

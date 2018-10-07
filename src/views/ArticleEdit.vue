@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
           <RwvListErrors :errors="errors"/>
-          <form v-on:submit.prevent="onPublish(article.slug, article)">
+          <form v-on:submit.prevent="onPublish(article.slug)">
             <fieldset :disabled="inProgress">
               <fieldset class="form-group">
                 <input
@@ -63,9 +63,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import store from '@/store'
-import RwvListErrors from '@/components/ListErrors'
+import { mapGetters } from "vuex";
+import store from "@/store";
+import RwvListErrors from "@/components/ListErrors";
 import {
   ARTICLE_PUBLISH,
   ARTICLE_EDIT,
@@ -73,10 +73,10 @@ import {
   ARTICLE_EDIT_ADD_TAG,
   ARTICLE_EDIT_REMOVE_TAG,
   ARTICLE_RESET_STATE
-} from '@/store/actions.type'
+} from "@/store/actions.type";
 
 export default {
-  name: 'RwvArticleEdit',
+  name: "RwvArticleEdit",
   components: { RwvListErrors },
   props: {
     previousArticle: {
@@ -84,65 +84,64 @@ export default {
       required: false
     }
   },
-  async beforeRouteUpdate (to, from, next) {
+  async beforeRouteUpdate(to, from, next) {
     // Reset state if user goes from /editor/:id to /editor
     // The component is not recreated so we use to hook to reset the state.
-    await store.dispatch(ARTICLE_RESET_STATE)
-    return next()
+    await store.dispatch(ARTICLE_RESET_STATE);
+    return next();
   },
-  async beforeRouteEnter (to, from, next) {
+  async beforeRouteEnter(to, from, next) {
     // SO: https://github.com/vuejs/vue-router/issues/1034
     // If we arrive directly to this url, we need to fetch the article
-    await store.dispatch(ARTICLE_RESET_STATE)
+    await store.dispatch(ARTICLE_RESET_STATE);
     if (to.params.slug !== undefined) {
-      await store.dispatch(FETCH_ARTICLE,
+      await store.dispatch(
+        FETCH_ARTICLE,
         to.params.slug,
         to.params.previousArticle
-      )
+      );
     }
-    return next()
+    return next();
   },
-  async beforeRouteLeave (to, from, next) {
-    await store.dispatch(ARTICLE_RESET_STATE)
-    next()
+  async beforeRouteLeave(to, from, next) {
+    await store.dispatch(ARTICLE_RESET_STATE);
+    next();
   },
-  data () {
+  data() {
     return {
       tagInput: null,
       inProgress: false,
       errors: {}
-    }
+    };
   },
   computed: {
-    ...mapGetters([
-      'article'
-    ])
+    ...mapGetters(["article"])
   },
   methods: {
-    onPublish (slug, article) {
-      let action = slug ? ARTICLE_EDIT : ARTICLE_PUBLISH
-      this.inProgress = true
+    onPublish(slug) {
+      let action = slug ? ARTICLE_EDIT : ARTICLE_PUBLISH;
+      this.inProgress = true;
       this.$store
         .dispatch(action)
         .then(({ data }) => {
-          this.inProgress = false
+          this.inProgress = false;
           this.$router.push({
-            name: 'article',
+            name: "article",
             params: { slug: data.article.slug }
-          })
+          });
         })
         .catch(({ response }) => {
-          this.inProgress = false
-          this.errors = response.data.errors
-        })
+          this.inProgress = false;
+          this.errors = response.data.errors;
+        });
     },
-    removeTag (tag) {
-      this.$store.dispatch(ARTICLE_EDIT_REMOVE_TAG, tag)
+    removeTag(tag) {
+      this.$store.dispatch(ARTICLE_EDIT_REMOVE_TAG, tag);
     },
-    addTag (tag) {
-      this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, tag)
-      this.tagInput = null
+    addTag(tag) {
+      this.$store.dispatch(ARTICLE_EDIT_ADD_TAG, tag);
+      this.tagInput = null;
     }
   }
-}
+};
 </script>

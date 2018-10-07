@@ -44,55 +44,54 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { FAVORITE_ADD, FAVORITE_REMOVE, ARTICLE_DELETE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from '@/store/actions.type'
+import { mapGetters } from "vuex";
+import {
+  FAVORITE_ADD,
+  FAVORITE_REMOVE,
+  ARTICLE_DELETE,
+  FETCH_PROFILE_FOLLOW,
+  FETCH_PROFILE_UNFOLLOW
+} from "@/store/actions.type";
 
 export default {
-  name: 'RwvArticleActions',
+  name: "RwvArticleActions",
   props: {
     article: { type: Object, required: true },
     canModify: { type: Boolean, required: true }
   },
   computed: {
-    ...mapGetters([
-      'profile',
-      'isAuthenticated'
-    ])
+    ...mapGetters(["profile", "isAuthenticated"])
   },
   methods: {
-    toggleFavorite (slug) {
+    toggleFavorite(slug) {
       if (!this.isAuthenticated) {
-        this.$router.push({name: 'login'})
-        return
+        this.$router.push({ name: "login" });
+        return;
       }
-      const action = this.article.favorited
-        ? FAVORITE_REMOVE
-        : FAVORITE_ADD
-      this.$store.dispatch(action, slug)
+      const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
+      this.$store.dispatch(action, slug);
     },
-    toggleFollow (following) {
+    toggleFollow(following) {
       if (!this.isAuthenticated) {
-        this.$router.push({name: 'login'})
-        return
+        this.$router.push({ name: "login" });
+        return;
       }
-      const action = following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW
+      const action = following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW;
       this.$store.dispatch(action, {
         username: this.profile.username
-      })
+      });
     },
-    editArticle (slug, article) {
+    editArticle(slug, article) {
       this.$router.push({
-        name: 'article-edit',
+        name: "article-edit",
         params: { slug, previousArticle: article }
-      })
+      });
     },
-    deleteArticle (slug) {
-      this.$store
-        .dispatch(ARTICLE_DELETE, slug)
-        .then((res) => {
-          this.$router.push('/')
-        })
+    deleteArticle(slug) {
+      this.$store.dispatch(ARTICLE_DELETE, slug).then(() => {
+        this.$router.push("/");
+      });
     }
   }
-}
+};
 </script>
