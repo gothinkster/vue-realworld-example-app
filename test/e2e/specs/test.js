@@ -10,9 +10,9 @@ module.exports = {
 
     browser
       .url(devServer)
-      .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.navbar')
-      .assert.containsText('.navbar-brand', 'conduit')
+      .waitForElementVisible('.logo-font', 5000)
+      .assert.elementPresent('.logo-font')
+      .assert.containsText('h1', 'conduit')
       .end()
   }
 }

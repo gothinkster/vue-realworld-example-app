@@ -31,6 +31,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 import { REGISTER } from '@/store/actions.type'

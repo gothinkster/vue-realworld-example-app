@@ -1,28 +1,17 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/bower_components
-
-# Tooling Logs
+.DS_Store
+node_modules/
+/dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/test/unit/coverage/
+/test/e2e/reports/
 selenium-debug.log
-selenium-server.log
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-*.launch
-.settings/
-
-# System Files
-.DS_Store
-Thumbs.db
-
-# Generated Files
-dist/
-test/unit/coverage
-test/e2e/reports
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
