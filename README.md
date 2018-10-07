@@ -46,7 +46,6 @@ Current arbitrary choices are:
 
 - Vuex modules for store
 - Vue-axios for ajax requests
-- Standard for linting
 - 'rwv' as prefix for components
 
 These can be changed when the contributors reach a consensus.
