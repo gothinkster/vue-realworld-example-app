@@ -28,7 +28,7 @@ import VPagination from "@/components/VPagination";
 import { FETCH_ARTICLES } from "@/store/actions.type";
 
 export default {
-  name: "rwv-article-list",
+  name: "RwvArticleList",
   components: {
     RwvTag,
     RwvArticlePreview,
