@@ -7,15 +7,15 @@
       <div v-if="articles.length === 0" class="article-preview">
         No articles are here... yet.
       </div>
-      <rwv-article-preview
+      <RwvArticlePreview
         v-for="(article, index) in articles"
         :article="article"
         :key="article.title + index">
-      </rwv-article-preview>
-      <v-pagination
+      </RwvArticlePreview>
+      <VPagination
         :pages="pages"
         :currentPage.sync="currentPage"
-      ></v-pagination>
+      ></VPagination>
     </div>
   </div>
 </template>
