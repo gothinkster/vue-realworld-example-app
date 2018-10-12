@@ -10,12 +10,12 @@
       <RwvArticlePreview
         v-for="(article, index) in articles"
         :article="article"
-        :key="article.title + index">
-      </RwvArticlePreview>
+        :key="article.title + index"
+      />
       <VPagination
         :pages="pages"
         :currentPage.sync="currentPage"
-      ></VPagination>
+      />
     </div>
   </div>
 </template>
