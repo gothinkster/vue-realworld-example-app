@@ -81,12 +81,6 @@ export default {
         username: this.profile.username
       });
     },
-    editArticle(slug, article) {
-      this.$router.push({
-        name: "article-edit",
-        params: { slug, previousArticle: article }
-      });
-    },
     deleteArticle(slug) {
       this.$store.dispatch(ARTICLE_DELETE, slug).then(() => {
         this.$router.push("/");
