@@ -69,16 +69,14 @@
     </div>
   </nav>
 </template>
-<script>
-  import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'RwvHeader',
-    computed: {
-      ...mapGetters([
-        'currentUser',
-        'isAuthenticated'
-      ])
-    }
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  name: "RwvHeader",
+  computed: {
+    ...mapGetters(["currentUser", "isAuthenticated"])
   }
+};
 </script>

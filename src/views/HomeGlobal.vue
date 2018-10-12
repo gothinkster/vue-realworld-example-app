@@ -4,12 +4,12 @@
   </div>
 </template>
 <script>
-  import RwvArticleList from '@/components/ArticleList'
+import RwvArticleList from "@/components/ArticleList";
 
-  export default {
-    name: 'rwv-home-global',
-    components: {
-      RwvArticleList
-    }
+export default {
+  name: "rwv-home-global",
+  components: {
+    RwvArticleList
   }
+};
 </script>

@@ -1,2 +1,2 @@
-export default {}
-export const API_URL = 'https://conduit.productionready.io/api'
+export default {};
+export const API_URL = "https://conduit.productionready.io/api";

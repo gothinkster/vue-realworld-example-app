@@ -19,31 +19,30 @@
     </div>
   </div>
 </template>
-<script>
-  import { mapGetters } from 'vuex'
-  import { COMMENT_DESTROY } from '@/store/actions.type'
 
-  export default {
-    name: 'RwvComment',
-    props: {
-      slug: { type: String, required: true },
-      comment: { type: Object, required: true }
-    },
-    computed: {
-      isCurrentUser () {
-        if (this.currentUser.username && this.comment.author.username) {
-          return this.comment.author.username === this.currentUser.username
-        }
-        return false
-      },
-      ...mapGetters([
-        'currentUser'
-      ])
-    },
-    methods: {
-      destroy (slug, commentId) {
-        this.$store.dispatch(COMMENT_DESTROY, { slug, commentId })
+<script>
+import { mapGetters } from "vuex";
+import { COMMENT_DESTROY } from "@/store/actions.type";
+
+export default {
+  name: "RwvComment",
+  props: {
+    slug: { type: String, required: true },
+    comment: { type: Object, required: true }
+  },
+  computed: {
+    isCurrentUser() {
+      if (this.currentUser.username && this.comment.author.username) {
+        return this.comment.author.username === this.currentUser.username;
       }
+      return false;
+    },
+    ...mapGetters(["currentUser"])
+  },
+  methods: {
+    destroy(slug, commentId) {
+      this.$store.dispatch(COMMENT_DESTROY, { slug, commentId });
     }
   }
+};
 </script>

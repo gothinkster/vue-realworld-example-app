@@ -21,35 +21,35 @@
 </template>
 
 <script>
-import RwvListErrors from '@/components/ListErrors'
-import { COMMENT_CREATE } from '@/store/actions.type'
+import RwvListErrors from "@/components/ListErrors";
+import { COMMENT_CREATE } from "@/store/actions.type";
 
 export default {
-  name: 'RwvCommentEditor',
+  name: "RwvCommentEditor",
   components: { RwvListErrors },
   props: {
     slug: { type: String, required: true },
     content: { type: String, required: false },
     userImage: { type: String, required: false }
   },
-  data () {
+  data() {
     return {
       comment: this.content || null,
       errors: {}
-    }
+    };
   },
   methods: {
-    onSubmit (slug, comment) {
+    onSubmit(slug, comment) {
       this.$store
         .dispatch(COMMENT_CREATE, { slug, comment })
         .then(() => {
-          this.comment = null
-          this.errors = {}
+          this.comment = null;
+          this.errors = {};
         })
         .catch(({ response }) => {
-          this.errors = response.data.errors
-        })
+          this.errors = response.data.errors;
+        });
     }
   }
-}
+};
 </script>

@@ -3,13 +3,14 @@
     <RwvArticleList type="feed" />
   </div>
 </template>
-<script>
-  import RwvArticleList from '@/components/ArticleList'
 
-  export default {
-    name: 'rwv-home-my-feed',
-    components: {
-      RwvArticleList
-    }
+<script>
+import RwvArticleList from "@/components/ArticleList";
+
+export default {
+  name: "rwv-home-my-feed",
+  components: {
+    RwvArticleList
   }
+};
 </script>
