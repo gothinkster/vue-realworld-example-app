@@ -15,7 +15,7 @@ const state = {
   isAuthenticated: !!JwtService.getToken()
 };
 
-const getters = {
+export const getters = {
   currentUser(state) {
     return state.user;
   },
@@ -24,50 +24,50 @@ const getters = {
   }
 };
 
-const actions = {
-  [LOGIN](context, credentials) {
-    return new Promise(resolve => {
-      ApiService.post("users/login", { user: credentials })
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
-          resolve(data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-        });
-    });
+export const actions = {
+  async [LOGIN](context, credentials) {
+    try {
+      const {
+        data: { user = {} }
+      } = await ApiService.post("users/login", { user: credentials });
+      context.commit(SET_AUTH, user);
+    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
+      context.commit(SET_ERROR, errors);
+      throw new Error(errors);
+    }
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
   },
-  [REGISTER](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.post("users", { user: credentials })
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
-          resolve(data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-          reject(response);
-        });
-    });
+  async [REGISTER](context, credentials) {
+    try {
+      const {
+        data: { user = {} }
+      } = await ApiService.post("users", { user: credentials });
+      context.commit(SET_AUTH, user);
+    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
+      context.commit(SET_ERROR, errors);
+      throw new Error(errors);
+    }
   },
-  [CHECK_AUTH](context) {
+  async [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      ApiService.get("user")
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-        });
+
+      try {
+        const {
+          data: { user = {} }
+        } = await ApiService.get("user");
+        context.commit(SET_AUTH, user);
+      } catch ({ response: { data: { errors = {} } = {} } = {} }) {
+        context.commit(SET_ERROR, errors);
+        throw new Error(errors);
+      }
     } else {
       context.commit(PURGE_AUTH);
     }
   },
-  [UPDATE_USER](context, payload) {
+  async [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
     const user = {
       email,
@@ -79,14 +79,21 @@ const actions = {
       user.password = password;
     }
 
-    return ApiService.put("user", user).then(({ data }) => {
-      context.commit(SET_AUTH, data.user);
-      return data;
-    });
+    try {
+      const {
+        data: { user: updatedUser = {} }
+      } = await ApiService.put("user", user);
+      context.commit(SET_AUTH, updatedUser);
+
+      return user;
+    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
+      context.commit(SET_ERROR, errors);
+      throw new Error(errors);
+    }
   }
 };
 
-const mutations = {
+export const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },
