@@ -9,7 +9,7 @@
     &nbsp;&nbsp;
     <button
       class="btn btn-outline-danger btn-sm"
-      @click="deleteArticle(article.slug)">
+      @click="deleteArticle">
       <i class="ion-trash-a"></i>&nbsp;Delete Article
     </button>
   </span>
@@ -17,7 +17,7 @@
   <span v-else>
     <button
       class="btn btn-sm btn-outline-secondary"
-      @click="toggleFollow(profile.following)">
+      @click="toggleFollow">
       <i class="ion-plus-round"></i>
       &nbsp;
       {{ profile.following ? 'Unfollow' : 'Follow' }} {{article.author.username}}
@@ -25,7 +25,7 @@
     &nbsp;&nbsp;
     <button
       class="btn btn-sm"
-      @click="toggleFavorite(article.slug)"
+      @click="toggleFavorite"
       :class="{
         'btn-primary': article.favorited,
         'btn-outline-primary': !article.favorited
@@ -63,26 +63,26 @@ export default {
     ...mapGetters(["profile", "isAuthenticated"])
   },
   methods: {
-    toggleFavorite(slug) {
+    toggleFavorite() {
       if (!this.isAuthenticated) {
         this.$router.push({ name: "login" });
         return;
       }
       const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
-      this.$store.dispatch(action, slug);
+      this.$store.dispatch(action, this.article.slug);
     },
-    toggleFollow(following) {
+    toggleFollow() {
       if (!this.isAuthenticated) {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW;
+      const action = this.article.following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW;
       this.$store.dispatch(action, {
         username: this.profile.username
       });
     },
-    deleteArticle(slug) {
-      this.$store.dispatch(ARTICLE_DELETE, slug).then(() => {
+    deleteArticle() {
+      this.$store.dispatch(ARTICLE_DELETE, this.article.slug).then(() => {
         this.$router.push("/");
       });
     }
