@@ -81,10 +81,13 @@ export default {
         username: this.profile.username
       });
     },
-    deleteArticle(slug) {
-      this.$store.dispatch(ARTICLE_DELETE, slug).then(() => {
+    async deleteArticle(slug) {
+      try {
+        await this.$store.dispatch(ARTICLE_DELETE, slug);
         this.$router.push("/");
-      });
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 };
