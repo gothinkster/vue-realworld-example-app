@@ -9,7 +9,7 @@
     &nbsp;&nbsp;
     <button
       class="btn btn-outline-danger btn-sm"
-      @click="deleteArticle()">
+      @click="deleteArticle">
       <i class="ion-trash-a"></i>&nbsp;Delete Article
     </button>
   </span>
@@ -17,7 +17,7 @@
   <span v-else>
     <button
       class="btn btn-sm btn-outline-secondary"
-      @click="toggleFollow()">
+      @click="toggleFollow">
       <i class="ion-plus-round"></i>
       &nbsp;
       {{ profile.following ? 'Unfollow' : 'Follow' }} {{article.author.username}}
@@ -25,7 +25,7 @@
     &nbsp;&nbsp;
     <button
       class="btn btn-sm"
-      @click="toggleFavorite()"
+      @click="toggleFavorite"
       :class="{
         'btn-primary': article.favorited,
         'btn-outline-primary': !article.favorited
