@@ -15,7 +15,7 @@ const state = {
   isAuthenticated: !!JwtService.getToken()
 };
 
-export const getters = {
+const getters = {
   currentUser(state) {
     return state.user;
   },
@@ -24,16 +24,16 @@ export const getters = {
   }
 };
 
-export const actions = {
+const actions = {
   async [LOGIN](context, credentials) {
     try {
-      const {
-        data: { user = {} }
-      } = await ApiService.post("users/login", { user: credentials });
-      context.commit(SET_AUTH, user);
-    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
-      context.commit(SET_ERROR, errors);
-      throw new Error(errors);
+      const { data } = await ApiService.post("users/login", {
+        user: credentials
+      });
+      context.commit(SET_AUTH, data.user);
+    } catch ({ response }) {
+      context.commit(SET_ERROR, response.data.errors);
+      throw new Error(response.data.errors);
     }
   },
   [LOGOUT](context) {
@@ -41,13 +41,11 @@ export const actions = {
   },
   async [REGISTER](context, credentials) {
     try {
-      const {
-        data: { user = {} }
-      } = await ApiService.post("users", { user: credentials });
-      context.commit(SET_AUTH, user);
-    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
-      context.commit(SET_ERROR, errors);
-      throw new Error(errors);
+      const { data } = await ApiService.post("users", { user: credentials });
+      context.commit(SET_AUTH, data.user);
+    } catch ({ response }) {
+      context.commit(SET_ERROR, response.data.errors);
+      throw new Error(response.data.errors);
     }
   },
   async [CHECK_AUTH](context) {
@@ -55,13 +53,11 @@ export const actions = {
       ApiService.setHeader();
 
       try {
-        const {
-          data: { user = {} }
-        } = await ApiService.get("user");
-        context.commit(SET_AUTH, user);
-      } catch ({ response: { data: { errors = {} } = {} } = {} }) {
-        context.commit(SET_ERROR, errors);
-        throw new Error(errors);
+        const { data } = await ApiService.get("user");
+        context.commit(SET_AUTH, data.user);
+      } catch ({ response }) {
+        context.commit(SET_ERROR, response.data.errors);
+        throw new Error(response.data.errors);
       }
     } else {
       context.commit(PURGE_AUTH);
@@ -80,20 +76,18 @@ export const actions = {
     }
 
     try {
-      const {
-        data: { user: updatedUser = {} }
-      } = await ApiService.put("user", user);
-      context.commit(SET_AUTH, updatedUser);
+      const { data } = await ApiService.put("user", user);
+      context.commit(SET_AUTH, data.user);
 
-      return user;
-    } catch ({ response: { data: { errors = {} } = {} } = {} }) {
-      context.commit(SET_ERROR, errors);
-      throw new Error(errors);
+      return data.user;
+    } catch ({ response }) {
+      context.commit(SET_ERROR, response.data.errors);
+      throw new Error(response.data.errors);
     }
   }
 };
 
-export const mutations = {
+const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },

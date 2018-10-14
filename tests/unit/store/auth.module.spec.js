@@ -1,6 +1,4 @@
-import sinon from "sinon";
-
-import { mutations, actions, getters } from "@/store/auth.module";
+import auth from "@/store/auth.module";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "@/store/mutations.type";
 import JwtService from "@/common/jwt.service";
 import ApiService from "@/common/api.service";
@@ -12,7 +10,21 @@ import {
   UPDATE_USER
 } from "@/store/actions.type";
 
+jest.mock("@/common/api.service", () => ({
+  post: jest.fn(),
+  get: jest.fn(),
+  put: jest.fn(),
+  setHeader: jest.fn()
+}));
+
+jest.mock("@/common/jwt.service", () => ({
+  saveToken: jest.fn(),
+  destroyToken: jest.fn(),
+  getToken: jest.fn()
+}));
+
 describe("getters", () => {
+  const { getters } = auth;
   const state = {
     user: "Test User",
     isAuthenticated: true
@@ -28,6 +40,7 @@ describe("getters", () => {
 });
 
 describe("mutations", () => {
+  const { mutations } = auth;
   it("SET_ERROR", () => {
     const setError = mutations[SET_ERROR];
     const state = { errors: null };
@@ -37,7 +50,6 @@ describe("mutations", () => {
   });
 
   it("SET_AUTH", () => {
-    const stub = sinon.stub(JwtService, "saveToken");
     const setAuth = mutations[SET_AUTH];
     const state = {
       isAuthenticated: false,
@@ -52,11 +64,10 @@ describe("mutations", () => {
       errors: {}
     });
 
-    expect(stub.calledOnceWith("Test Token")).toBe(true);
+    expect(JwtService.saveToken).toHaveBeenCalledWith("Test Token");
   });
 
   it("PURGE_AUTH", () => {
-    const destroyToken = sinon.stub(JwtService, "destroyToken");
     const purgeAuth = mutations[PURGE_AUTH];
     const state = {
       isAuthenticated: true,
@@ -71,58 +82,56 @@ describe("mutations", () => {
       errors: {}
     });
 
-    expect(destroyToken.calledOnce).toBe(true);
+    expect(JwtService.destroyToken).toHaveBeenCalled();
   });
 });
 
 describe("actions", () => {
+  const { actions } = auth;
   let commit;
 
   const userPromise = Promise.resolve({ data: { user: "Test User" } });
-  const tokenStub = sinon.stub(JwtService, "getToken");
-
-  sinon.stub(ApiService, "post").returns(userPromise);
-  sinon.stub(ApiService, "get").returns(userPromise);
-  sinon.stub(ApiService, "put").returns(userPromise);
-  sinon.stub(ApiService, "setHeader");
+  ApiService.get.mockReturnValue(userPromise);
+  ApiService.post.mockReturnValue(userPromise);
+  ApiService.put.mockReturnValue(userPromise);
 
   beforeEach(() => {
-    commit = sinon.spy();
+    commit = jest.fn();
   });
 
   it("LOGIN", done => {
     actions[LOGIN]({ commit }, {}).then(() => {
-      expect(commit.calledOnceWith(SET_AUTH, "Test User")).toBe(true);
+      expect(commit).toHaveBeenCalledWith(SET_AUTH, "Test User");
       done();
     });
   });
 
   it("LOGOUT", () => {
     actions[LOGOUT]({ commit });
-    expect(commit.calledOnceWith(PURGE_AUTH)).toBe(true);
+    expect(commit).toHaveBeenCalledWith(PURGE_AUTH);
   });
 
   it("REGISTER", done => {
     actions[REGISTER]({ commit }, {}).then(() => {
-      expect(commit.calledOnceWith(SET_AUTH, "Test User")).toBe(true);
+      expect(commit).toHaveBeenCalledWith(SET_AUTH, "Test User");
       done();
     });
   });
 
   describe("CHECK_AUTH", () => {
     it("with token", done => {
-      tokenStub.returns(true);
+      JwtService.getToken.mockReturnValueOnce(true);
 
       actions[CHECK_AUTH]({ commit }).then(() => {
-        expect(commit.calledOnceWith(SET_AUTH, "Test User")).toBe(true);
+        expect(commit).toHaveBeenCalledWith(SET_AUTH, "Test User");
         done();
       });
     });
 
     it("without token", () => {
-      tokenStub.returns(false);
+      JwtService.getToken.mockReturnValueOnce(false);
       actions[CHECK_AUTH]({ commit });
-      expect(commit.calledOnceWith(PURGE_AUTH)).toBe(true);
+      expect(commit).toHaveBeenCalledWith(PURGE_AUTH);
     });
   });
 
@@ -136,7 +145,7 @@ describe("actions", () => {
     };
 
     actions[UPDATE_USER]({ commit }, testUser).then(() => {
-      expect(commit.calledOnceWith(SET_AUTH, "Test User")).toBe(true);
+      expect(commit).toHaveBeenCalledWith(SET_AUTH, "Test User");
       done();
     });
   });
