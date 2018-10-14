@@ -3,11 +3,12 @@
     <ul class="pagination">
       <li
         v-for="page in pages"
+        :data-test="`page-link-${page}`"
         :key="page"
         :class="paginationClass(page)"
         @click.prevent="changePage(page)"
       >
-        <a class="page-link" href>{{page}}</a>
+        <a class="page-link" href v-text="page" />
       </li>
     </ul>
   </nav>
