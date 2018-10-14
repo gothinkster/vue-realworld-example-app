@@ -4,13 +4,13 @@
     <router-link
       class="btn btn-sm btn-outline-secondary"
       :to="{ name: 'article-edit', params: { slug: this.article.slug } }">
-      <i class="ion-edit"></i>&nbsp;Edit Article
+      <i class="ion-edit"></i><span>&nbsp;Edit Article</span>
     </router-link>
-    &nbsp;&nbsp;
+    <span>&nbsp;&nbsp;</span>
     <button
       class="btn btn-outline-danger btn-sm"
       @click="deleteArticle">
-      <i class="ion-trash-a"></i>&nbsp;Delete Article
+      <i class="ion-trash-a"></i><span>&nbsp;Delete Article</span>
     </button>
   </span>
   <!-- Used in ArticleView when not author -->
@@ -19,10 +19,10 @@
       class="btn btn-sm btn-outline-secondary"
       @click="toggleFollow">
       <i class="ion-plus-round"></i>
-      &nbsp;
-      {{ profile.following ? 'Unfollow' : 'Follow' }} {{article.author.username}}
+      <span>&nbsp;</span>
+      <span>{{ profile.following ? 'Unfollow' : 'Follow' }} {{article.author.username}}</span>
     </button>
-    &nbsp;&nbsp;
+    <span>&nbsp;&nbsp;</span>
     <button
       class="btn btn-sm"
       @click="toggleFavorite"
@@ -30,12 +30,14 @@
         'btn-primary': article.favorited,
         'btn-outline-primary': !article.favorited
       }">
-      <i class="ion-heart"></i>&nbsp;
+      <i class="ion-heart"></i><span>&nbsp;</span>
+      <span>
       {{
         article.favorited
         ? 'Unfavorite Article'
         : 'Favorite Article'
       }}
+      </span>
       <span class="counter">
         ({{article.favoritesCount}})
       </span>
