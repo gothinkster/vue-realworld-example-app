@@ -76,15 +76,20 @@ export default {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = this.article.following ? FETCH_PROFILE_UNFOLLOW : FETCH_PROFILE_FOLLOW;
+      const action = this.article.following
+        ? FETCH_PROFILE_UNFOLLOW
+        : FETCH_PROFILE_FOLLOW;
       this.$store.dispatch(action, {
         username: this.profile.username
       });
     },
-    deleteArticle() {
-      this.$store.dispatch(ARTICLE_DELETE, this.article.slug).then(() => {
+    async deleteArticle() {
+      try {
+        await this.$store.dispatch(ARTICLE_DELETE, this.article.slug);
         this.$router.push("/");
-      });
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 };
