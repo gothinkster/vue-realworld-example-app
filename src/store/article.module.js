@@ -27,7 +27,7 @@ import {
   UPDATE_ARTICLE_IN_LIST
 } from "./mutations.type";
 
-const initialState = {
+const initialState = () => ({
   article: {
     author: {},
     title: "",
@@ -36,9 +36,9 @@ const initialState = {
     tagList: []
   },
   comments: []
-};
+});
 
-export const state = Object.assign({}, initialState);
+export const state = initialState();
 
 export const actions = {
   [FETCH_ARTICLE](context, articleSlug, prevArticle) {
@@ -114,9 +114,11 @@ export const mutations = {
   [TAG_REMOVE](state, tag) {
     state.article.tagList = state.article.tagList.filter(t => t !== tag);
   },
-  [RESET_STATE]() {
+  [RESET_STATE](state) {
+    const newState = initialState();
+
     for (let f in state) {
-      Vue.set(state, f, initialState[f]);
+      Vue.set(state, f, { ...newState[f] });
     }
   }
 };
