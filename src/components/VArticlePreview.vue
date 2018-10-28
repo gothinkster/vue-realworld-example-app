@@ -11,26 +11,20 @@
       <h1 v-text="article.title" />
       <p v-text="article.description" />
       <span>Read more...</span>
-      <ul class="tag-list">
-        <li
-          class="tag-default tag-pill tag-outline"
-          v-for="(tag, index) of article.tagList"
-          :key="tag + index"
-        >
-          <span v-text="tag" />
-        </li>
-      </ul>
+      <TagList :tags="article.tagList" />
     </router-link>
   </div>
 </template>
 
 <script>
 import RwvArticleMeta from "./ArticleMeta";
+import TagList from "./TagList";
 
 export default {
   name: "RwvArticlePreview",
   components: {
-    RwvArticleMeta
+    RwvArticleMeta,
+    TagList
   },
   props: {
     article: { type: Object, required: true }
