@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import RwvArticleMeta from "@/components/ArticleMeta";
+import RwvArticleMeta from "./ArticleMeta";
 
 export default {
   name: "RwvArticlePreview",
