@@ -26,11 +26,11 @@ import RwvArticleMeta from "./ArticleMeta";
 
 export default {
   name: "RwvArticlePreview",
-  props: {
-    article: { type: Object, required: true }
-  },
   components: {
     RwvArticleMeta
+  },
+  props: {
+    article: { type: Object, required: true }
   }
 };
 </script>
