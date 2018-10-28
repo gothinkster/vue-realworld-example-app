@@ -5,7 +5,7 @@
       :article="article"
     />
     <router-link
-      :to="{name: 'article', params: {'slug': article.slug}}"
+      :to="articleLink"
       class="preview-link">
       <h1>{{article.title}}</h1>
       <p>{{article.description}}</p>
@@ -31,6 +31,16 @@ export default {
   },
   props: {
     article: { type: Object, required: true }
+  },
+  computed: {
+    articleLink() {
+      return {
+        name: "article",
+        params: {
+          slug: this.article.slug
+        }
+      };
+    }
   }
 };
 </script>
