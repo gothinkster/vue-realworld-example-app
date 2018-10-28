@@ -1,9 +1,9 @@
 <template>
   <div class="article-preview">
-    <rwv-article-meta
+    <RwvArticleMeta
       :article="article"
       :isPreview="true">
-    </rwv-article-meta>
+    </RwvArticleMeta>
     <router-link
       :to="{name: 'article', params: {'slug': article.slug}}"
       class="preview-link">
