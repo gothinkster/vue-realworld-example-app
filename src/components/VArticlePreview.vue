@@ -14,7 +14,7 @@
         <li class="tag-default tag-pill tag-outline"
          v-for="(tag, index) of article.tagList"
          :key="tag + index">
-         {{ tag }}
+         <span>{{ tag }}</span>
         </li>
       </ul>
     </router-link>
