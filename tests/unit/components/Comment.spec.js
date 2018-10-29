@@ -2,8 +2,8 @@ import { createLocalVue, mount } from "@vue/test-utils";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
 
-import Comment from "../../src/components/Comment.vue";
-import DateFilter from "../../src/common/date.filter";
+import Comment from "../../../src/components/Comment.vue";
+import DateFilter from "../../../src/common/date.filter";
 
 const localVue = createLocalVue();
 localVue.filter("date", DateFilter);
