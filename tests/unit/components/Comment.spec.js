@@ -11,7 +11,7 @@ localVue.use(Vuex);
 localVue.use(VueRouter);
 
 describe("Comment", () => {
-  it("should render correct contents", () => {
+  it("should be a vue instance", () => {
     const router = new VueRouter({
       routes: [
         {
