@@ -1,36 +1,43 @@
 <template>
   <div class="article-preview">
-    <rwv-article-meta
+    <RwvArticleMeta
+      isPreview
       :article="article"
-      :isPreview="true">
-    </rwv-article-meta>
+    />
     <router-link
-      :to="{name: 'article', params: {'slug': article.slug}}"
-      class="preview-link">
-      <h1>{{article.title}}</h1>
-      <p>{{article.description}}</p>
+      :to="articleLink"
+      class="preview-link"
+    >
+      <h1 v-text="article.title" />
+      <p v-text="article.description" />
       <span>Read more...</span>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
-         v-for="(tag, index) of article.tagList"
-         :key="tag + index">
-         {{ tag }}
-        </li>
-      </ul>
+      <TagList :tags="article.tagList" />
     </router-link>
   </div>
 </template>
 
 <script>
-import RwvArticleMeta from "@/components/ArticleMeta";
+import RwvArticleMeta from "./ArticleMeta";
+import TagList from "./TagList";
 
 export default {
   name: "RwvArticlePreview",
+  components: {
+    RwvArticleMeta,
+    TagList
+  },
   props: {
     article: { type: Object, required: true }
   },
-  components: {
-    RwvArticleMeta
+  computed: {
+    articleLink() {
+      return {
+        name: "article",
+        params: {
+          slug: this.article.slug
+        }
+      };
+    }
   }
 };
 </script>
