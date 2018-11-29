@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <rwv-header></rwv-header>
+    <RwvHeader />
     <router-view></router-view>
-    <rwv-footer></rwv-footer>
+    <RwvFooter />
   </div>
 </template>
 
@@ -19,5 +19,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

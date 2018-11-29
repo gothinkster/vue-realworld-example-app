@@ -1,7 +1,5 @@
 <template>
-  <div class="home-my-feed">
-    <RwvArticleList type="feed" />
-  </div>
+  <div class="home-my-feed"><RwvArticleList type="feed" /></div>
 </template>
 
 <script>

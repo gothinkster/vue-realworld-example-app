@@ -10,26 +10,24 @@
             </router-link>
           </p>
           <ul v-if="errors" class="error-messages">
-            <li
-              v-for="(v, k) in errors"
-              :key="k">
-              {{k}} {{ v | error }}
-            </li>
+            <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
           </ul>
-          <form v-on:submit.prevent="onSubmit(email, password)">
+          <form v-on:submit.prevent="onSubmit(email, password);">
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
                 type="text"
                 v-model="email"
-                placeholder="Email">
+                placeholder="Email"
+              />
             </fieldset>
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
                 type="password"
                 v-model="password"
-                placeholder="Password">
+                placeholder="Password"
+              />
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
               Sign in
