@@ -20,7 +20,7 @@ jest.mock("vue", () => {
             }
           };
         }
-        return "adwwa";
+        return "A not mocked up response occured";
       })
     }
   };
