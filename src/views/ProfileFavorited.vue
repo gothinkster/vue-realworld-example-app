@@ -1,8 +1,6 @@
 <template>
   <div class="profile-page">
-    <RwvArticleList
-      :favorited="favorited"
-      :items-per-page="5">
+    <RwvArticleList :favorited="favorited" :items-per-page="5">
     </RwvArticleList>
   </div>
 </template>

@@ -1,7 +1,5 @@
 <template>
-  <div class="home-tag">
-    <RwvArticleList :tag="tag"></RwvArticleList>
-  </div>
+  <div class="home-tag"><RwvArticleList :tag="tag"></RwvArticleList></div>
 </template>
 
 <script>

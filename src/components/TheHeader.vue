@@ -1,24 +1,27 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand"
-        :to="{ name: 'home' }">
+      <router-link class="navbar-brand" :to="{ name: 'home' }">
         conduit
       </router-link>
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
-          <router-link class="nav-link"
+          <router-link
+            class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'home' }">
+            :to="{ name: 'home' }"
+          >
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link"
+          <router-link
+            class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'login' }">
+            :to="{ name: 'login' }"
+          >
             <i class="ion-compose"></i>Sign in
           </router-link>
         </li>
@@ -27,7 +30,8 @@
             class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'register' }">
+            :to="{ name: 'register' }"
+          >
             <i class="ion-compose"></i>Sign up
           </router-link>
         </li>
@@ -38,30 +42,40 @@
             class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'home' }">
+            :to="{ name: 'home' }"
+          >
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link"
+          <router-link
+            class="nav-link"
             active-class="active"
-            :to="{ name: 'article-edit' }">
+            :to="{ name: 'article-edit' }"
+          >
             <i class="ion-compose"></i>&nbsp;New Article
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link"
+          <router-link
+            class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'settings' }">
+            :to="{ name: 'settings' }"
+          >
             <i class="ion-gear-a"></i>&nbsp;Settings
           </router-link>
         </li>
         <li class="nav-item" v-if="currentUser.username">
-          <router-link class="nav-link"
+          <router-link
+            class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'profile', params: { username: currentUser.username } }">
+            :to="{
+              name: 'profile',
+              params: { username: currentUser.username }
+            }"
+          >
             {{ currentUser.username }}
           </router-link>
         </li>

@@ -13,28 +13,30 @@
             <ul class="nav nav-pills outline-active">
               <li v-if="isAuthenticated" class="nav-item">
                 <router-link
-                  :to="{name: 'home-my-feed'}"
+                  :to="{ name: 'home-my-feed' }"
                   class="nav-link"
-                  active-class="active">
+                  active-class="active"
+                >
                   Your Feed
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link
-                  :to="{name: 'home'}"
+                  :to="{ name: 'home' }"
                   exact
                   class="nav-link"
-                  active-class="active">
+                  active-class="active"
+                >
                   Global Feed
                 </router-link>
               </li>
               <li class="nav-item" v-if="tag">
                 <router-link
-                  :to="{name: 'home-tag', params: {tag}}"
+                  :to="{ name: 'home-tag', params: { tag } }"
                   class="nav-link"
-                  active-class="active">
-                  <i class="ion-pound"></i>
-                  {{ tag }}
+                  active-class="active"
+                >
+                  <i class="ion-pound"></i> {{ tag }}
                 </router-link>
               </li>
             </ul>
@@ -45,10 +47,7 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <RwvTag
-                v-for="(tag, index) in tags"
-                :name="tag"
-                :key="index">
+              <RwvTag v-for="(tag, index) in tags" :name="tag" :key="index">
               </RwvTag>
             </div>
           </div>
