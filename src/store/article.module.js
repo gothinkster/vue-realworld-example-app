@@ -38,14 +38,15 @@ const initialState = {
   comments: []
 };
 
-export const state = Object.assign({}, initialState);
+export const state = { ...initialState };
 
 export const actions = {
-  [FETCH_ARTICLE](context, articleSlug, prevArticle) {
+  async [FETCH_ARTICLE](context, articleSlug, prevArticle) {
     // avoid extronuous network call if article exists
     if (prevArticle !== undefined) {
       return context.commit(SET_ARTICLE, prevArticle);
     }
+
     return ArticlesService.get(articleSlug).then(({ data }) => {
       context.commit(SET_ARTICLE, data.article);
       return data;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vuex Article Module should return the data of the api call when calling the function 1`] = `
+Object {
+  "article": Object {
+    "author": Object {},
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+    "tagList": Array [
+      "lorem",
+      "ipsum",
+      "javascript",
+      "vue",
+    ],
+    "title": "Lorem ipsum dolor sit amet",
+  },
+}
+`;
