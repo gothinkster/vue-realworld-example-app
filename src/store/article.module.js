@@ -50,10 +50,9 @@ export const actions = {
     context.commit(SET_ARTICLE, data.article);
     return data;
   },
-  [FETCH_COMMENTS](context, articleSlug) {
-    return CommentsService.get(articleSlug).then(({ data }) => {
-      context.commit(SET_COMMENTS, data.comments);
-    });
+  async [FETCH_COMMENTS](context, articleSlug) {
+    const { data } = await CommentsService.get(articleSlug);
+    context.commit(SET_COMMENTS, data.comments);
   },
   [COMMENT_CREATE](context, payload) {
     return CommentsService.post(payload.slug, payload.comment).then(() => {
