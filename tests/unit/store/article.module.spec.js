@@ -105,4 +105,11 @@ describe("Vuex Article Module", () => {
     await actions[FETCH_COMMENTS](context, articleSlug);
     expect(commitFunction.mock.calls[0][1]).toHaveLength(2);
   });
+
+  it("should return the comments from the fetch comments action", async () => {
+    const context = { commit: () => {} };
+    const articleSlug = "f986b3d6-95c2-4c4f-a6b9-fbbf79d8cb0c";
+    const comments = await actions[FETCH_COMMENTS](context, articleSlug);
+    expect(comments).toHaveLength(2);
+  });
 });

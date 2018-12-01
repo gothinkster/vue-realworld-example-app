@@ -53,6 +53,7 @@ export const actions = {
   async [FETCH_COMMENTS](context, articleSlug) {
     const { data } = await CommentsService.get(articleSlug);
     context.commit(SET_COMMENTS, data.comments);
+    return data.comments;
   },
   [COMMENT_CREATE](context, payload) {
     return CommentsService.post(payload.slug, payload.comment).then(() => {
