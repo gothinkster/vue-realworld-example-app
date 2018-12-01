@@ -55,15 +55,13 @@ export const actions = {
     context.commit(SET_COMMENTS, data.comments);
     return data.comments;
   },
-  [COMMENT_CREATE](context, payload) {
-    return CommentsService.post(payload.slug, payload.comment).then(() => {
-      context.dispatch(FETCH_COMMENTS, payload.slug);
-    });
+  async [COMMENT_CREATE](context, payload) {
+    await CommentsService.post(payload.slug, payload.comment);
+    context.dispatch(FETCH_COMMENTS, payload.slug);
   },
-  [COMMENT_DESTROY](context, payload) {
-    return CommentsService.destroy(payload.slug, payload.commentId).then(() => {
-      context.dispatch(FETCH_COMMENTS, payload.slug);
-    });
+  async [COMMENT_DESTROY](context, payload) {
+    await CommentsService.destroy(payload.slug, payload.commentId);
+    context.dispatch(FETCH_COMMENTS, payload.slug);
   },
   [FAVORITE_ADD](context, payload) {
     return FavoriteService.add(payload).then(({ data }) => {

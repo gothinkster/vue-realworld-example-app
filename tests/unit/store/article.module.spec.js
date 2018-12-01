@@ -1,5 +1,10 @@
 import { actions } from "../../../src/store/article.module";
-import { FETCH_ARTICLE, FETCH_COMMENTS } from "../../../src/store/actions.type";
+import {
+  FETCH_ARTICLE,
+  FETCH_COMMENTS,
+  COMMENT_CREATE,
+  COMMENT_DESTROY
+} from "../../../src/store/actions.type";
 
 jest.mock("vue", () => {
   return {
@@ -52,6 +57,18 @@ jest.mock("vue", () => {
               ]
             }
           };
+        }
+        throw new Error("Article not existing");
+      }),
+      post: jest.fn().mockImplementation(async articleSlug => {
+        if (articleSlug.includes("582e1e46-6b8b-4f4d-8848-f07b57e015a0")) {
+          return null;
+        }
+        throw new Error("Article not existing");
+      }),
+      delete: jest.fn().mockImplementation(async articleSlug => {
+        if (articleSlug.includes("657a6075-d269-4aec-83fa-b14f579a3e78")) {
+          return null;
         }
         throw new Error("Article not existing");
       })
@@ -111,5 +128,33 @@ describe("Vuex Article Module", () => {
     const articleSlug = "f986b3d6-95c2-4c4f-a6b9-fbbf79d8cb0c";
     const comments = await actions[FETCH_COMMENTS](context, articleSlug);
     expect(comments).toHaveLength(2);
+  });
+
+  it("should dispatch a fetching comment action after successfully creating a comment", async () => {
+    const dispatchFunction = jest.fn();
+    const context = { dispatch: dispatchFunction };
+    const payload = {
+      slug: "582e1e46-6b8b-4f4d-8848-f07b57e015a0",
+      comment: "Lorem Ipsum"
+    };
+    await actions[COMMENT_CREATE](context, payload);
+    expect(dispatchFunction).toHaveBeenLastCalledWith(
+      "fetchComments",
+      "582e1e46-6b8b-4f4d-8848-f07b57e015a0"
+    );
+  });
+
+  it("should dispatch a fetching comment action after successfully deleting a comment", async () => {
+    const dispatchFunction = jest.fn();
+    const context = { dispatch: dispatchFunction };
+    const payload = {
+      slug: "657a6075-d269-4aec-83fa-b14f579a3e78",
+      commentId: 1
+    };
+    await actions[COMMENT_DESTROY](context, payload);
+    expect(dispatchFunction).toHaveBeenLastCalledWith(
+      "fetchComments",
+      "657a6075-d269-4aec-83fa-b14f579a3e78"
+    );
   });
 });
