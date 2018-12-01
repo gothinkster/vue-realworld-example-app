@@ -1,5 +1,5 @@
 import { actions } from "../../../src/store/article.module";
-import { FETCH_ARTICLE } from "../../../src/store/actions.type";
+import { FETCH_ARTICLE, FETCH_COMMENTS } from "../../../src/store/actions.type";
 
 jest.mock("vue", () => {
   return {
@@ -20,7 +20,40 @@ jest.mock("vue", () => {
             }
           };
         }
-        return "A not mocked up response occured";
+        if (articleSlug.includes("f986b3d6-95c2-4c4f-a6b9-fbbf79d8cb0c")) {
+          return {
+            data: {
+              comments: [
+                {
+                  id: 1,
+                  createdAt: "2018-12-01T15:43:41.235Z",
+                  updatedAt: "2018-12-01T15:43:41.235Z",
+                  body: "Lorem ipsum dolor sit amet.",
+                  author: {
+                    username: "dccf649a-5e7b-4040-b8c3-ecf74598eba2",
+                    bio: null,
+                    image: "https://via.placeholder.com/350x150",
+                    following: false
+                  }
+                },
+                {
+                  id: 2,
+                  createdAt: "2018-12-01T15:43:39.077Z",
+                  updatedAt: "2018-12-01T15:43:39.077Z",
+                  body:
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet.",
+                  author: {
+                    username: "8568a50a-9656-4d55-a023-632029513a2d",
+                    bio: null,
+                    image: "https://via.placeholder.com/350x150",
+                    following: false
+                  }
+                }
+              ]
+            }
+          };
+        }
+        throw new Error("Article not existing");
       })
     }
   };
@@ -55,5 +88,21 @@ describe("Vuex Article Module", () => {
       prevArticle
     );
     expect(actionCall).toMatchSnapshot();
+  });
+
+  it("should commit the right name when fetching comments for an existing article", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const articleSlug = "f986b3d6-95c2-4c4f-a6b9-fbbf79d8cb0c";
+    await actions[FETCH_COMMENTS](context, articleSlug);
+    expect(commitFunction.mock.calls[0][0]).toBe("setComments");
+  });
+
+  it("should commit the exact size of comments", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const articleSlug = "f986b3d6-95c2-4c4f-a6b9-fbbf79d8cb0c";
+    await actions[FETCH_COMMENTS](context, articleSlug);
+    expect(commitFunction.mock.calls[0][1]).toHaveLength(2);
   });
 });
