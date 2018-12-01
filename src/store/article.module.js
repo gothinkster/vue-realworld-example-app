@@ -63,19 +63,16 @@ export const actions = {
     await CommentsService.destroy(payload.slug, payload.commentId);
     context.dispatch(FETCH_COMMENTS, payload.slug);
   },
-  [FAVORITE_ADD](context, payload) {
-    return FavoriteService.add(payload).then(({ data }) => {
-      // Update list as well. This allows us to favorite an article in the Home view.
-      context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
-      context.commit(SET_ARTICLE, data.article);
-    });
+  async [FAVORITE_ADD](context, payload) {
+    const { data } = await FavoriteService.add(payload);
+    context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
+    context.commit(SET_ARTICLE, data.article);
   },
-  [FAVORITE_REMOVE](context, payload) {
-    return FavoriteService.remove(payload).then(({ data }) => {
-      // Update list as well. This allows us to favorite an article in the Home view.
-      context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
-      context.commit(SET_ARTICLE, data.article);
-    });
+  async [FAVORITE_REMOVE](context, payload) {
+    const { data } = await FavoriteService.remove(payload);
+    // Update list as well. This allows us to favorite an article in the Home view.
+    context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
+    context.commit(SET_ARTICLE, data.article);
   },
   [ARTICLE_PUBLISH]({ state }) {
     return ArticlesService.create(state.article);

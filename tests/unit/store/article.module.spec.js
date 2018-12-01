@@ -3,7 +3,9 @@ import {
   FETCH_ARTICLE,
   FETCH_COMMENTS,
   COMMENT_CREATE,
-  COMMENT_DESTROY
+  COMMENT_DESTROY,
+  FAVORITE_ADD,
+  FAVORITE_REMOVE
 } from "../../../src/store/actions.type";
 
 jest.mock("vue", () => {
@@ -64,11 +66,41 @@ jest.mock("vue", () => {
         if (articleSlug.includes("582e1e46-6b8b-4f4d-8848-f07b57e015a0")) {
           return null;
         }
+        if (articleSlug.includes("5611ee1b-0b95-417f-a917-86687176a627")) {
+          return {
+            data: {
+              article: {
+                author: {},
+                title: "Lorem ipsum dolor sit amet",
+                description:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+                body:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+                tagList: ["lorem", "ipsum", "javascript", "vue"]
+              }
+            }
+          };
+        }
         throw new Error("Article not existing");
       }),
       delete: jest.fn().mockImplementation(async articleSlug => {
         if (articleSlug.includes("657a6075-d269-4aec-83fa-b14f579a3e78")) {
           return null;
+        }
+        if (articleSlug.includes("480fdaf8-027c-43b1-8952-8403f90dcdab")) {
+          return {
+            data: {
+              article: {
+                author: {},
+                title: "Lorem ipsum dolor sit amet",
+                description:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+                body:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+                tagList: ["lorem", "ipsum", "javascript", "vue"]
+              }
+            }
+          };
         }
         throw new Error("Article not existing");
       })
@@ -156,5 +188,73 @@ describe("Vuex Article Module", () => {
       "fetchComments",
       "657a6075-d269-4aec-83fa-b14f579a3e78"
     );
+  });
+
+  it("should commit updating the article in the list action favorize an article", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const payload = "5611ee1b-0b95-417f-a917-86687176a627";
+    await actions[FAVORITE_ADD](context, payload);
+    expect(commitFunction.mock.calls[0][0]).toBe("updateAricleInList");
+    expect(commitFunction.mock.calls[0][1]).toEqual({
+      author: {},
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+      body:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+      tagList: ["lorem", "ipsum", "javascript", "vue"]
+    });
+  });
+
+  it("should commit setting the article", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const payload = "5611ee1b-0b95-417f-a917-86687176a627";
+    await actions[FAVORITE_ADD](context, payload);
+    expect(commitFunction.mock.calls[1][0]).toBe("setArticle");
+    expect(commitFunction.mock.calls[1][1]).toEqual({
+      author: {},
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+      body:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+      tagList: ["lorem", "ipsum", "javascript", "vue"]
+    });
+  });
+
+  it("should commit updating the article in the list action favorize an article", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const payload = "480fdaf8-027c-43b1-8952-8403f90dcdab";
+    await actions[FAVORITE_REMOVE](context, payload);
+    expect(commitFunction.mock.calls[0][0]).toBe("updateAricleInList");
+    expect(commitFunction.mock.calls[0][1]).toEqual({
+      author: {},
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+      body:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+      tagList: ["lorem", "ipsum", "javascript", "vue"]
+    });
+  });
+
+  it("should commit setting the article", async () => {
+    const commitFunction = jest.fn();
+    const context = { commit: commitFunction };
+    const payload = "480fdaf8-027c-43b1-8952-8403f90dcdab";
+    await actions[FAVORITE_REMOVE](context, payload);
+    expect(commitFunction.mock.calls[1][0]).toBe("setArticle");
+    expect(commitFunction.mock.calls[1][1]).toEqual({
+      author: {},
+      title: "Lorem ipsum dolor sit amet",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed cursus nisl. Morbi pulvinar nisl urna, tincidunt mattis tortor sollicitudin eget. Nulla viverra justo quis.",
+      body:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum efficitur justo, nec aliquam quam rutrum in. Pellentesque vulputate augue quis vulputate finibus. Phasellus auctor semper sapien sit amet interdum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas placerat auctor metus. Integer blandit lacinia volutpat.",
+      tagList: ["lorem", "ipsum", "javascript", "vue"]
+    });
   });
 });
