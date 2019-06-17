@@ -1147,10 +1147,10 @@
     jest-watch-typeahead "0.2.1"
     vue-jest "^3.0.4"
 
-"@vue/cli-service@^3.8.3":
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.8.3.tgz#aac15c880220532497916ce091e2d9194086be5b"
-  integrity sha512-NXmulT/Tu2NnqMx3kiJmxxQ32kVrAe+EpaRoGAYaqAzRZQYg/AjyDFsgam2Es8QtkIOJ7odObpf7ikrgiEQYNA==
+"@vue/cli-service@^3.8.4":
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.8.4.tgz#fecf63c8e0a838e2468d2a79059e39f2cbb1fdc5"
+  integrity sha512-OWKTPZN+Wk3gpd8ar6DsQWlpIFPCIULZuVsHarJXjlXpIx3FOleXzaT2QiDB+tprbTRZMfsMMZMt5b0nvacY9Q==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@soda/friendly-errors-webpack-plugin" "^1.7.1"
@@ -1175,7 +1175,7 @@
     cssnano "^4.1.10"
     current-script-polyfill "^1.0.0"
     debug "^4.1.1"
-    default-gateway "^4.2.0"
+    default-gateway "^5.0.2"
     dotenv "^7.0.0"
     dotenv-expand "^5.1.0"
     escape-string-regexp "^1.0.5"
@@ -3519,6 +3519,14 @@ default-gateway@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-4.2.0.tgz#167104c7500c2115f6dd69b0a536bb8ed720552b"
   integrity sha512-h6sMrVB1VMWVrW13mSc6ia/DwYYw5MN6+exNu1OaJeFac5aSAvwM7lZ0NVfTABuSkQelr4h5oebg3KB1XPdjgA==
+  dependencies:
+    execa "^1.0.0"
+    ip-regex "^2.1.0"
+
+default-gateway@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/default-gateway/-/default-gateway-5.0.2.tgz#d2d8a13d6fee406d9365d19ec9adccb8a60b82b3"
+  integrity sha512-wXuT0q8T5vxQNecrTgz/KbU2lPUMRc98I9Y5dnH3yhFB3BGYqtADK4lhivLlG0OfjhmfKx1PGILG2jR4zjI+WA==
   dependencies:
     execa "^1.0.0"
     ip-regex "^2.1.0"
