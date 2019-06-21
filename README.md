@@ -41,7 +41,7 @@ yarn run build
 yarn run test:unit
 ```
 
-# To know
+## To know
 
 Current arbitrary choices are:
 
@@ -51,6 +51,16 @@ Current arbitrary choices are:
 
 These can be changed when the contributors reach a consensus.
 
-# Connect
+## FAQ
+
+<p><details>
+  <summary><b>Where can I find the service worker file?</b></summary>
+
+  The service worker file is generated automatically. The implementation can be found under [`src/registerServiceWorker.js`](https://github.com/gothinkster/vue-realworld-example-app/blob/eeaeb34fa440d00cd400545301ea203bd2a59284/src/registerServiceWorker.js). You can find the dependencies implementation in this repo: [yyx990803/register-service-worker](https://github.com/yyx990803/register-service-worker#readme).
+
+  Also, Google provided a good documentation on how to register a service worker: https://developers.google.com/web/fundamentals/primers/service-workers/registration
+</details></p>
+
+## Connect
 
 Join us on [Discord](https://discord.gg/NE2jNmg)
