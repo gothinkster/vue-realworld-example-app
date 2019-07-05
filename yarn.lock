@@ -1094,10 +1094,10 @@
     "@vue/babel-plugin-transform-vue-jsx" "^1.0.0"
     camelcase "^5.0.0"
 
-"@vue/cli-overlay@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-3.8.0.tgz#e4e8e2fa92b06fc282916df9c924f1dba50eeabb"
-  integrity sha512-4hY/+r9OwpMb7BPFnQGKftMC8CrfbV00REEFOij52+L4swQw+m879+5zX3Z0xHfPftw6JyaqJB0rmQ0ILI6Ovw==
+"@vue/cli-overlay@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-3.9.0.tgz#11f513d1fa11b0135fb8ba8b88d228df0dc542e0"
+  integrity sha512-QfyvpJl2ChehBT2qzb5EvW921JxW94uFL3+lHa6VT42ImH8awrvkTGZmxTQWhHvATa7r0LKy7M7ZRMyo547esg==
 
 "@vue/cli-plugin-babel@^3.9.0":
   version "3.9.0"
@@ -1148,15 +1148,15 @@
     jest-watch-typeahead "0.2.1"
     vue-jest "^3.0.4"
 
-"@vue/cli-service@^3.8.4":
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.8.4.tgz#fecf63c8e0a838e2468d2a79059e39f2cbb1fdc5"
-  integrity sha512-OWKTPZN+Wk3gpd8ar6DsQWlpIFPCIULZuVsHarJXjlXpIx3FOleXzaT2QiDB+tprbTRZMfsMMZMt5b0nvacY9Q==
+"@vue/cli-service@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.9.0.tgz#e62b4489d90ba7bd5f4efc8edf1cde3676440578"
+  integrity sha512-fP66ro3+JF+/kNor2q75icesbQLTKVGQ21sGaeQqR1y601TzJwuey8NPswS8RlrEGnu6KcteKI62+nNVKW4lJw==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@soda/friendly-errors-webpack-plugin" "^1.7.1"
-    "@vue/cli-overlay" "^3.8.0"
-    "@vue/cli-shared-utils" "^3.8.0"
+    "@vue/cli-overlay" "^3.9.0"
+    "@vue/cli-shared-utils" "^3.9.0"
     "@vue/component-compiler-utils" "^2.6.0"
     "@vue/preload-webpack-plugin" "^1.1.0"
     "@vue/web-component-wrapper" "^1.2.0"
@@ -1209,7 +1209,6 @@
     webpack-chain "^4.11.0"
     webpack-dev-server "^3.4.1"
     webpack-merge "^4.2.1"
-    yorkie "^2.0.0"
 
 "@vue/cli-shared-utils@^3.8.0", "@vue/cli-shared-utils@^3.9.0":
   version "3.9.0"
