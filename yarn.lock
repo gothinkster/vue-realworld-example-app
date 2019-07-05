@@ -1134,12 +1134,12 @@
     webpack ">=4 < 4.29"
     workbox-webpack-plugin "^3.6.3"
 
-"@vue/cli-plugin-unit-jest@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-3.8.0.tgz#13cd3b4f5d1c9e0ef1982cbaea19b73f7df947d6"
-  integrity sha512-8kvoh6NZYY7FjuqRorqo47VTi62a3u69+oAxqBiIOkc28OGaju/FrL0Vm95vRB8tMkU6EPXKVRtCjPz8R2QeZA==
+"@vue/cli-plugin-unit-jest@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-3.9.0.tgz#0662adee9467006381b9cddc7fb3b0a21ccbbd07"
+  integrity sha512-FzUeTXXM7VUbjNDrqbj/AoUXZd0FZVrW936VO0W57r7uDgv+bh5hcEyzZnOaqFUOHYNFhl0RYD528/Uq5Dgm0A==
   dependencies:
-    "@vue/cli-shared-utils" "^3.8.0"
+    "@vue/cli-shared-utils" "^3.9.0"
     babel-jest "^23.6.0"
     babel-plugin-transform-es2015-modules-commonjs "^6.26.2"
     jest "^23.6.0"
