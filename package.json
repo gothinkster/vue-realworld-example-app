@@ -14,7 +14,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-eslint": "^3.9.2",
-    "@vue/cli-plugin-pwa": "^3.9.0",
+    "@vue/cli-plugin-pwa": "^3.10.0",
     "@vue/cli-plugin-unit-jest": "^3.9.0",
     "@vue/cli-service": "^3.10.0",
     "@vue/eslint-config-prettier": "^4.0.1",
