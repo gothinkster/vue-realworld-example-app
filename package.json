@@ -46,8 +46,8 @@
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve",
-    "test": "jest --coverage"
+    "serve": "BABEL_ENV=dev vue-cli-service serve",
+    "test": "BABEL_ENV=test jest --coverage"
   },
   "version": "0.1.0"
 }
