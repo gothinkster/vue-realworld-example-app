@@ -44,7 +44,7 @@
   },
   "name": "realworld-vue",
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "BABEL_ENV=dev vue-cli-service build",
     "lint": "vue-cli-service lint",
     "serve": "BABEL_ENV=dev vue-cli-service serve",
     "test": "BABEL_ENV=test jest --coverage"
