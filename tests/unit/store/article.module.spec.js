@@ -195,7 +195,7 @@ describe("Vuex Article Module", () => {
     const context = { commit: commitFunction };
     const payload = "5611ee1b-0b95-417f-a917-86687176a627";
     await actions[FAVORITE_ADD](context, payload);
-    expect(commitFunction.mock.calls[0][0]).toBe("updateAricleInList");
+    expect(commitFunction.mock.calls[0][0]).toBe("updateArticleInList");
     expect(commitFunction.mock.calls[0][1]).toEqual({
       author: {},
       title: "Lorem ipsum dolor sit amet",
@@ -229,7 +229,7 @@ describe("Vuex Article Module", () => {
     const context = { commit: commitFunction };
     const payload = "480fdaf8-027c-43b1-8952-8403f90dcdab";
     await actions[FAVORITE_REMOVE](context, payload);
-    expect(commitFunction.mock.calls[0][0]).toBe("updateAricleInList");
+    expect(commitFunction.mock.calls[0][0]).toBe("updateArticleInList");
     expect(commitFunction.mock.calls[0][1]).toEqual({
       author: {},
       title: "Lorem ipsum dolor sit amet",

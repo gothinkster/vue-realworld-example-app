@@ -38,7 +38,7 @@ Other commands available are:
 yarn run build
 
 # run unit tests
-yarn run test:unit
+yarn test
 ```
 
 ## To know

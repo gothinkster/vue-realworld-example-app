@@ -12,6 +12,8 @@
   },
   "description": "TodoMVC for the RealWorld™",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@vue/cli-plugin-babel": "^3.10.0",
     "@vue/cli-plugin-eslint": "^3.10.0",
     "@vue/cli-plugin-pwa": "^3.10.0",
@@ -23,6 +25,7 @@
     "babel-jest": "^24.9.0",
     "lint-staged": "^8.2.1",
     "node-sass": "^4.12.0",
+    "nyc": "^14.1.1",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
   },
@@ -41,10 +44,10 @@
   },
   "name": "realworld-vue",
   "scripts": {
-    "build": "vue-cli-service build",
+    "build": "BABEL_ENV=dev vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve",
-    "test:unit": "vue-cli-service test:unit"
+    "serve": "BABEL_ENV=dev vue-cli-service serve",
+    "test": "BABEL_ENV=test jest --coverage"
   },
   "version": "0.1.0"
 }
