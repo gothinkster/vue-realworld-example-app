@@ -23,6 +23,7 @@
     "@vue/test-utils": "^1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
+    "cross-env": "^5.2.1",
     "lint-staged": "^8.2.1",
     "node-sass": "^4.12.0",
     "nyc": "^14.1.1",
@@ -44,10 +45,10 @@
   },
   "name": "realworld-vue",
   "scripts": {
-    "build": "BABEL_ENV=dev vue-cli-service build",
+    "build": "cross-env BABEL_ENV=dev vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "serve": "BABEL_ENV=dev vue-cli-service serve",
-    "test": "BABEL_ENV=test jest --coverage"
+    "serve": "cross-env BABEL_ENV=dev vue-cli-service serve",
+    "test": "cross-env BABEL_ENV=test jest --coverage"
   },
   "version": "0.1.0"
 }
