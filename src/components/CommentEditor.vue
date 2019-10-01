@@ -1,9 +1,9 @@
 <template>
   <div>
-    <rwv-list-errors :errors="errors"> </rwv-list-errors>
+    <RwvListErrors :errors="errors"> </RwvListErrors>
     <form
       class="card comment-form"
-      v-on:submit.prevent="onSubmit(slug, comment);"
+      v-on:submit.prevent="onSubmit(slug, comment)"
     >
       <div class="card-block">
         <textarea
