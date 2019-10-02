@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import RwvListErrors from "@/components/ListErrors";
-import { COMMENT_CREATE } from "@/store/actions.type";
+import RwvListErrors from "./ListErrors.vue";
+import { COMMENT_CREATE } from "../store/actions.type.js";
 
 export default {
   name: "RwvCommentEditor",
