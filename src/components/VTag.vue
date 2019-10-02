@@ -1,8 +1,5 @@
 <template>
-  <router-link
-    :to="{ name: 'home-tag', params: { tag: name } }"
-    :class="className"
-  >
+  <router-link :to="homeLink" :class="className">
     {{ name }}
   </router-link>
 </template>
@@ -18,6 +15,12 @@ export default {
     className: {
       type: String,
       default: "tag-pill tag-default"
+    }
+  },
+  computed: {
+    homeLink() {
+      let linkObj = { name: "home-tag", params: { tag: this.name } };
+      return linkObj;
     }
   }
 };
