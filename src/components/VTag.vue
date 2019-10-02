@@ -3,7 +3,7 @@
     :to="{ name: 'home-tag', params: { tag: name } }"
     :class="className"
   >
-    {{ name }}
+    <span v-text="name"></span>
   </router-link>
 </template>
 

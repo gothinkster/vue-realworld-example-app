@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
           <RwvListErrors :errors="errors" />
-          <form v-on:submit.prevent="onPublish(article.slug);">
+          <form v-on:submit.prevent="onPublish(article.slug)">
             <fieldset :disabled="inProgress">
               <fieldset class="form-group">
                 <input
@@ -37,7 +37,7 @@
                   class="form-control"
                   placeholder="Enter tags"
                   v-model="tagInput"
-                  v-on:keypress.enter.prevent="addTag(tagInput);"
+                  v-on:keypress.enter.prevent="addTag(tagInput)"
                 />
                 <div class="tag-list">
                   <span
@@ -45,9 +45,8 @@
                     v-for="(tag, index) of article.tagList"
                     :key="tag + index"
                   >
-                    <i class="ion-close-round" v-on:click="removeTag(tag);">
-                    </i>
-                    {{ tag }}
+                    <i class="ion-close-round" v-on:click="removeTag(tag)" />
+                    <span v-text="tag" />
                   </span>
                 </div>
               </fieldset>

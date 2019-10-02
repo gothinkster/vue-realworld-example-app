@@ -76,7 +76,7 @@
               params: { username: currentUser.username }
             }"
           >
-            {{ currentUser.username }}
+            <span v-text="currentUser.username"></span>
           </router-link>
         </li>
       </ul>

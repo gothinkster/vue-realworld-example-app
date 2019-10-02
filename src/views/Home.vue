@@ -36,7 +36,8 @@
                   class="nav-link"
                   active-class="active"
                 >
-                  <i class="ion-pound"></i> {{ tag }}
+                  <i class="ion-pound"></i>
+                  <span v-text="tag" />
                 </router-link>
               </li>
             </ul>
