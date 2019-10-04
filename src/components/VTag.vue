@@ -2,9 +2,8 @@
   <router-link
     :to="{ name: 'home-tag', params: { tag: name } }"
     :class="className"
-  >
-    {{ name }}
-  </router-link>
+    v-text="name"
+  ></router-link>
 </template>
 
 <script>
