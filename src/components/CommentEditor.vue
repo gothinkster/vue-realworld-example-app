@@ -1,6 +1,6 @@
 <template>
   <div>
-    <rwv-list-errors :errors="errors"> </rwv-list-errors>
+    <RwvListErrors :errors="errors" />
     <form class="card comment-form" @submit.prevent="onSubmit(slug, comment)">
       <div class="card-block">
         <textarea
