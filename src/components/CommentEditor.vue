@@ -1,10 +1,7 @@
 <template>
   <div>
     <rwv-list-errors :errors="errors"> </rwv-list-errors>
-    <form
-      class="card comment-form"
-      v-on:submit.prevent="onSubmit(slug, comment)"
-    >
+    <form class="card comment-form" @submit.prevent="onSubmit(slug, comment)">
       <div class="card-block">
         <textarea
           class="form-control"
