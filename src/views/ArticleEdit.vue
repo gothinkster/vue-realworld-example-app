@@ -45,8 +45,8 @@
                     v-for="(tag, index) of article.tagList"
                     :key="tag + index"
                   >
-                    <i class="ion-close-round" v-on:click="removeTag(tag)"> </i>
-                    {{ tag }}
+                    <i class="ion-close-round" v-on:click="removeTag(tag)" />
+                    <span v-text="tag" />
                   </span>
                 </div>
               </fieldset>

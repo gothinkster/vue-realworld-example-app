@@ -2,7 +2,7 @@
   <div class="article-page">
     <div class="banner">
       <div class="container">
-        <h1>{{ article.title }}</h1>
+        <h1 v-text="article.title"></h1>
         <RwvArticleMeta :article="article" :actions="true"></RwvArticleMeta>
       </div>
     </div>

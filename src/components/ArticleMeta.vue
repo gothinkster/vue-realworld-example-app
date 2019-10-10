@@ -10,7 +10,7 @@
         :to="{ name: 'profile', params: { username: article.author.username } }"
         class="author"
       >
-        {{ article.author.username }}
+        <span v-text="article.author.username"></span>
       </router-link>
       <span class="date">{{ article.createdAt | date }}</span>
     </div>
@@ -31,7 +31,7 @@
         }"
       >
         <i class="ion-heart"></i>
-        <span class="counter"> {{ article.favoritesCount }} </span>
+        <span class="counter" v-text="article.favoritesCount"></span>
       </button>
     </template>
   </div>
