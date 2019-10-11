@@ -14,7 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
-    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-plugin-babel": "^3.12.0",
     "@vue/cli-plugin-eslint": "^3.10.0",
     "@vue/cli-plugin-pwa": "^3.10.0",
     "@vue/cli-plugin-unit-jest": "^3.10.0",
