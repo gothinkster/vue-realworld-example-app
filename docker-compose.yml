@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  front:
+    build: . 
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    entrypoint:
+      - "yarn serve"
