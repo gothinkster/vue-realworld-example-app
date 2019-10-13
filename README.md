@@ -21,6 +21,12 @@ Before contributing please read the following:
 2. [RealWorld frontend instructions](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md)
 3. [Realworld API endpoints](https://github.com/gothinkster/realworld/tree/master/api)
 4. [Vue.js styleguide](https://vuejs.org/v2/style-guide/index.html). Priority A and B categories must be respected.
+5. [Editorconfig setup](https://editorconfig.org/#download). Most of the common editors support editorconfig by default (check the editorconfig download link for your ide), but editorconfig npm package have to installed globally for it to work,
+
+```bash
+# install editorconfig globally
+> npm install -g editorconfig
+```
 
 The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/webpack) so to get started all you have to do is:
 
