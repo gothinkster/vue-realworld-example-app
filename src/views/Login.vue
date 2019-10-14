@@ -12,7 +12,7 @@
           <ul v-if="errors" class="error-messages">
             <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
           </ul>
-          <form v-on:submit.prevent="onSubmit(email, password)">
+          <form v-on:submit.prevent="onSubmit()">
             <fieldset class="form-group">
               <input
                 class="form-control form-control-lg"
@@ -52,9 +52,9 @@ export default {
     };
   },
   methods: {
-    onSubmit(email, password) {
+    onSubmit() {
       this.$store
-        .dispatch(LOGIN, { email, password })
+        .dispatch(LOGIN, { email: this.email, password: this.password })
         .then(() => this.$router.push({ name: "home" }));
     }
   },
