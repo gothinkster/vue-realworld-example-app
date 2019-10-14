@@ -1127,12 +1127,12 @@
     eslint "^4.19.1"
     eslint-plugin-vue "^4.7.1"
 
-"@vue/cli-plugin-pwa@^3.10.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-3.11.0.tgz#f7d26b598c00755491326ecebe68af6417ad6b46"
-  integrity sha512-Ua215xZRSM4LeSa2BOiHGRxcYxCcX+J0RoiflTsUhMEICJj0kwGvcjHcq8MsrmydXqHSdAKtVVJpe2CUZix2XQ==
+"@vue/cli-plugin-pwa@^3.12.0":
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-3.12.0.tgz#cb4821bed6d409e452ba6917eae639f185c16dea"
+  integrity sha512-wS+7pPiU+KxO/mafoASPccN62BbqMWaSGlxfS5zCHG4lvAe3tSmFVhV2R54V5pDC3BRDUxod0Yn0mXlbC2b14w==
   dependencies:
-    "@vue/cli-shared-utils" "^3.11.0"
+    "@vue/cli-shared-utils" "^3.12.0"
     webpack "^4.0.0"
     workbox-webpack-plugin "^3.6.3"
 
