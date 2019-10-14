@@ -24,7 +24,7 @@
       <button
         class="btn btn-sm pull-xs-right"
         v-if="!actions"
-        v-on:click="toggleFavorite"
+        @click="toggleFavorite"
         :class="{
           'btn-primary': article.favorited,
           'btn-outline-primary': !article.favorited
