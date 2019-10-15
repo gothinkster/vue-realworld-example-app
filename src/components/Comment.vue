@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-block">
-      <p class="card-text">{{ comment.body }}</p>
+      <p class="card-text" v-text="comment.body"></p>
     </div>
     <div class="card-footer">
       <a href="" class="comment-author">
@@ -10,9 +10,8 @@
       <router-link
         class="comment-author"
         :to="{ name: 'profile', params: { username: comment.author.username } }"
-      >
-        {{ comment.author.username }}
-      </router-link>
+        v-text="comment.author.username"
+      />
       <span class="date-posted">{{ comment.createdAt | date }}</span>
       <span v-if="isCurrentUser" class="mod-options">
         <i class="ion-trash-a" @click="destroy(slug, comment.id)"></i>

@@ -16,9 +16,8 @@
                   :to="{ name: 'home-my-feed' }"
                   class="nav-link"
                   active-class="active"
-                >
-                  Your Feed
-                </router-link>
+                  v-text="'Your Feed'"
+                />
               </li>
               <li class="nav-item">
                 <router-link
@@ -26,9 +25,8 @@
                   exact
                   class="nav-link"
                   active-class="active"
-                >
-                  Global Feed
-                </router-link>
+                  v-text="'Global Feed'"
+                />
               </li>
               <li class="nav-item" v-if="tag">
                 <router-link
