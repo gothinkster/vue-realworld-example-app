@@ -14,26 +14,23 @@
       </router-link>
       <span class="date">{{ article.createdAt | date }}</span>
     </div>
-    <template v-if="actions">
-      <rwv-article-actions
-        :article="article"
-        :canModify="isCurrentUser()"
-      ></rwv-article-actions>
-    </template>
-    <template v-else>
-      <button
-        class="btn btn-sm pull-xs-right"
-        v-if="!actions"
-        @click="toggleFavorite"
-        :class="{
-          'btn-primary': article.favorited,
-          'btn-outline-primary': !article.favorited
-        }"
-      >
-        <i class="ion-heart"></i>
-        <span class="counter"> {{ article.favoritesCount }} </span>
-      </button>
-    </template>
+    <rwv-article-actions
+      v-if="actions"
+      :article="article"
+      :canModify="isCurrentUser()"
+    ></rwv-article-actions>
+    <button
+      v-else
+      class="btn btn-sm pull-xs-right"
+      @click="toggleFavorite"
+      :class="{
+        'btn-primary': article.favorited,
+        'btn-outline-primary': !article.favorited
+      }"
+    >
+      <i class="ion-heart"></i>
+      <span class="counter"> {{ article.favoritesCount }} </span>
+    </button>
   </div>
 </template>
 
