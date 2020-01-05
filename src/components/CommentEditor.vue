@@ -1,10 +1,7 @@
 <template>
   <div>
-    <rwv-list-errors :errors="errors"> </rwv-list-errors>
-    <form
-      class="card comment-form"
-      v-on:submit.prevent="onSubmit(slug, comment);"
-    >
+    <RwvListErrors :errors="errors" />
+    <form class="card comment-form" @submit.prevent="onSubmit(slug, comment)">
       <div class="card-block">
         <textarea
           class="form-control"
@@ -23,8 +20,8 @@
 </template>
 
 <script>
-import RwvListErrors from "@/components/ListErrors";
-import { COMMENT_CREATE } from "@/store/actions.type";
+import RwvListErrors from "./ListErrors.vue";
+import { COMMENT_CREATE } from "../store/actions.type.js";
 
 export default {
   name: "RwvCommentEditor",
