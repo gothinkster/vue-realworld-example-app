@@ -8,9 +8,12 @@
             <h4>{{ profile.username }}</h4>
             <p>{{ profile.bio }}</p>
             <div v-if="isCurrentUser()">
-              <div class=" balance">
+              <div class="balance">
                 <i class="ion-cash"></i> balance: <b>{{ profile.balance }}</b>
                 <!-- TODO:: add number format-->
+              </div>
+              <div class="text-danger" v-if="profile.is_banned">
+                <i class="ion-sad-outline"></i> you are banned
               </div>
               <router-link
                 class="btn btn-sm btn-outline-secondary action-btn"

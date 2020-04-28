@@ -74,7 +74,11 @@ export default {
         return;
       }
       const action = this.article.favorited ? FAVORITE_REMOVE : FAVORITE_ADD;
-      this.$store.dispatch(action, this.article.slug);
+      this.$store
+        .dispatch(action, this.article.slug)
+        .catch(function({ response }) {
+          alert(response.data.errors.message);
+        });
     },
     toggleFollow() {
       if (!this.isAuthenticated) {
