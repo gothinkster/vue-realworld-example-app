@@ -16,6 +16,7 @@ export const FETCH_PROFILE = "fetchProfile";
 export const FETCH_PROFILE_FOLLOW = "fetchProfileFollow";
 export const FETCH_PROFILE_UNFOLLOW = "fetchProfileUnfollow";
 export const FETCH_TAGS = "fetchTags";
+export const FETCH_INVOICES = "fetchInvoices";
 export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";

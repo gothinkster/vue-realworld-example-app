@@ -104,3 +104,9 @@ export const FavoriteService = {
     return ApiService.delete(`articles/${slug}/favorite`);
   }
 };
+
+export const InvoiceService = {
+  get() {
+    return ApiService.get("invoices");
+  }
+};

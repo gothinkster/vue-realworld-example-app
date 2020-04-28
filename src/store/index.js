@@ -5,6 +5,7 @@ import home from "./home.module";
 import auth from "./auth.module";
 import article from "./article.module";
 import profile from "./profile.module";
+import invoice from "./invoice.module";
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     home,
     auth,
     article,
-    profile
+    profile,
+    invoice
   }
 });

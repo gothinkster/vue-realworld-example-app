@@ -67,6 +67,16 @@
                   Favorited Articles
                 </router-link>
               </li>
+              <li class="nav-item" v-if="isCurrentUser()">
+                <router-link
+                  class="nav-link"
+                  active-class="active"
+                  exact
+                  :to="{ name: 'profile-invoices' }"
+                >
+                  Invoices
+                </router-link>
+              </li>
             </ul>
           </div>
           <router-view></router-view>

@@ -57,8 +57,8 @@ const mutations = {
     state.isLoading = true;
   },
   [FETCH_END](state, { articles, articlesCount }) {
-    state.articles = articles;
-    state.articlesCount = articlesCount;
+    state.articles = articles || [];
+    state.articlesCount = articlesCount || 0;
     state.isLoading = false;
   },
   [SET_TAGS](state, tags) {
