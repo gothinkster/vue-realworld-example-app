@@ -8,6 +8,10 @@
             <h4>{{ profile.username }}</h4>
             <p>{{ profile.bio }}</p>
             <div v-if="isCurrentUser()">
+              <div class=" balance">
+                <i class="ion-cash"></i> balance: <b>{{ profile.balance }}</b>
+                <!-- TODO:: add number format-->
+              </div>
               <router-link
                 class="btn btn-sm btn-outline-secondary action-btn"
                 :to="{ name: 'settings' }"
