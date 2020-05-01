@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "node"
+
+cache: npm
+
+script: npm run build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  repo: raftx24/raftx24.github.io
+  branch: master
+  on:
+    branch: invoices
