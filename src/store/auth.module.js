@@ -1,5 +1,4 @@
 import ApiService from "@/common/api.service";
-import JwtService from "@/common/jwt.service";
 import {
   LOGIN,
   LOGOUT,
@@ -11,63 +10,67 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
   errors: null,
-  user: {},
-  isAuthenticated: !!JwtService.getToken()
+  user: {}
 };
 
 const getters = {
   currentUser(state) {
     return state.user;
   },
-  isAuthenticated(state) {
-    return state.isAuthenticated;
+  jwt(_state, getters) {
+    if (!getters.currentUser) return null;
+
+    return getters.currentUser.token;
+  },
+  isAuthenticated(_state, getters) {
+    return !!getters.jwt;
   }
 };
 
 const actions = {
-  [LOGIN](context, credentials) {
+  [LOGIN]({ commit }, credentials) {
     return new Promise(resolve => {
       ApiService.post("users/login", { user: credentials })
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
+          commit(SET_AUTH, data.user);
           resolve(data);
         })
         .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+          commit(SET_ERROR, response.data.errors);
         });
     });
   },
   [LOGOUT](context) {
     context.commit(PURGE_AUTH);
   },
-  [REGISTER](context, credentials) {
+  [REGISTER]({ commit }, credentials) {
     return new Promise((resolve, reject) => {
       ApiService.post("users", { user: credentials })
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
+          commit(SET_AUTH, data.user);
           resolve(data);
         })
         .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+          commit(SET_ERROR, response.data.errors);
           reject(response);
         });
     });
   },
-  [CHECK_AUTH](context) {
-    if (JwtService.getToken()) {
-      ApiService.setHeader();
+  [CHECK_AUTH]({ commit, getters }) {
+    if (getters.isAuthenticated) {
+      ApiService.setHeader(getters.jwt);
       ApiService.get("user")
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
+          commit(SET_AUTH, data.user);
         })
         .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+          commit(SET_ERROR, response.data.errors);
         });
     } else {
-      context.commit(PURGE_AUTH);
+      commit(PURGE_AUTH);
     }
   },
-  [UPDATE_USER](context, payload) {
+  [UPDATE_USER]({ commit }, payload) {
     const { email, username, password, image, bio } = payload;
     const user = {
       email,
@@ -80,7 +83,7 @@ const actions = {
     }
 
     return ApiService.put("user", user).then(({ data }) => {
-      context.commit(SET_AUTH, data.user);
+      commit(SET_AUTH, data.user);
       return data;
     });
   }
@@ -91,16 +94,12 @@ const mutations = {
     state.errors = error;
   },
   [SET_AUTH](state, user) {
-    state.isAuthenticated = true;
     state.user = user;
     state.errors = {};
-    JwtService.saveToken(state.user.token);
   },
   [PURGE_AUTH](state) {
-    state.isAuthenticated = false;
     state.user = {};
     state.errors = {};
-    JwtService.destroyToken();
   }
 };
 
