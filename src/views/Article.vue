@@ -2,7 +2,7 @@
   <div class="article-page">
     <div class="banner">
       <div class="container">
-        <h1>{{ article.title }}</h1>
+        <h1 v-text="article.title" />
         <RwvArticleMeta :article="article" :actions="true"></RwvArticleMeta>
       </div>
     </div>
@@ -11,7 +11,7 @@
         <div class="col-xs-12">
           <div v-html="parseMarkdown(article.body)"></div>
           <ul class="tag-list">
-            <li v-for="(tag, index) of article.tagList" :key="tag + index">
+            <li v-for="(tag, index) in article.tagList" :key="tag + index">
               <RwvTag
                 :name="tag"
                 className="tag-default tag-pill tag-outline"

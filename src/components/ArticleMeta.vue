@@ -9,9 +9,8 @@
       <router-link
         :to="{ name: 'profile', params: { username: article.author.username } }"
         class="author"
-      >
-        {{ article.author.username }}
-      </router-link>
+        v-text="article.author.username"
+      />
       <span class="date">{{ article.createdAt | date }}</span>
     </div>
     <rwv-article-actions
