@@ -8,6 +8,7 @@ import {
   UPDATE_USER
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
+import router from "@/router/index";
 
 const state = {
   errors: null,
@@ -60,8 +61,9 @@ const actions = {
         .then(({ data }) => {
           context.commit(SET_AUTH, data.user);
         })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
+        .catch(() => {
+          context.commit(PURGE_AUTH);
+          router.push({ path: "/" });
         });
     } else {
       context.commit(PURGE_AUTH);
