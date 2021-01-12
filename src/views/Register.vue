@@ -4,11 +4,7 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign up</h1>
-          <p class="text-xs-center">
-            <router-link :to="{ name: 'login' }">
-              Have an account?
-            </router-link>
-          </p>
+          <p class="text-xs-center"></p>
           <ul v-if="errors" class="error-messages">
             <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
           </ul>
@@ -39,6 +35,11 @@
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">
               Sign up
+            </button>
+            <button class="btn btn-lg">
+              <router-link :to="{ name: 'login' }">
+                Have an account?
+              </router-link>
             </button>
           </form>
         </div>

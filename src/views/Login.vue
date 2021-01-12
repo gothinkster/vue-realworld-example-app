@@ -4,11 +4,7 @@
       <div class="row">
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">Sign in</h1>
-          <p class="text-xs-center">
-            <router-link :to="{ name: 'register' }">
-              Need an account?
-            </router-link>
-          </p>
+          <p class="text-xs-center"></p>
           <ul v-if="errors" class="error-messages">
             <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
           </ul>
@@ -32,6 +28,11 @@
             <button class="btn btn-lg btn-primary pull-xs-right">
               Sign in
             </button>
+            <router-link :to="{ name: 'register' }">
+              <button class="btn btn-lg ">
+                Need an account?
+              </button>
+            </router-link>
           </form>
         </div>
       </div>
