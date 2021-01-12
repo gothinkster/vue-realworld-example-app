@@ -50,7 +50,7 @@
                   exact
                   :to="{ name: 'profile' }"
                 >
-                  My Articles
+                  {{ profile.username }} Articles
                 </router-link>
               </li>
               <li class="nav-item">

@@ -1,6 +1,6 @@
 ### Tasks
 -[] Clear empty tags
--[] Fix "myArticles" on ""username"Articles" on users page
+-[x] Fix "myArticles" on ""username"Articles" on users page
 -[] Add a button "SignIn && SignUp" on entry page instead link
 -[x] Add green color to "read more" link on main page
 
