@@ -1,3 +1,10 @@
+### Tasks
+-[] Clear empty tags
+-[] Fix "myArticles" on ""username"Articles" on users page
+-[] Add a button "SignIn && SignUp" on entry page instead link
+-[x] Add green color to "read more" link on main page
+
+
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
