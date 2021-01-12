@@ -62,7 +62,9 @@ const mutations = {
     state.isLoading = false;
   },
   [SET_TAGS](state, tags) {
-    state.tags = tags;
+    state.tags = tags.filter(tag => {
+      return tag.replace(/\u200c/g, "") != "";
+    });
   },
   [UPDATE_ARTICLE_IN_LIST](state, data) {
     state.articles = state.articles.map(article => {
