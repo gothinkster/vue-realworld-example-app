@@ -3,9 +3,14 @@
 -[x] Fix "myArticles" on ""username"Articles" on users page
 -[x] Add a button "SignIn && SignUp" on entry page instead 
 -[x] Add green color to "read more" link on main page
+
+-[] Add 3 types of buttons for header above the markdown field
+-[x] Add example for "enter your tags" field
+-[] Add a logout button after the user name
 -[] Add 3 types of buttons for headers above the markdown field
 -[x] Add example for "enter your tags" field
 -[x] Add a logout button after the user name
+
 -[x] Add link to MIT license text in footer
 -[] Add hover title text on the like buttons. EX- "Like/Unlike"
 -[] Add seconds/minutes/hours ago]
