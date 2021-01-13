@@ -35,7 +35,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Enter tags"
+                  placeholder="Enter your tags! For example: family holiday vacation loremipsum"
                   v-model="tagInput"
                   @keypress.enter.prevent="addTag(tagInput)"
                 />
