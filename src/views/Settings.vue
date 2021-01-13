@@ -53,9 +53,6 @@
           </form>
           <!-- Line break for logout button -->
           <hr />
-          <button @click="logout" class="btn btn-outline-danger">
-            Or click here to logout.
-          </button>
         </div>
       </div>
     </div>
@@ -64,25 +61,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { LOGOUT, UPDATE_USER } from "@/store/actions.type";
 
 export default {
   name: "RwvSettings",
   computed: {
     ...mapGetters(["currentUser"])
-  },
-  methods: {
-    updateSettings() {
-      this.$store.dispatch(UPDATE_USER, this.currentUser).then(() => {
-        // #todo, nice toast and no redirect
-        this.$router.push({ name: "home" });
-      });
-    },
-    logout() {
-      this.$store.dispatch(LOGOUT).then(() => {
-        this.$router.push({ name: "home" });
-      });
-    }
   }
 };
 </script>
