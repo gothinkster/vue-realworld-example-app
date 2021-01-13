@@ -79,6 +79,13 @@
             {{ currentUser.username }}
           </router-link>
         </li>
+        <li class="nav-item">
+          <i
+            @click="logout"
+            class="nav-link fas fa-sign-out-alt"
+            style="line-height:1.5; cursor: pointer;"
+          ></i>
+        </li>
       </ul>
     </div>
   </nav>
@@ -86,11 +93,25 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { LOGOUT, UPDATE_USER } from "@/store/actions.type";
 
 export default {
   name: "RwvHeader",
   computed: {
     ...mapGetters(["currentUser", "isAuthenticated"])
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
+    },
+    updateSettings() {
+      this.$store.dispatch(UPDATE_USER, this.currentUser).then(() => {
+        // #todo, nice toast and no redirect
+        this.$router.push({ name: "home" });
+      });
+    }
   }
 };
 </script>
