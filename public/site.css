@@ -1,6 +1,5 @@
 .subtext {
-    color: green !important;
-};
+    color: #5cb85c !important;
 }
 .buttonsField {
     background-color: rgba(180, 180, 180, 0.74);
@@ -15,3 +14,4 @@
     padding: 1px 1px 1px 1px;
     border: 1px solid green;
 }
+
