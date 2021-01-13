@@ -1,3 +1,17 @@
 .subtext {
     color: green !important;
 };
+}
+.buttonsField {
+    background-color: rgba(180, 180, 180, 0.74);
+    padding: 0px 4px 1px 4px;
+    border-radius: 3px;
+
+}
+.myButtons {
+    font-family: sans-serif;
+    font-size: 13px;
+    margin-right: 0.25rem;
+    padding: 1px 1px 1px 1px;
+    border: 1px solid green;
+}

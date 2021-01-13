@@ -1,7 +1,7 @@
 ### Tasks
 -[x] Clear empty tags
 -[x] Fix "myArticles" on ""username"Articles" on users page
--[x] Add a button "SignIn && SignUp" on entry page instead link
+-[x] Add a button "SignIn && SignUp" on entry page instead 
 -[x] Add green color to "read more" link on main page
 -[] Add 3 types of buttons for headers above the markdown field
 -[x] Add example for "enter your tags" field
@@ -12,6 +12,7 @@
 -[] If tags coming from API, add support for display them under post text
 -[] Add article content text on the global feed. Supporting only 100words, if more add a threedots
 -[] Fix the published text in the entry fields
+
 
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
