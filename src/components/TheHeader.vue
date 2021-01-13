@@ -81,6 +81,7 @@
         </li>
         <li class="nav-item">
           <i
+            title="LogOut"
             @click="logout"
             class="nav-link fas fa-sign-out-alt"
             style="line-height:1.5; cursor: pointer;"
