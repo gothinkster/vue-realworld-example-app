@@ -22,8 +22,20 @@
                   placeholder="What's this article about?"
                 />
               </fieldset>
+              <div class="buttonsField">
+                <button type="button" @click="addHeader(3)" class="myButtons">
+                  H3
+                </button>
+                <button type="button" @click="addHeader(2)" class="myButtons">
+                  H2
+                </button>
+                <button type="button" @click="addHeader(1)" class="myButtons">
+                  H1
+                </button>
+              </div>
               <fieldset class="form-group">
                 <textarea
+                  id="textField"
                   class="form-control"
                   rows="8"
                   v-model="article.body"
@@ -121,6 +133,17 @@ export default {
     ...mapGetters(["article"])
   },
   methods: {
+    addHeader(level) {
+      let headers = {
+        1: "#",
+        2: "##",
+        3: "###",
+        4: "####",
+        5: "#####",
+        6: "######"
+      };
+      this.article.body = this.article.body + "\n" + headers[level] + " ";
+    },
     onPublish(slug) {
       let action = slug ? ARTICLE_EDIT : ARTICLE_PUBLISH;
       this.inProgress = true;
