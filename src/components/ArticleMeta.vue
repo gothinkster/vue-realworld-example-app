@@ -12,7 +12,7 @@
       >
         {{ article.author.username }}
       </router-link>
-      <span class="date">{{ article.createdAt | date }}</span>
+      <span class="date">{{ timestamp }}</span>
     </div>
     <rwv-article-actions
       v-if="actions"
@@ -38,6 +38,7 @@
 import { mapGetters } from "vuex";
 import RwvArticleActions from "@/components/ArticleActions";
 import { FAVORITE_ADD, FAVORITE_REMOVE } from "@/store/actions.type";
+import moment from "moment";
 
 export default {
   name: "RwvArticleMeta",
@@ -56,6 +57,14 @@ export default {
     }
   },
   computed: {
+    timestamp: function() {
+      const createdAt = moment(this.article.createdAt);
+      const msInDay = 1000 * 60 * 60 * 24;
+      if (moment() - createdAt > msInDay) {
+        return moment(createdAt).format("MMM Do YYYY");
+      }
+      return moment(createdAt).fromNow();
+    },
     ...mapGetters(["currentUser", "isAuthenticated"])
   },
   methods: {
