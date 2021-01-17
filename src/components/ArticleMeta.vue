@@ -20,6 +20,7 @@
       :canModify="isCurrentUser()"
     ></rwv-article-actions>
     <button
+      :title="(this.article.favorited && 'Unlike') || 'Like'"
       v-else
       class="btn btn-sm pull-xs-right"
       @click="toggleFavorite"
