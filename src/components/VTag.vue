@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="`tag/${name}`"
+    :to="`/tag/${name}`"
     :class="className"
     v-text="name"
   ></router-link>
