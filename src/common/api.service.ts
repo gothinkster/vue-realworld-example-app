@@ -1,5 +1,5 @@
 import JwtService from "@/common/jwt.service";
-import axios from 'axios'
+import axios from "axios";
 import { API_URL } from "@/common/config";
 
 export const axiosClient = axios.create({
