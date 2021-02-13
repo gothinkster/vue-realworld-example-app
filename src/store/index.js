@@ -1,11 +1,11 @@
-import Vuex from "vuex";
+import { createStore } from "vuex";
 
 import home from "./home.module";
 import auth from "./auth.module";
 import article from "./article.module";
 import profile from "./profile.module";
 
-export default Vuex.createStore({
+export default createStore({
   modules: {
     home,
     auth,
