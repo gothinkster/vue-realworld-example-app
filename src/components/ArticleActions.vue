@@ -2,17 +2,17 @@
   <!-- Used when user is also author -->
   <span v-if="canModify">
     <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
-      <i class="ion-edit"></i> <span>&nbsp;Edit Article</span>
+      <ion-icon name="edit"></ion-icon> <span>&nbsp;Edit Article</span>
     </router-link>
     <span>&nbsp;&nbsp;</span>
     <button class="btn btn-outline-danger btn-sm" @click="deleteArticle">
-      <i class="ion-trash-a"></i> <span>&nbsp;Delete Article</span>
+      <ion-icon name="trash-a"></ion-icon> <span>&nbsp;Delete Article</span>
     </button>
   </span>
   <!-- Used in ArticleView when not author -->
   <span v-else>
     <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
-      <i class="ion-plus-round"></i> <span>&nbsp;</span>
+      <ion-icon name="plus-round"></ion-icon> <span>&nbsp;</span>
       <span v-text="followUserLabel" />
     </button>
     <span>&nbsp;&nbsp;</span>
@@ -21,7 +21,7 @@
       @click="toggleFavorite"
       :class="toggleFavoriteButtonClasses"
     >
-      <i class="ion-heart"></i> <span>&nbsp;</span>
+      <ion-icon name="heart"></ion-icon> <span>&nbsp;</span>
       <span v-text="favoriteArticleLabel" /> <span>&nbsp;</span>
       <span class="counter" v-text="favoriteCounter" />
     </button>

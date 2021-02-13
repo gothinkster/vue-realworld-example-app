@@ -15,7 +15,7 @@
       </router-link>
       <span class="date-posted">{{ dateFilter(comment.createdAt) }}</span>
       <span v-if="isCurrentUser" class="mod-options">
-        <i class="ion-trash-a" @click="destroy(slug, comment.id)"></i>
+        <ion-icon name="trash-a" @click="destroy(slug, comment.id)"></ion-icon>
       </span>
     </div>
   </div>

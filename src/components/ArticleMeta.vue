@@ -28,7 +28,7 @@
         'btn-outline-primary': !article.favorited
       }"
     >
-      <i class="ion-heart"></i>
+      <ion-icon name="heart"></ion-icon>
       <span class="counter"> {{ article.favoritesCount }} </span>
     </button>
   </div>

@@ -36,7 +36,7 @@
                   class="nav-link"
                   active-class="active"
                 >
-                  <i class="ion-pound"></i> {{ tag }}
+                  <ion-icon name="pound"></ion-icon> {{ tag }}
                 </router-link>
               </li>
             </ul>
