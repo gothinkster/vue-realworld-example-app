@@ -4,8 +4,9 @@
   "description": "TodoMVC for the RealWorld™",
   "author": "Emmanuel Vilsbol <emmanuel@vilsbol.com>",
   "scripts": {
-    "serve": "cross-env BABEL_ENV=dev vue-cli-service serve",
-    "build": "cross-env BABEL_ENV=dev vue-cli-service build",
+    "start": "npm run serve",
+    "serve": "cross-env BABEL_ENV=dev vue-cli-service serve --open",
+    "build": "cross-env BABEL_ENV=dev vue-cli-service build --modern",
     "lint": "vue-cli-service lint",
     "test": "cross-env BABEL_ENV=test jest --coverage"
   },
