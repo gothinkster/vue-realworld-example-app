@@ -45,8 +45,8 @@ export default {
     destroy(slug, commentId) {
       this.$store.dispatch(COMMENT_DESTROY, { slug, commentId });
     },
-    dateFilter() {
-      return format(new Date(date), "MMMM D, YYYY");
+    dateFilter(date) {
+      return format(new Date(date), "MMMM d, yyyy");
     }
   }
 };

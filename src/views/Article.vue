@@ -10,7 +10,7 @@
       <div class="row article-content">
         <div class="col-xs-12">
           <div v-html="parseMarkdown(article.body)"></div>
-          <ul class="tag-list">
+          <ul class="tag-list" v-if="article.tagList && article.tagList.length">
             <li v-for="(tag, index) of article.tagList" :key="tag + index">
               <RwvTag
                 :name="tag"

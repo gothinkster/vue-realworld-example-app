@@ -46,7 +46,7 @@
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
-            <div class="tag-list">
+            <div class="tag-list" v-if="tags && tags.length">
               <RwvTag v-for="(tag, index) in tags" :name="tag" :key="index">
               </RwvTag>
             </div>

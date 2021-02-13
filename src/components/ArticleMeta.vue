@@ -66,8 +66,8 @@ export default {
       }
       return false;
     },
-    dateFilter() {
-      return format(new Date(date), "MMMM D, YYYY");
+    dateFilter(date) {
+      return format(new Date(date), "MMMM d, yyyy");
     },
     toggleFavorite() {
       if (!this.isAuthenticated) {

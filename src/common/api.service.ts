@@ -1,15 +1,14 @@
-import Vue from "vue";
 import JwtService from "@/common/jwt.service";
 import axios from 'axios'
 import { API_URL } from "@/common/config";
 
-const axiosClient = axios.create({
-  baseURL: API_URL,
+export const axiosClient = axios.create({
+  baseURL: API_URL
 });
 
 const ApiService = {
   setHeader() {
-    axiosClient.defaults.headers.common[
+    axiosClient.defaults.headers[
       "Authorization"
     ] = `Token ${JwtService.getToken()}`;
   },

@@ -9,12 +9,6 @@ import axios from "axios";
 import { CHECK_AUTH } from "./store/actions.type";
 
 // Ensure we checked auth before each page load.
-router.beforeEach((to, from, next) =>
-  Promise.all([store.dispatch(CHECK_AUTH)]).then(next)
-);
+store.dispatch(CHECK_AUTH);
 
-const app = createApp(App)
-  .use(router)
-  .use(store)
-  .use(VueAxios, axios)
-  .mount("#app");
+createApp(App).use(router).use(store).use(VueAxios, axios).mount("#app");
