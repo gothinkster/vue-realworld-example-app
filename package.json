@@ -18,7 +18,7 @@
     "register-service-worker": "^1.7.2",
     "vue": "^3.0.0-beta.1",
     "vue-axios": "^3.2.4",
-    "vue-router": "^3.5.1",
+    "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
     "@vue/cli-plugin-babel": "~4.5.11",
     "@vue/cli-plugin-eslint": "~4.5.11",
     "@vue/cli-plugin-pwa": "~4.5.11",
+    "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.11",
     "@vue/cli-service": "~4.5.11",
     "@vue/compiler-sfc": "^3.0.0-beta.1",
@@ -43,8 +44,7 @@
     "node-sass": "^5.0.0",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
-    "sass-loader": "^11.0.1",
-    "vue-cli-plugin-vue-next": "~0.1.4"
+    "sass-loader": "^11.0.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

@@ -1,4 +1,3 @@
-import Vue from "vue";
 import {
   ArticlesService,
   CommentsService,
@@ -109,8 +108,8 @@ export const mutations = {
     state.article.tagList = state.article.tagList.filter((t) => t !== tag);
   },
   [RESET_STATE]() {
-    for (let f in state) {
-      Vue.set(state, f, initialState[f]);
+    for (const f in state) {
+      state[f] = initialState;
     }
   }
 };
