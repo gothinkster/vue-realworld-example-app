@@ -12,7 +12,7 @@
       >
         {{ article.author.username }}
       </router-link>
-      <span class="date">{{ article.createdAt | date }}</span>
+      <span class="date">{{ dateFilter(article.createdAt) }}</span>
     </div>
     <rwv-article-actions
       v-if="actions"
@@ -38,6 +38,7 @@
 import { mapGetters } from "vuex";
 import RwvArticleActions from "@/components/ArticleActions";
 import { FAVORITE_ADD, FAVORITE_REMOVE } from "@/store/actions.type";
+import format from "date-fns/format";
 
 export default {
   name: "RwvArticleMeta",
@@ -64,6 +65,9 @@ export default {
         return this.currentUser.username === this.article.author.username;
       }
       return false;
+    },
+    dateFilter() {
+      return format(new Date(date), "MMMM D, YYYY");
     },
     toggleFavorite() {
       if (!this.isAuthenticated) {

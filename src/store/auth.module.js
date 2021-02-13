@@ -26,7 +26,7 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       ApiService.post("users/login", { user: credentials })
         .then(({ data }) => {
           context.commit(SET_AUTH, data.user);

@@ -10,7 +10,7 @@
         :article="article"
         :key="article.title + index"
       />
-      <VPagination :pages="pages" :currentPage.sync="currentPage" />
+      <VPagination :pages="pages" v-model:currentPage="currentPage" />
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
       }
       return [
         ...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()
-      ].map(e => e + 1);
+      ].map((e) => e + 1);
     },
     ...mapGetters(["articlesCount", "isLoading", "articles"])
   },

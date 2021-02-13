@@ -13,7 +13,7 @@
       >
         {{ comment.author.username }}
       </router-link>
-      <span class="date-posted">{{ comment.createdAt | date }}</span>
+      <span class="date-posted">{{ dateFilter(comment.createdAt) }}</span>
       <span v-if="isCurrentUser" class="mod-options">
         <i class="ion-trash-a" @click="destroy(slug, comment.id)"></i>
       </span>
@@ -24,6 +24,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { COMMENT_DESTROY } from "@/store/actions.type";
+import format from "date-fns/format";
 
 export default {
   name: "RwvComment",
@@ -43,6 +44,9 @@ export default {
   methods: {
     destroy(slug, commentId) {
       this.$store.dispatch(COMMENT_DESTROY, { slug, commentId });
+    },
+    dateFilter() {
+      return format(new Date(date), "MMMM D, YYYY");
     }
   }
 };
