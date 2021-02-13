@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
+import HomeGlobal from "@/views/HomeGlobal.vue";
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -11,39 +12,49 @@ export default createRouter({
         {
           path: "",
           name: "home",
-          component: () =>
-            import(/* webpackPreload: true */ "@/views/HomeGlobal.vue")
+          component: HomeGlobal
         },
         {
           path: "my-feed",
           name: "home-my-feed",
           component: () =>
-            import(/* webpackPrefetch: true */ "@/views/HomeMyFeed.vue")
+            import(
+              /* webpackChunkName: "MyFeed", webpackPrefetch: true */ "@/views/HomeMyFeed.vue"
+            )
         },
         {
           path: "tag/:tag",
           name: "home-tag",
           component: () =>
-            import(/* webpackPrefetch: true */ "@/views/HomeTag.vue")
+            import(
+              /* webpackChunkName: "HomeTag", webpackPrefetch: true */ "@/views/HomeTag.vue"
+            )
         }
       ]
     },
     {
       name: "login",
       path: "/login",
-      component: () => import(/* webpackPrefetch: true */ "@/views/Login.vue")
+      component: () =>
+        import(
+          /* webpackChunkName: "Login", webpackPrefetch: true */ "@/views/Login.vue"
+        )
     },
     {
       name: "register",
       path: "/register",
       component: () =>
-        import(/* webpackPrefetch: true */ "@/views/Register.vue")
+        import(
+          /* webpackChunkName: "Register", webpackPrefetch: true */ "@/views/Register.vue"
+        )
     },
     {
       name: "settings",
       path: "/settings",
       component: () =>
-        import(/* webpackPrefetch: true */ "@/views/Settings.vue")
+        import(
+          /* webpackChunkName: "Settings", webpackPrefetch: true */ "@/views/Settings.vue"
+        )
     },
     // Handle child routes with a default, by giving the name to the
     // child.
@@ -51,19 +62,25 @@ export default createRouter({
     {
       path: "/@:username",
       component: () =>
-        import(/* webpackPrefetch: true */ "@/views/Profile.vue"),
+        import(
+          /* webpackChunkName: "Profile", webpackPrefetch: true */ "@/views/Profile.vue"
+        ),
       children: [
         {
           path: "",
           name: "profile",
           component: () =>
-            import(/* webpackPrefetch: true */ "@/views/ProfileArticles.vue")
+            import(
+              /* webpackChunkName: "ProfileArticles", webpackPrefetch: true */ "@/views/ProfileArticles.vue"
+            )
         },
         {
           name: "profile-favorites",
           path: "favorites",
           component: () =>
-            import(/* webpackPrefetch: true */ "@/views/ProfileFavorited.vue")
+            import(
+              /* webpackChunkName: "ProfileFavorited", webpackPrefetch: true */ "@/views/ProfileFavorited.vue"
+            )
         }
       ]
     },
@@ -71,7 +88,9 @@ export default createRouter({
       name: "article",
       path: "/articles/:slug",
       component: () =>
-        import(/* webpackPrefetch: true */ "@/views/Article.vue"),
+        import(
+          /* webpackChunkName: "Article", webpackPrefetch: true */ "@/views/Article.vue"
+        ),
       props: true
     },
     {
@@ -79,7 +98,9 @@ export default createRouter({
       path: "/editor/:slug?",
       props: true,
       component: () =>
-        import(/* webpackPrefetch: true */ "@/views/ArticleEdit.vue")
+        import(
+          /* webpackChunkName: "ArticleEdit", webpackPrefetch: true */ "@/views/ArticleEdit.vue"
+        )
     }
   ]
 });
