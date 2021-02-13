@@ -45,7 +45,10 @@
                     v-for="(tag, index) of article.tagList"
                     :key="tag + index"
                   >
-                    <ion-icon name="close-round" @click="removeTag(tag)">
+                    <ion-icon
+                      name="close-circle-outline"
+                      @click="removeTag(tag)"
+                    >
                     </ion-icon>
                     {{ tag }}
                   </span>

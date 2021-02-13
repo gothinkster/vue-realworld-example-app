@@ -13,8 +13,11 @@ module.exports = {
         // modify the options...
         return {
           ...options,
-          isCustomElement: (tag) => {
-            return tag.startsWith("ion-");
+          compilerOptions: {
+            ...(options.compilerOptions || {}),
+            isCustomElement: (tag) => {
+              return tag.startsWith("ion-");
+            }
           }
         };
       });
