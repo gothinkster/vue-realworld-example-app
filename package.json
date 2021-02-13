@@ -24,15 +24,20 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/preset-env": "^7.12.16",
+    "@types/jest": "^24.0.19",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.11",
     "@vue/cli-plugin-eslint": "~4.5.11",
     "@vue/cli-plugin-pwa": "~4.5.11",
     "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.11",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.11",
     "@vue/compiler-sfc": "^3.0.0-beta.1",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-alpha.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -45,18 +50,23 @@
     "node-sass": "^5.0.0",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
-    "sass-loader": "^11.0.1"
+    "sass-loader": "^11.0.1",
+    "typescript": "~3.9.3"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
+    "*.ts": [
+      "vue-cli-service lint --fix",
+      "git add"
+    ],
     "*.js": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --fix",
       "git add"
     ],
     "*.vue": [
-      "vue-cli-service lint",
+      "vue-cli-service lint --fix",
       "git add"
     ]
   }

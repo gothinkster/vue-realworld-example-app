@@ -21,7 +21,7 @@
 
 <script>
 import RwvListErrors from "./ListErrors.vue";
-import { COMMENT_CREATE } from "../store/actions.type.js";
+import { COMMENT_CREATE } from "../store/actions.type";
 
 export default {
   name: "RwvCommentEditor",

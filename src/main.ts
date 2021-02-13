@@ -5,7 +5,6 @@ import store from "./store";
 import "./registerServiceWorker";
 import VueAxios from "vue-axios";
 import axios from "axios";
-import { API_URL } from "@/common/config";
 
 import { CHECK_AUTH } from "./store/actions.type";
 
@@ -19,5 +18,3 @@ const app = createApp(App)
   .use(store)
   .use(VueAxios, axios)
   .mount("#app");
-
-app.axios.defaults.baseURL = API_URL;

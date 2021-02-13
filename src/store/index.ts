@@ -9,6 +9,7 @@ export default createStore({
   modules: {
     home,
     auth,
+    // @ts-ignore
     article,
     profile
   }

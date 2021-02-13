@@ -73,7 +73,8 @@ const actions = {
       email,
       username,
       bio,
-      image
+      image,
+      password: undefined
     };
     if (password) {
       user.password = password;
