@@ -57,12 +57,9 @@ const actions = {
     if (JwtService.getToken()) {
       return ApiService.get("user")
         .then(({ data }) => {
-          debugger;
-          console.log("wat", data);
           context.commit(SET_AUTH, data.user);
         })
         .catch(({ response }) => {
-          debugger;
           context.commit(SET_ERROR, response.data.errors);
         });
     } else {
