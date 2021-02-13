@@ -3,7 +3,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-import axios from "axios";
 
 import { CHECK_AUTH } from "./store/actions.type";
 

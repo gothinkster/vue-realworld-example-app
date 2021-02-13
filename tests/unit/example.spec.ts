@@ -21,7 +21,7 @@ describe("Comment", () => {
         }
       ]
     });
-    let store = new Vuex.Store({
+    const store = new Vuex.Store({
       getters: {
         currentUser: () => ({
           username: "user-3518518"
