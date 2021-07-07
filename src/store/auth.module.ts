@@ -26,7 +26,7 @@ const getters = {
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       ApiService.post("users/login", { user: credentials })
         .then(({ data }) => {
           context.commit(SET_AUTH, data.user);
@@ -55,8 +55,7 @@ const actions = {
   },
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
-      ApiService.setHeader();
-      ApiService.get("user")
+      return ApiService.get("user")
         .then(({ data }) => {
           context.commit(SET_AUTH, data.user);
         })
@@ -73,7 +72,8 @@ const actions = {
       email,
       username,
       bio,
-      image
+      image,
+      password: undefined
     };
     if (password) {
       user.password = password;

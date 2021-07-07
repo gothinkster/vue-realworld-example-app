@@ -1,47 +1,44 @@
-import Vue from "vue";
-import axios from "axios";
-import VueAxios from "vue-axios";
 import JwtService from "@/common/jwt.service";
+import axios from "axios";
 import { API_URL } from "@/common/config";
 
-const ApiService = {
-  init() {
-    Vue.use(VueAxios, axios);
-    Vue.axios.defaults.baseURL = API_URL;
-  },
+export const axiosClient = axios.create({
+  baseURL: API_URL
+});
 
+const ApiService = {
   setHeader() {
-    Vue.axios.defaults.headers.common[
+    axiosClient.defaults.headers[
       "Authorization"
     ] = `Token ${JwtService.getToken()}`;
   },
 
   query(resource, params) {
-    return Vue.axios.get(resource, params).catch(error => {
+    return axiosClient.get(resource, params).catch((error) => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
 
   get(resource, slug = "") {
-    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+    return axiosClient.get(`${resource}/${slug}`).catch((error) => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
 
-  post(resource, params) {
-    return Vue.axios.post(`${resource}`, params);
+  post(resource, params?: any) {
+    return axiosClient.post(`${resource}`, params);
   },
 
   update(resource, slug, params) {
-    return Vue.axios.put(`${resource}/${slug}`, params);
+    return axiosClient.put(`${resource}/${slug}`, params);
   },
 
   put(resource, params) {
-    return Vue.axios.put(`${resource}`, params);
+    return axiosClient.put(`${resource}`, params);
   },
 
   delete(resource) {
-    return Vue.axios.delete(resource).catch(error => {
+    return axiosClient.delete(resource).catch((error) => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   }

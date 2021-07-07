@@ -11,7 +11,7 @@ import {
 jest.mock("vue", () => {
   return {
     axios: {
-      get: jest.fn().mockImplementation(async articleSlug => {
+      get: jest.fn().mockImplementation(async (articleSlug) => {
         if (articleSlug.includes("8371b051-cffc-4ff0-887c-2c477615a28e")) {
           return {
             data: {
@@ -62,7 +62,7 @@ jest.mock("vue", () => {
         }
         throw new Error("Article not existing");
       }),
-      post: jest.fn().mockImplementation(async articleSlug => {
+      post: jest.fn().mockImplementation(async (articleSlug) => {
         if (articleSlug.includes("582e1e46-6b8b-4f4d-8848-f07b57e015a0")) {
           return null;
         }
@@ -83,7 +83,7 @@ jest.mock("vue", () => {
         }
         throw new Error("Article not existing");
       }),
-      delete: jest.fn().mockImplementation(async articleSlug => {
+      delete: jest.fn().mockImplementation(async (articleSlug) => {
         if (articleSlug.includes("657a6075-d269-4aec-83fa-b14f579a3e78")) {
           return null;
         }

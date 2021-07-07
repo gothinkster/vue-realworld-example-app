@@ -13,7 +13,7 @@ export const actions = {
       .then(({ data }) => {
         context.commit(SET_ARTICLE, data.article);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(error);
       });
   },
@@ -22,7 +22,7 @@ export const actions = {
       .then(({ data }) => {
         context.commit(SET_COMMENTS, data.comments);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(error);
       });
   }

@@ -22,7 +22,7 @@
             exact
             :to="{ name: 'login' }"
           >
-            <i class="ion-compose"></i>Sign in
+            <ion-icon name="create-outline"></ion-icon>Sign in
           </router-link>
         </li>
         <li class="nav-item">
@@ -32,7 +32,7 @@
             exact
             :to="{ name: 'register' }"
           >
-            <i class="ion-compose"></i>Sign up
+            <ion-icon name="create-outline"></ion-icon>Sign up
           </router-link>
         </li>
       </ul>
@@ -53,7 +53,7 @@
             active-class="active"
             :to="{ name: 'article-edit' }"
           >
-            <i class="ion-compose"></i>&nbsp;New Article
+            <ion-icon name="create-outline"></ion-icon>&nbsp;New Article
           </router-link>
         </li>
         <li class="nav-item">
@@ -63,7 +63,7 @@
             exact
             :to="{ name: 'settings' }"
           >
-            <i class="ion-gear-a"></i>&nbsp;Settings
+            <ion-icon name="settings-outline"></ion-icon>&nbsp;Settings
           </router-link>
         </li>
         <li class="nav-item" v-if="currentUser.username">
