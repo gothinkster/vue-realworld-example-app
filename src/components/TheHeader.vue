@@ -1,9 +1,11 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{ name: 'home' }">
-        conduit
-      </router-link>
+      <router-link
+        class="navbar-brand"
+        :to="{ name: 'home' }"
+        v-text="'conduit'"
+      />
       <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
           <router-link
@@ -11,9 +13,8 @@
             active-class="active"
             exact
             :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
+            v-text="'Home'"
+          />
         </li>
         <li class="nav-item">
           <router-link
@@ -43,9 +44,8 @@
             active-class="active"
             exact
             :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
+            v-text="'Home'"
+          />
         </li>
         <li class="nav-item">
           <router-link
@@ -75,9 +75,8 @@
               name: 'profile',
               params: { username: currentUser.username }
             }"
-          >
-            {{ currentUser.username }}
-          </router-link>
+            v-text="currentUser.username"
+          />
         </li>
       </ul>
     </div>
