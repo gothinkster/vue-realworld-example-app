@@ -55,6 +55,9 @@ yarn run build
 yarn test
 ```
 
+How to setup editorconfig:
+For Windows Users: To create an .editorconfig file within Windows Explorer, you need to create a file named .editorconfig., which Windows Explorer will automatically rename to .editorconfig.
+
 ## To know
 
 Current arbitrary choices are:
