@@ -35,7 +35,8 @@ import {
   FAVORITE_REMOVE,
   ARTICLE_DELETE,
   FETCH_PROFILE_FOLLOW,
-  FETCH_PROFILE_UNFOLLOW
+  FETCH_PROFILE_UNFOLLOW,
+  FETCH_PROFILE
 } from "@/store/actions.type";
 
 export default {
@@ -43,6 +44,9 @@ export default {
   props: {
     article: { type: Object, required: true },
     canModify: { type: Boolean, required: true }
+  },
+  created() {
+    this.$store.dispatch(FETCH_PROFILE, this.article.author);
   },
   computed: {
     ...mapGetters(["profile", "isAuthenticated"]),
@@ -57,7 +61,7 @@ export default {
     },
     followUserLabel() {
       return `${this.profile.following ? "Unfollow" : "Follow"} ${
-        this.article.author.username
+        this.profile.username
       }`;
     },
     favoriteArticleLabel() {
@@ -81,7 +85,7 @@ export default {
         this.$router.push({ name: "login" });
         return;
       }
-      const action = this.article.following
+      const action = this.profile.following
         ? FETCH_PROFILE_UNFOLLOW
         : FETCH_PROFILE_FOLLOW;
       this.$store.dispatch(action, {
