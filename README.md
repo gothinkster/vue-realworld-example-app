@@ -45,6 +45,13 @@ The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/we
 > yarn serve
 ```
 
+You can also get started using docker-compose:
+
+``` bash
+# build and start container
+> docker-compose up -d
+```
+
 Other commands available are:
 
 ``` bash
