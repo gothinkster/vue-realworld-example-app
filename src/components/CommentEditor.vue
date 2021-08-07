@@ -33,9 +33,18 @@ export default {
   },
   data() {
     return {
-      comment: this.content || null,
       errors: {}
     };
+  },
+  computed: {
+    comment: {
+      get() {
+        return this.content || null;
+      },
+      set(val) {
+        return (this.content = val);
+      }
+    }
   },
   methods: {
     onSubmit(slug, comment) {
