@@ -51,6 +51,9 @@ Other commands available are:
 # build for production with minification
 yarn run build
 
+# build docker image from dist directory
+docker build -t vue-realworld-example-app .
+
 # run unit tests
 yarn test
 ```
