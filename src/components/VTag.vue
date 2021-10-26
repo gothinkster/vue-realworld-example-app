@@ -16,7 +16,7 @@ export default {
     }
   },
   computed: {
-    homeRoute: () => ({ name: "home-tag", params: { tag: name } })
+    homeRoute: (props) => ({ name: "home-tag", params: { tag: props.name } })
   }
 };
 </script>
