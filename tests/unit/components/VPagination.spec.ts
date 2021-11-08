@@ -1,9 +1,9 @@
 import { mount } from "@vue/test-utils";
 
-import VPagination from "../../../src/components/VPagination.vue";
+import ListPagination from "../../../src/components/ListPagination.vue";
 
 const createWrapper = ({ currentPage = 1 }) => {
-  return mount(VPagination, {
+  return mount(ListPagination, {
     propsData: {
       pages: [1, 2, 3, 4],
       currentPage
@@ -11,7 +11,7 @@ const createWrapper = ({ currentPage = 1 }) => {
   });
 };
 
-describe("VPagination", () => {
+describe("ListPagination", () => {
   it("should render active class to right element", () => {
     const wrapper = createWrapper({ currentPage: 2 });
     const activeItem = wrapper.find(".active");

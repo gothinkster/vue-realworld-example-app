@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Pagination",
+  name: "ListPagination",
   props: {
     pages: {
       type: Array,

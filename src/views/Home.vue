@@ -63,7 +63,7 @@ import RwvTag from "@/components/VTag";
 import { FETCH_TAGS } from "@/store/actions.type";
 
 export default {
-  name: "home",
+  name: "HomePage",
   components: {
     RwvTag
   },
