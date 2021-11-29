@@ -14,6 +14,12 @@ jobs:
       BRANCH_NAME: ${{ github.head_ref }}
 
     steps:
+      steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      
       - name: branch name
         id: branch
         run: |
@@ -25,10 +31,10 @@ jobs:
       - name: building infinity
         run: |
           yarn install
-         # yarn run build
+          yarn run build
         shell: bash
 
       - name: creating index.html versioning i.e index-<tag#>
         run: |
-          cp "index.html" "index-feature-${{ steps.branch.outputs.feature_name }}"
+          cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name }}
         shell: bash
