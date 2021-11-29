@@ -20,6 +20,7 @@ jobs:
         run: |
           feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 3)
           echo "::set-output name=feature_name::$feature"
+          echo "$feature"
 
       
 
