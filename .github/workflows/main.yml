@@ -27,12 +27,12 @@ jobs:
       - name: building infinity
         run: |
           yarn install
-         # yarn build
+          yarn run build
         shell: bash
 
       - name: creating index.html versioning i.e index-<tag#>
         run: |
-          cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name  }}
+          cp /public/index.html /public/index-feature-${{ steps.branch.outputs.feature_name  }}
         shell: bash
 
     
