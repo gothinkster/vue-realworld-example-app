@@ -27,7 +27,7 @@ jobs:
       - name: building infinity
         run: |
           yarn install
-          yarn run build
+         # yarn run build
         shell: bash
 
       - name: creating index.html versioning i.e index-<tag#>
