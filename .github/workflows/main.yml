@@ -14,7 +14,6 @@ jobs:
       BRANCH_NAME: ${{ github.head_ref }}
 
     steps:
-      steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
         with:
