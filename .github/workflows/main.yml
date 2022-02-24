@@ -5,7 +5,7 @@ on:
       branch_name:
         description: 'Please provide the exact branch name'     
         required: true
-        default: 'master'
+     
   #pull_request:
     #types: [closed]
     #branches:
@@ -13,24 +13,27 @@ on:
 
 jobs:
   build:
-   # if: | 
-     # github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     env:
-      BRANCH_NAME: ${{ github.event.input.branch_name }}
+      BRANCH_NAME: ${{ github.event.inputs.branch_name }}
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
         with:
           ref: master
+
+    
       
       - name: branch name
         id: branch
         run: |
+          git fetch --all
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git pull origin ${{ env.BRANCH_NAME }}
           feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 2)
           echo "::set-output name=feature_name::$feature"
-          echo "$feature"
+          echo "$feature" 
       
 
       - name: building infinity
@@ -41,5 +44,6 @@ jobs:
 
       - name: creating index.html versioning i.e index-<tag#>
         run: |
-          cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name }}
-        shell: bash
+          ls -al
+        #  cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name }}
+       # shell: bash
