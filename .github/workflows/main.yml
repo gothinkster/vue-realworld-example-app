@@ -30,7 +30,6 @@ jobs:
         run: |
           git fetch --all
           git checkout -b ${{ env.BRANCH_NAME }}
-          git rebase --skip
           git pull origin ${{ env.BRANCH_NAME }} --rebase
           #git rebase --skip
           feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 2)
