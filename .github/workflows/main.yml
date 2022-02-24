@@ -23,17 +23,26 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
         with:
-          ref: ''
+          ref: develop
+
+    
       
       - name: branch name
         id: branch
         run: |
+          git fetch --all
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git pull origin ${{ env.BRANCH_NAME }}
           feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 2)
           echo "::set-output name=feature_name::$feature"
-          echo "$feature"
+          echo "$feature" 
       
 
-     
+      - name: building infinity
+        run: |
+          yarn install
+          yarn run build
+        shell: bash
 
       - name: creating index.html versioning i.e index-<tag#>
         run: |
