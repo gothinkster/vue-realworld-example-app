@@ -1,9 +1,15 @@
 name: 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Please provide the exact branch name'     
+        required: true
+        default: 'master'
+  #pull_request:
+    #types: [closed]
+    #branches:
+     # - master
 
 jobs:
   build:
@@ -11,7 +17,7 @@ jobs:
       github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     env:
-      BRANCH_NAME: ${{ github.head_ref }}
+      BRANCH_NAME: ${{ github.event.input.branch_name }}
 
     steps:
       - name: Check out Git repository
@@ -22,7 +28,7 @@ jobs:
       - name: branch name
         id: branch
         run: |
-          feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 3)
+          feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 2)
           echo "::set-output name=feature_name::$feature"
           echo "$feature"
       
