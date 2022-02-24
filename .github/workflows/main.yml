@@ -17,13 +17,13 @@ jobs:
     #  github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     env:
-      BRANCH_NAME: ''
+      BRANCH_NAME: ${{ github.event.inputs.branch_name }}
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ env.BRANCH_NAME }}
+          ref: ''
       
       - name: branch name
         id: branch
