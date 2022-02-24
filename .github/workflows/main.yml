@@ -30,7 +30,7 @@ jobs:
         run: |
           git fetch --all
           git checkout -b ${{ env.BRANCH_NAME }}
-          git pull origin ${{ env.BRANCH_NAME }}
+          git pull
           feature=$(echo "${{ env.BRANCH_NAME}}" | cut -d "-" -f 2)
           echo "::set-output name=feature_name::$feature"
           echo "$feature" 
