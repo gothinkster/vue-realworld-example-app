@@ -17,7 +17,7 @@ jobs:
     #  github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     env:
-      BRANCH_NAME: ${{ github.event.input.branch_name }}
+      BRANCH_NAME: ${{ github.event.inputs.branch_name }}
 
     steps:
       - name: Check out Git repository
@@ -41,5 +41,6 @@ jobs:
 
       - name: creating index.html versioning i.e index-<tag#>
         run: |
-          cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name }}
-        shell: bash
+          ls -al
+        #  cp public/index.html public/index-feature-${{ steps.branch.outputs.feature_name }}
+       # shell: bash
