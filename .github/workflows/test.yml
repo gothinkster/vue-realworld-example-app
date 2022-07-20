@@ -3,7 +3,7 @@ name: 'Test'
 on:
   pull_request:
   push:
-    branches: [ 'main' ]
+    branches: [ 'master' ]
   # The "workflow_dispatch" event gives us a button in GitHub's "Action" UI
   workflow_dispatch:
 
