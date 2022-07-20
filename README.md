@@ -88,4 +88,4 @@ These can be changed when the contributors reach a consensus.
 
 ## #Connect
 
-Join us on [Discord](https://discord.gg/NE2jNmg)
+Join us on yes [Discord](https://discord.gg/NE2jNmg)
