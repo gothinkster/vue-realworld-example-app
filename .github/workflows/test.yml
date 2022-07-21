@@ -1,0 +1,27 @@
+name: 'Test'
+
+on:
+  pull_request:
+  push:
+    branches: [ 'master' ]
+  # The "workflow_dispatch" event gives us a button in GitHub's "Action" UI
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ 'ubuntu-latest' ]
+        node-version: [ '16.x' ]
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+
+      - name: 'Use Node.js v${{ matrix.node-version }}'
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 'Run tests'
+        run: yarn install && yarn test
