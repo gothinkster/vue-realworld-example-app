@@ -53,7 +53,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import marked from "marked";
+import { marked } from "marked";
 import store from "@/store";
 import RwvArticleMeta from "@/components/ArticleMeta";
 import RwvComment from "@/components/Comment";

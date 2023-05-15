@@ -1,26 +1,11 @@
-import { createLocalVue, mount } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import Vuex from "vuex";
-import VueRouter from "vue-router";
+// import { createRouter, createWebHashHistory } from "vue-router";
 
 import Comment from "../../src/components/Comment.vue";
-import DateFilter from "../../src/common/date.filter";
-
-const localVue = createLocalVue();
-localVue.filter("date", DateFilter);
-localVue.use(Vuex);
-localVue.use(VueRouter);
 
 describe("Comment", () => {
   it("should render correct contents", () => {
-    const router = new VueRouter({
-      routes: [
-        {
-          name: "profile",
-          path: "/profile",
-          component: null
-        }
-      ]
-    });
     const store = new Vuex.Store({
       getters: {
         currentUser: () => ({
@@ -30,10 +15,10 @@ describe("Comment", () => {
     });
 
     const wrapper = mount(Comment, {
-      localVue,
-      store,
-      router,
-      propsData: {
+      global: {
+        plugins: [store]
+      },
+      props: {
         slug: "super-cool-comment-slug-1245781274",
         comment: {
           body: "body of comment",
@@ -46,6 +31,6 @@ describe("Comment", () => {
         }
       }
     });
-    expect(wrapper.isVueInstance()).toBeTruthy();
+    expect(wrapper.vm).toBeTruthy();
   });
 });

@@ -4,7 +4,7 @@ import ListPagination from "../../../src/components/ListPagination.vue";
 
 const createWrapper = ({ currentPage = 1 }) => {
   return mount(ListPagination, {
-    propsData: {
+    props: {
       pages: [1, 2, 3, 4],
       currentPage
     }
@@ -29,6 +29,6 @@ describe("ListPagination", () => {
     const wrapper = createWrapper({ currentPage: 1 });
     const pageItem = wrapper.find('[data-test="page-link-2"]');
     pageItem.trigger("click");
-    expect(wrapper.emitted("update:currentPage")[0][0]).toBe(2);
+    expect(wrapper.emitted("update:currentPage")![0][0]).toBe(2);
   });
 });

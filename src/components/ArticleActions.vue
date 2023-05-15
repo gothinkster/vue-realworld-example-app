@@ -15,7 +15,7 @@
   <span v-else>
     <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
       <ion-icon name="add-circle"></ion-icon> <span>&nbsp;</span>
-      <span v-text="followUserLabel" />
+      <span>{{ followUserLabel }}</span>
     </button>
     <span>&nbsp;&nbsp;</span>
     <button
@@ -24,8 +24,8 @@
       :class="toggleFavoriteButtonClasses"
     >
       <ion-icon name="heart"></ion-icon> <span>&nbsp;</span>
-      <span v-text="favoriteArticleLabel" /> <span>&nbsp;</span>
-      <span class="counter" v-text="favoriteCounter" />
+      <span>{{ favoriteArticleLabel }} </span> <span>&nbsp;</span>
+      <span class="counter">{{ favoriteCounter }} </span>
     </button>
   </span>
 </template>

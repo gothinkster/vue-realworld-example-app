@@ -1,15 +1,16 @@
-import { mount, createLocalVue } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 
 import router from "../../../src/router/index";
-import VTag from "../../../src/components/VTag";
+import VTag from "../../../src/components/VTag.vue";
 
-const localVue = createLocalVue();
 const createWrapper = () => {
   return mount(VTag, {
-    localVue,
-    router,
-    propsData: {
-      name: "Foo"
+    global: {
+      plugins: [router]
+    },
+    props: {
+      name: "Foo",
+      className: ""
     }
   });
 };
@@ -19,7 +20,7 @@ describe("VTag", () => {
     const wrapper = createWrapper();
     const routerBefore = wrapper.vm.$route.path;
     wrapper.find("a").trigger("click");
-    await localVue.nextTick();
+    //next tick
     expect(wrapper.vm.$route.path).not.toBe(routerBefore);
   });
 });

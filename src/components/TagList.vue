@@ -5,7 +5,7 @@
       v-for="(tag, index) of tags"
       :key="index"
     >
-      <span v-text="tag" />
+      <span>{{ tag }}</span>
     </li>
   </ul>
 </template>

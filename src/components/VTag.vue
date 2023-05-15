@@ -1,9 +1,5 @@
 <template>
-  <router-link
-    :to="`/tag/${name}`"
-    :class="className"
-    v-text="name"
-  ></router-link>
+  <router-link :to="`/tag/${name}`" :class="className"> {{ name }}</router-link>
 </template>
 
 <script>
