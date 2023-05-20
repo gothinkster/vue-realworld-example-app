@@ -8,7 +8,7 @@
         :class="paginationClass(page)"
         @click.prevent="changePage(page)"
       >
-        <a class="page-link" href v-text="page" />
+        <a class="page-link" href>{{ page }}</a>
       </li>
     </ul>
   </nav>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Pagination",
+  name: "ListPagination",
   props: {
     pages: {
       type: Array,

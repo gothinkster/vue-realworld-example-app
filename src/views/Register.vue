@@ -10,7 +10,9 @@
             </router-link>
           </p>
           <ul v-if="errors" class="error-messages">
-            <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
+            <li v-for="(v, k) in errors" :key="k">
+              {{ k }} {{ errorFilter(v) }}
+            </li>
           </ul>
           <form @submit.prevent="onSubmit">
             <fieldset class="form-group">
@@ -62,7 +64,7 @@ export default {
   },
   computed: {
     ...mapState({
-      errors: state => state.auth.errors
+      errors: (state) => state.auth.errors
     })
   },
   methods: {
@@ -74,6 +76,9 @@ export default {
           username: this.username
         })
         .then(() => this.$router.push({ name: "home" }));
+    },
+    errorFilter(errorValue) {
+      return `${errorValue[0]}`;
     }
   }
 };

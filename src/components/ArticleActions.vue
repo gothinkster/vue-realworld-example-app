@@ -2,18 +2,20 @@
   <!-- Used when user is also author -->
   <span v-if="canModify">
     <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
-      <i class="ion-edit"></i> <span>&nbsp;Edit Article</span>
+      <ion-icon name="pencil-outline"></ion-icon>
+      <span>&nbsp;Edit Article</span>
     </router-link>
     <span>&nbsp;&nbsp;</span>
     <button class="btn btn-outline-danger btn-sm" @click="deleteArticle">
-      <i class="ion-trash-a"></i> <span>&nbsp;Delete Article</span>
+      <ion-icon name="trash-outline"></ion-icon>
+      <span>&nbsp;Delete Article</span>
     </button>
   </span>
   <!-- Used in ArticleView when not author -->
   <span v-else>
     <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
-      <i class="ion-plus-round"></i> <span>&nbsp;</span>
-      <span v-text="followUserLabel" />
+      <ion-icon name="add-circle"></ion-icon> <span>&nbsp;</span>
+      <span>{{ followUserLabel }}</span>
     </button>
     <span>&nbsp;&nbsp;</span>
     <button
@@ -21,9 +23,9 @@
       @click="toggleFavorite"
       :class="toggleFavoriteButtonClasses"
     >
-      <i class="ion-heart"></i> <span>&nbsp;</span>
-      <span v-text="favoriteArticleLabel" /> <span>&nbsp;</span>
-      <span class="counter" v-text="favoriteCounter" />
+      <ion-icon name="heart"></ion-icon> <span>&nbsp;</span>
+      <span>{{ favoriteArticleLabel }} </span> <span>&nbsp;</span>
+      <span class="counter">{{ favoriteCounter }} </span>
     </button>
   </span>
 </template>
@@ -89,12 +91,8 @@ export default {
       });
     },
     async deleteArticle() {
-      try {
-        await this.$store.dispatch(ARTICLE_DELETE, this.article.slug);
-        this.$router.push("/");
-      } catch (err) {
-        console.error(err);
-      }
+      await this.$store.dispatch(ARTICLE_DELETE, this.article.slug);
+      this.$router.push("/");
     }
   }
 };

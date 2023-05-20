@@ -10,7 +10,7 @@
         :article="article"
         :key="article.title + index"
       />
-      <VPagination :pages="pages" :currentPage.sync="currentPage" />
+      <ListPagination :pages="pages" v-model:currentPage="currentPage" />
     </div>
   </div>
 </template>
@@ -18,14 +18,14 @@
 <script>
 import { mapGetters } from "vuex";
 import RwvArticlePreview from "./VArticlePreview";
-import VPagination from "./VPagination";
+import ListPagination from "./ListPagination";
 import { FETCH_ARTICLES } from "../store/actions.type";
 
 export default {
   name: "RwvArticleList",
   components: {
     RwvArticlePreview,
-    VPagination
+    ListPagination
   },
   props: {
     type: {
@@ -83,7 +83,7 @@ export default {
       }
       return [
         ...Array(Math.ceil(this.articlesCount / this.itemsPerPage)).keys()
-      ].map(e => e + 1);
+      ].map((e) => e + 1);
     },
     ...mapGetters(["articlesCount", "isLoading", "articles"])
   },

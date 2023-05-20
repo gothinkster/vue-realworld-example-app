@@ -36,7 +36,7 @@
                   class="nav-link"
                   active-class="active"
                 >
-                  <i class="ion-pound"></i> {{ tag }}
+                  #{{ tag }}
                 </router-link>
               </li>
             </ul>
@@ -46,7 +46,7 @@
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
-            <div class="tag-list">
+            <div class="tag-list" v-if="tags && tags.length">
               <RwvTag v-for="(tag, index) in tags" :name="tag" :key="index">
               </RwvTag>
             </div>
@@ -63,7 +63,7 @@ import RwvTag from "@/components/VTag";
 import { FETCH_TAGS } from "@/store/actions.type";
 
 export default {
-  name: "home",
+  name: "HomePage",
   components: {
     RwvTag
   },

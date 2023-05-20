@@ -36,16 +36,16 @@ const actions = {
       .then(({ data }) => {
         commit(FETCH_END, data);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(error);
       });
   },
   [FETCH_TAGS]({ commit }) {
     return TagsService.get()
-      .then(({ data }) => {
+      .then(({ data }: any) => {
         commit(SET_TAGS, data.tags);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(error);
       });
   }
@@ -65,7 +65,7 @@ const mutations = {
     state.tags = tags;
   },
   [UPDATE_ARTICLE_IN_LIST](state, data) {
-    state.articles = state.articles.map(article => {
+    state.articles = state.articles.map((article) => {
       if (article.slug !== data.slug) {
         return article;
       }

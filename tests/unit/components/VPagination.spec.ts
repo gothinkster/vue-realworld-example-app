@@ -1,17 +1,17 @@
 import { mount } from "@vue/test-utils";
 
-import VPagination from "../../../src/components/VPagination.vue";
+import ListPagination from "../../../src/components/ListPagination.vue";
 
 const createWrapper = ({ currentPage = 1 }) => {
-  return mount(VPagination, {
-    propsData: {
+  return mount(ListPagination, {
+    props: {
       pages: [1, 2, 3, 4],
       currentPage
     }
   });
 };
 
-describe("VPagination", () => {
+describe("ListPagination", () => {
   it("should render active class to right element", () => {
     const wrapper = createWrapper({ currentPage: 2 });
     const activeItem = wrapper.find(".active");
@@ -29,6 +29,6 @@ describe("VPagination", () => {
     const wrapper = createWrapper({ currentPage: 1 });
     const pageItem = wrapper.find('[data-test="page-link-2"]');
     pageItem.trigger("click");
-    expect(wrapper.emitted("update:currentPage")[0][0]).toBe(2);
+    expect(wrapper.emitted("update:currentPage")![0][0]).toBe(2);
   });
 });

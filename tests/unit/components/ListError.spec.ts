@@ -4,7 +4,7 @@ import ListErrors from "../../../src/components/ListErrors.vue";
 
 const createWrapper = ({ errors }) => {
   return mount(ListErrors, {
-    propsData: {
+    props: {
       errors
     }
   });
@@ -26,9 +26,9 @@ describe("ListErrors", () => {
 
     const errorMessages = wrapper.findAll("li");
     expect(errorMessages.length).toEqual(3);
-    expect(errorMessages.at(0).text()).toContain(errors.title);
-    expect(errorMessages.at(1).text()).toContain(errors.body);
-    expect(errorMessages.at(2).text()).toContain(errors.description);
+    expect(errorMessages[0]?.text()).toContain(errors.title);
+    expect(errorMessages[1]?.text()).toContain(errors.body);
+    expect(errorMessages[2]?.text()).toContain(errors.description);
   });
 
   it("should have props with errors as type object", () => {

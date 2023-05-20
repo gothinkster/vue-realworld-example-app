@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/060665b2-5a8e-4bdb-8b1a-227dfe774e5e/deploy-status)](https://app.netlify.com/sites/vuex-realworld/deploys)
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,7 +14,7 @@ Reach out on twitter @vilsbole
 
 > Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
-Project demo is available at https://vue-vuex-realworld.netlify.app/
+Project demo is available at https://vuex-realworld.netlify.app
 
 This codebase was created to demonstrate a fully fledged fullstack application built with **Vue.js** including CRUD operations, authentication, routing, pagination, and more.
 
@@ -70,7 +71,7 @@ These can be changed when the contributors reach a consensus.
 <p><details>
   <summary><b>Where can I find the service worker file?</b></summary>
 
-  The service worker file is generated automatically. The implementation can be found under [`src/registerServiceWorker.js`](https://github.com/gothinkster/vue-realworld-example-app/blob/eeaeb34fa440d00cd400545301ea203bd2a59284/src/registerServiceWorker.js). You can find the dependencies implementation in this repo: [yyx990803/register-service-worker](https://github.com/yyx990803/register-service-worker#readme).
+  The service worker file is generated automatically. The implementation can be found under [`src/registerServiceWorker.js`](https://github.com/khaledosman/vue-realworld-example-app/blob/eeaeb34fa440d00cd400545301ea203bd2a59284/src/registerServiceWorker.js). You can find the dependencies implementation in this repo: [yyx990803/register-service-worker](https://github.com/yyx990803/register-service-worker#readme).
 
   Also, Google provided a good documentation on how to register a service worker: https://developers.google.com/web/fundamentals/primers/service-workers/registration
 </details></p>
