@@ -299,11 +299,19 @@ export default {
         .dispatch(action)
         .then(({ data }) => {
           this.inProgress = false;
-          clearDraft(slug);
+
+          const oldSlug = slug;
+          const newSlug = data.article.slug;
+
+          clearDraft(oldSlug);
+          if (newSlug && newSlug !== oldSlug) {
+            clearDraft(newSlug);
+          }
           clearDraft(null);
+
           this.$router.push({
             name: "article",
-            params: { slug: data.article.slug }
+            params: { slug: newSlug }
           });
         })
         .catch(({ response }) => {
