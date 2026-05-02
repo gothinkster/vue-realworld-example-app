@@ -303,11 +303,17 @@ export default {
           const oldSlug = slug;
           const newSlug = data.article.slug;
 
-          clearDraft(oldSlug);
-          if (newSlug && newSlug !== oldSlug) {
-            clearDraft(newSlug);
+          if (oldSlug) {
+            clearDraft(oldSlug);
+            if (newSlug && newSlug !== oldSlug) {
+              clearDraft(newSlug);
+            }
+          } else {
+            clearDraft(null);
+            if (newSlug) {
+              clearDraft(newSlug);
+            }
           }
-          clearDraft(null);
 
           this.$router.push({
             name: "article",
