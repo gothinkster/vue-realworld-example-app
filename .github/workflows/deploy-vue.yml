@@ -1,0 +1,61 @@
+name: Deploy Vue App to Production
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build Vue project
+        run: pnpm build
+
+      - name: Set folder permission
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VUE_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo chown -R ${{ secrets.SSH_USER_NAME }} /var/www/html
+
+      - name: Copy dist files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VUE_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "./dist/*"
+          target: "/var/www/html"
+          strip_components: 1
+
+      - name: Restore root permission
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VUE_HOST }}
+          username: ${{ secrets.SSH_USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo chown -R root:root /var/www/html
