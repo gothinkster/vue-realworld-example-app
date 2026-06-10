@@ -38,7 +38,7 @@ Before contributing please read the following:
 
 The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/webpack) so to get started all you have to do is:
 
-``` bash
+```bash
 # install dependencies
 > yarn install
 # serve with hot reload at localhost:8080
@@ -47,7 +47,7 @@ The stack is built using [vue-cli webpack](https://github.com/vuejs-templates/we
 
 Other commands available are:
 
-``` bash
+```bash
 # build for production with minification
 yarn run build
 
@@ -70,20 +70,50 @@ These can be changed when the contributors reach a consensus.
 <p><details>
   <summary><b>Where can I find the service worker file?</b></summary>
 
-  The service worker file is generated automatically. The implementation can be found under [`src/registerServiceWorker.js`](https://github.com/gothinkster/vue-realworld-example-app/blob/eeaeb34fa440d00cd400545301ea203bd2a59284/src/registerServiceWorker.js). You can find the dependencies implementation in this repo: [yyx990803/register-service-worker](https://github.com/yyx990803/register-service-worker#readme).
+The service worker file is generated automatically. The implementation can be found under [`src/registerServiceWorker.js`](https://github.com/gothinkster/vue-realworld-example-app/blob/eeaeb34fa440d00cd400545301ea203bd2a59284/src/registerServiceWorker.js). You can find the dependencies implementation in this repo: [yyx990803/register-service-worker](https://github.com/yyx990803/register-service-worker#readme).
 
-  Also, Google provided a good documentation on how to register a service worker: https://developers.google.com/web/fundamentals/primers/service-workers/registration
+Also, Google provided a good documentation on how to register a service worker: https://developers.google.com/web/fundamentals/primers/service-workers/registration
+
 </details></p>
 
 <p><details>
   <summary><b>Vue.js Function API / Migration to Vue.js 3</b></summary>
 
-  Related resources:
+Related resources:
 
-  - [Vue.js Function API RFC](https://github.com/vuejs/rfcs/blob/function-apis/active-rfcs/0000-function-api.md)
-  - [`vue-function-api` plugin](https://github.com/vuejs/vue-function-api)
+- [Vue.js Function API RFC](https://github.com/vuejs/rfcs/blob/function-apis/active-rfcs/0000-function-api.md)
+- [`vue-function-api` plugin](https://github.com/vuejs/vue-function-api)
 
-  Vue.js 3 will likely introduce breaking changes on how Vue.js applications will look like. For example, the Vue.js Function API might be introduced. This would cause a lot of our components to change in the overall structure. The changes would be minimal though. With the `vue-function-api` plugin, these changes could be applied already. The problem is that multiple integrations are not working with the plugin. There are intentions to make this work, but for the time being, we should rather focus on different areas. If you still want to be experimental with it, we are happy to get a Pull Request with some experimental feature implementations.
+Vue.js 3 will likely introduce breaking changes on how Vue.js applications will look like. For example, the Vue.js Function API might be introduced. This would cause a lot of our components to change in the overall structure. The changes would be minimal though. With the `vue-function-api` plugin, these changes could be applied already. The problem is that multiple integrations are not working with the plugin. There are intentions to make this work, but for the time being, we should rather focus on different areas. If you still want to be experimental with it, we are happy to get a Pull Request with some experimental feature implementations.
+
+</details></p>
+
+<p><details>
+  <summary><b>What is the meaning of using async/await?</b></summary>
+
+The keywords `async` and `await` are used for handling promises in an easy way.
+
+For example, the following code example could be easily converted with `async` and `await`.
+
+```js
+[FAVORITE_REMOVE](context, payload) {
+  FavoriteService.remove(payload).then(({ data }) => {
+    context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
+    context.commit(SET_ARTICLE, data.article);
+  });
+};
+```
+
+```js
+async [FAVORITE_REMOVE](context, payload) {
+  const { data } = await FavoriteService.remove(payload);
+  context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
+  context.commit(SET_ARTICLE, data.article);
+};
+```
+
+The indentation will be less, and the code will be a lot more readable.
+
 </details></p>
 
 ## Connect
