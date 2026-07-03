@@ -15,8 +15,8 @@ jobs:
           node-version: 16
       - name: install dependencies and build
         run: |
-          npm install
-          npm run build -- --skip-plugins @vue/cli-plugin-eslint
+          npm install --legacy-peer-deps
+          npx vue-cli-service build --skip-plugins @vue/cli-plugin-eslint
       - name: grant folder permission
         uses: appleboy/ssh-action@v1.2.0
         with:
