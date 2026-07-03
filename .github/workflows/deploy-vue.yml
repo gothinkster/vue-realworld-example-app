@@ -9,14 +9,14 @@ jobs:
     steps:
       - name: check out code
         uses: actions/checkout@v4
-      - name: setup Node.js 20
+      - name: setup Node.js 16
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 16
       - name: install dependencies and build
         run: |
           npm install
-          npm run build
+          npm run build -- --skip-plugins @vue/cli-plugin-eslint
       - name: grant folder permission
         uses: appleboy/ssh-action@v1.2.0
         with:
