@@ -1,0 +1,46 @@
+name: deploy vue app
+on:
+  push:
+    branches:
+      - prod
+jobs:
+  deploy-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code
+        uses: actions/checkout@v4
+      - name: setup Node.js 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - name: install dependencies and build
+        run: |
+          npm install --legacy-peer-deps
+          npx vue-cli-service build --skip-plugins @vue/cli-plugin-eslint
+      - name: grant folder permission
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{secrets.PROD_HOST}}
+          username: ${{secrets.SSH_USER_NAME}}
+          key: ${{secrets.SSH_KEY}}
+          port: ${{secrets.SSH_PORT}}
+          script: |
+            sudo chown -R ubuntu /var/www/html
+            sudo rm -rf /var/www/html/*
+      - name: copy build files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{secrets.PROD_HOST}}
+          username: ${{secrets.SSH_USER_NAME}}
+          key: ${{secrets.SSH_KEY}}
+          source: "./dist/*"
+          target: "/var/www/html"
+          strip_components: 1
+      - name: reset folder permission
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{secrets.PROD_HOST}}
+          username: ${{secrets.SSH_USER_NAME}}
+          key: ${{secrets.SSH_KEY}}
+          port: ${{secrets.SSH_PORT}}
+          script: sudo chown -R root /var/www/html
